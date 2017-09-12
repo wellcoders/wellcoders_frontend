@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
 import { User } from './user';
+import { environment } from './../environments/environment';
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class UsersService {
     private _http: Http) { }
 
   register(user: User): void {
-    this._http.post(`http://localhost:8000/api/1.0/register/`, user).subscribe();
+    this._http.post(environment.url + `/api/1.0/register/`, user).subscribe();
   }
 
 }
