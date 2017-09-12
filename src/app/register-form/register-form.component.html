@@ -5,6 +5,9 @@
       placeholder="Username"
       ngModel #username="ngModel"
       required>
+      <md-error *ngIf="username.hasError('required')">
+          Username is <strong>required</strong>
+      </md-error>
 
     </md-form-field>
 
@@ -14,14 +17,16 @@
         placeholder="First Name"
         ngModel #first_name="ngModel"
         required>
+        <md-error *ngIf="first_name.hasError('required')">
+        First name is <strong>required</strong>
+        </md-error>
     </md-form-field>
 
     <md-form-field>
         <input mdInput type="text"
         name="last_name"
         placeholder="Last Name"
-        ngModel #last_name="ngModel"
-        required>
+        ngModel #last_name="ngModel">
     </md-form-field>
 
     <md-form-field>
@@ -29,7 +34,14 @@
         name="email"
         placeholder="E-mail"
         ngModel #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
         required>
+        <md-error *ngIf="email.hasError('pattern')">
+        Please enter a valid email address
+        </md-error>
+        <md-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+        </md-error>
   
     </md-form-field>
 
@@ -39,8 +51,10 @@
         placeholder="Password"
         ngModel #password="ngModel"
         required>
-  
+        <md-error *ngIf="password.hasError('required')">
+        Password is <strong>required</strong>
+        </md-error>
     </md-form-field>
-
+    
     <button md-button color="Primary" type="submit" [disabled]="user.invalid" >Register</button>
   </form>
