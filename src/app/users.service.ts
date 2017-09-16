@@ -11,8 +11,8 @@ export class UsersService {
   constructor(
     private _http: Http) { }
 
-  register(user: Object): void {
-    this._http.post(environment.url + `/api/1.0/register/`, user).subscribe();
+  register(user: Object): Observable<any> {
+    return this._http.post(environment.url + `/api/1.0/register/`, user);
   }
 
 }

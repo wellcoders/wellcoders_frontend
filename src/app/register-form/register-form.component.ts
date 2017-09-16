@@ -3,7 +3,7 @@ import { UsersService } from './../users.service';
 import { FormGroup } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import { Subscription } from "rxjs/Subscription";
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'register-form',
@@ -34,14 +34,22 @@ export class RegisterFormDialog {
   constructor(
     private _usersService: UsersService,
     public dialogRef: MdDialogRef<RegisterFormDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    @Inject(MD_DIALOG_DATA) public data: any,
+    public snackBar: MdSnackBar) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onRegisterUser(user){
-    this._usersService.register(user);
+    this._usersService.register(user).subscribe(
+      success => {
+        this.snackBar.open('Your request have been processed with success!', 'Try to login and enjoy!', { duration: 2000 });
+      },
+      error => {
+        this.snackBar.open(error, '', { duration: 2000 });
+      }
+    );
     this.dialogRef.close();
   }
 

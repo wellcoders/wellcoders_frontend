@@ -5,11 +5,11 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { FormsModule } from '@angular/forms';
 import { UsersService } from './../users.service';
 import { HttpModule } from '@angular/http';
-import { MdDialogModule } from '@angular/material'
+import { MdDialogModule, MdSnackBarModule } from '@angular/material'
 
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule],
+  imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule],
   declarations: [RegisterFormComponent, RegisterFormDialog],
   exports: [RegisterFormComponent, FormsModule],
   providers: [UsersService],
