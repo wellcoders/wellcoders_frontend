@@ -44,10 +44,19 @@ export class RegisterFormDialog {
   onRegisterUser(user){
     this._usersService.register(user).subscribe(
       success => {
-        this.snackBar.open('Your request have been processed with success!', 'Try to login and enjoy!', { duration: 2000 });
+        this.snackBar.open('Your request have been processed with success! Try to login and enjoy!', '', { duration: 5000 });
       },
       error => {
-        this.snackBar.open(error, '', { duration: 2000 });
+        var message = 'An error ocurred. Please, try again later.'
+        
+        if(error){
+          var response = JSON.parse(error._body)
+
+          if(response['username']){
+            message = response['username'];
+          }
+        }
+        this.snackBar.open(message, '', { duration: 5000 });
       }
     );
     this.dialogRef.close();
