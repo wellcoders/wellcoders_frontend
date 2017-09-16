@@ -1,17 +1,19 @@
   <form ngForm #user="ngForm" (ngSubmit)="submitUser(user)">  
-    <md-form-field>
+    <md-form-field ngClass="{{ rowStyle }}">
       <input mdInput type="text"
       name="username"
       placeholder="Username"
       ngModel #username="ngModel"
-      required>
+      required
+      >
       <md-error *ngIf="username.hasError('required')">
           Username is <strong>required</strong>
       </md-error>
 
     </md-form-field>
+    
 
-    <md-form-field>
+    <md-form-field ngClass="{{ rowStyle }}">
         <input mdInput type="text"
         name="first_name"
         placeholder="First Name"
@@ -22,14 +24,14 @@
         </md-error>
     </md-form-field>
 
-    <md-form-field>
+    <md-form-field ngClass="{{ rowStyle }}">
         <input mdInput type="text"
         name="last_name"
         placeholder="Last Name"
         ngModel #last_name="ngModel">
     </md-form-field>
 
-    <md-form-field>
+    <md-form-field ngClass="{{ rowStyle }}">
         <input mdInput type="email"
         name="email"
         placeholder="E-mail"
@@ -45,7 +47,7 @@
   
     </md-form-field>
 
-    <md-form-field>
+    <md-form-field ngClass="{{ rowStyle }}">
         <input mdInput type="password"
         name="password"
         placeholder="Password"
@@ -56,5 +58,5 @@
         </md-error>
     </md-form-field>
     
-    <button md-button color="Primary" type="submit" [disabled]="user.invalid" >Register</button>
+    <button ngClass="{{ rowStyle }}" md-raised-button color="Primary" type="submit" [disabled]="user.invalid" >Register</button>
   </form>

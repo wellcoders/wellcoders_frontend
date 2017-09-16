@@ -1,5 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { UtilsModule } from "./../utils-module/utils-module.module";
+import { RegisterFormDialog } from "./../register-form/register-form.component"
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
   selector: "header-bar",
@@ -7,7 +10,15 @@ import { UtilsModule } from "./../utils-module/utils-module.module";
   styleUrls: ["./header-bar.component.css"]
 })
 export class HeaderBarComponent implements OnInit {
-  constructor() {}
+  constructor(public dialog: MdDialog) {}
 
   ngOnInit() {}
+
+  openRegisterDialog(): void {
+    let dialogRef = this.dialog.open(RegisterFormDialog, {
+      width: '500px'
+    });
+
+  }
 }
+
