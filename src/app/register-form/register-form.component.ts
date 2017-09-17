@@ -15,15 +15,13 @@ export class RegisterFormComponent implements OnInit {
   @Input() rowStyle: string;
   @Output() registerUser: EventEmitter<Object> = new EventEmitter();
 
-  
   ngOnInit(): void {}
 
   constructor() { }
 
   submitUser(form: FormGroup): void {
-      this.registerUser.emit(form.value);
-    }
-
+    this.registerUser.emit(form.value);
+  }
 }
 
 @Component({

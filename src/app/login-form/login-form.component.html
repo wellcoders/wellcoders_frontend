@@ -1,0 +1,26 @@
+<form ngForm #user="ngForm" (ngSubmit)="submitUser(user)" class="mat-typography">  
+  <md-form-field ngClass="{{ rowStyle }}">
+    <input mdInput type="text"
+    name="username"
+    placeholder="Username"
+    ngModel #username="ngModel"
+    required>
+    <md-error *ngIf="username.hasError('required')">
+        Username is <strong>required</strong>
+    </md-error>
+
+  </md-form-field>
+
+  <md-form-field ngClass="{{ rowStyle }}">
+      <input mdInput type="password"
+      name="password"
+      placeholder="Password"
+      ngModel #password="ngModel"
+      required>
+      <md-error *ngIf="password.hasError('required')">
+      Password is <strong>required</strong>
+      </md-error>
+  </md-form-field>
+  
+  <button ngClass="{{ rowStyle }}" md-raised-button color="Primary" type="submit" [disabled]="user.invalid" >Login</button>
+</form>

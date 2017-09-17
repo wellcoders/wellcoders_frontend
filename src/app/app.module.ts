@@ -8,6 +8,7 @@ import { PrivateModule } from "./private-module/private.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent
