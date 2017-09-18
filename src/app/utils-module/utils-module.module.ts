@@ -5,11 +5,11 @@ import { ArticleListComponent } from "./../article-list/article-list.component";
 import { ArticlePreviewComponent } from "./../article-preview/article-preview.component";
 import { MaterialModule } from "./../material-module/material-module.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import { PublicModule } from "./../public-module/public.module";
 import { ArticleService } from "./../article.service";
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FlexLayoutModule],
+  imports: [CommonModule, MaterialModule, FlexLayoutModule, PublicModule],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,

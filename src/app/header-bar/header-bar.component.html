@@ -1,3 +1,12 @@
-<md-toolbar color="primary">
-    Wellcoders!
+<md-toolbar color="primary" class="mat-elevation-z6">
+    <span class="docs-button mat-button">Wellcoders!</span>
+    <span class="spacer"></span>
+    <span class="mat-caption" *ngIf="user">Wellcome, <a [mdMenuTriggerFor]="usermenu">{{ user.user.first_name }}</a></span>
+
+    <md-menu #usermenu="mdMenu">
+      <button md-menu-item (click)="logout()">Logout</button>
+    </md-menu>
+
+    <span *ngIf="!user" class="docs-button mat-button"><button md-button (click)="openLoginDialog()">Login</button></span>
+    <span *ngIf="!user" class="docs-button mat-button"><button md-button (click)="openRegisterDialog()">Register</button></span>
 </md-toolbar>
