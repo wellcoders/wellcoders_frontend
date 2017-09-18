@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 
 import {
   MdButtonModule,
   MdMenuModule,
   MdToolbarModule,
   MdIconModule,
-  MdCardModule
-} from '@angular/material';
+  MdCardModule,
+  MdGridListModule,
+} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -14,14 +15,16 @@ import {
     MdMenuModule,
     MdToolbarModule,
     MdIconModule,
-    MdCardModule
+    MdCardModule,
+    MdGridListModule
   ],
   exports: [
     MdButtonModule,
     MdMenuModule,
     MdToolbarModule,
     MdIconModule,
-    MdCardModule
+    MdCardModule,
+    MdGridListModule
   ]
 })
 export class MaterialModule {}

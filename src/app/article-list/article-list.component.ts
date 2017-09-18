@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Article } from "./../article";
+import { UtilsModule } from "./../utils-module/utils-module.module";
+import { ArticleService } from "./../article.service";
 
 @Component({
   selector: "article-list",
@@ -7,19 +9,12 @@ import { Article } from "./../article";
   styleUrls: ["./article-list.component.css"]
 })
 export class ArticleListComponent implements OnInit {
+  @Input() articles: Article[] = [];
 
-  private newContent = Article.fromJson({
-    id: 1,
-    title: 'title',
-    intro: 'intro',
-    body: 'body'
-  });
+  constructor(private articleService: ArticleService) {}
 
-  @Input() articles: Article[] = [
-    this.newContent
-  ];
-
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.articles = this.articleService.getAticles();
+    console.log(this.articles);
+  }
 }

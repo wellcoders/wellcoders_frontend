@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Article } from "./../article";
+import { UtilsModule } from "./../utils-module/utils-module.module";
 
 @Component({
   selector: "article-preview",
@@ -12,4 +13,8 @@ export class ArticlePreviewComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  plainTextToHtml(text: string): string {
+    return text ? `<p>${text.replace(/\n/gi, "</p><p>")}</p>` : "";
+  }
 }

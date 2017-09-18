@@ -1,1 +1,5 @@
-<article-preview  *ngFor="let article of articles" [article]="article">></article-preview>
+<div fxLayout="row" fxLayoutWrap>
+    <div *ngFor="let article of articles" fxFlex.gt-md="33" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100">
+        <article-preview [article]="article"></article-preview>
+    </div>
+</div>
