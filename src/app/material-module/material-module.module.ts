@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 import {
   MdButtonModule,
@@ -18,7 +19,8 @@ import {
     MdIconModule,
     MdCardModule,
     MdGridListModule,
-    MdInputModule
+    MdInputModule,
+    AngularFontAwesomeModule
   ],
   exports: [
     MdButtonModule,
@@ -27,7 +29,8 @@ import {
     MdIconModule,
     MdCardModule,
     MdGridListModule,
-    MdInputModule
+    MdInputModule,
+    AngularFontAwesomeModule
   ]
 })
 export class MaterialModule {}

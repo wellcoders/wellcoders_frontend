@@ -1,11 +1,11 @@
 <md-card class="example-card">
-    <img md-card-image [src]="article.media" alt="Photo of a Shiba Inu">
+    <img md-card-image [src]="article.media" alt="Photo of {{article.title}}">
     <md-card-header>
         <div md-card-avatar class="example-header-image">
-            <md-icon>account_circle</md-icon>
+            <i class="fa fa-user-circle fa-3x"></i>
         </div>
-        <md-card-title>{{article.owner.name}}</md-card-title>
-        <md-card-subtitle>{{article.publicationDate}}</md-card-subtitle>
+        <md-card-title>{{article.owner.first_name}} {{article.owner.last_name}}</md-card-title>
+        <md-card-subtitle>{{article.publicationDate | FromNow}}</md-card-subtitle>
     </md-card-header>
 
     <md-card-content>
@@ -13,6 +13,6 @@
         <div [innerHtml]="plainTextToHtml(article.summary)"></div>
     </md-card-content>
     <md-card-actions>
-        <button md-button><md-icon>label</md-icon> {{article.category.name}}</button>
+        <button md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
     </md-card-actions>
 </md-card>

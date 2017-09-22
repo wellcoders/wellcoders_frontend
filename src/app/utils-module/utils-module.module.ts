@@ -7,15 +7,17 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { PublicModule } from "./../public-module/public.module";
 import { ArticleService } from "./../article.service";
+import { FromNowPipe } from './../from-now.pipe';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule, PublicModule],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,
-    ArticlePreviewComponent
+    ArticlePreviewComponent,
+    FromNowPipe
   ],
-  exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent],
+  exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent, FromNowPipe],
   providers: [ArticleService]
 })
 export class UtilsModule {}
