@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Article } from "./../article";
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ActivatedRoute } from "@angular/router";
-
+import { environment } from "./../../environments/environment";
 @Component({
   selector: "article-list",
   templateUrl: "./article-list.component.html",
@@ -10,12 +10,17 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ArticleListComponent implements OnInit {
   @Input() articles: Article[];
+  @Input() totalPages: number;
+  @Input() pageSize: number;
+  @Output()
+  loadNextPageEvent: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private _activatedRoute: ActivatedRoute) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this._activatedRoute.data.subscribe(
-      (data: { articles: Article[] }) => (this.articles = data.articles)
-    );
+  ngOnInit(): void {}
+
+  loadNextPage(page): void {
+    console.log("ArticleListComponent: Reemitiendo el evento al componente padre");
+    this.loadNextPageEvent.emit(page);
   }
 }

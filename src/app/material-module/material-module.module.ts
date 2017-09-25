@@ -8,7 +8,8 @@ import {
   MdIconModule,
   MdCardModule,
   MdGridListModule,
-  MdInputModule
+  MdInputModule,
+  MdProgressBarModule
 } from "@angular/material";
 
 @NgModule({
@@ -20,7 +21,8 @@ import {
     MdCardModule,
     MdGridListModule,
     MdInputModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MdProgressBarModule
   ],
   exports: [
     MdButtonModule,
@@ -30,7 +32,8 @@ import {
     MdCardModule,
     MdGridListModule,
     MdInputModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MdProgressBarModule
   ]
 })
 export class MaterialModule {}

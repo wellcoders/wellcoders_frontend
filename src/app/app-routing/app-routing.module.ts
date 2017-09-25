@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { ArticleListComponent } from "./../article-list/article-list.component";
+import { LastArticlesComponent } from "./../last-articles/last-articles.component";
 import { RegisterFormComponent } from "./../register-form/register-form.component";
 import { ArticlesResolveService } from "./../articles-resolve.service";
 
@@ -10,7 +10,7 @@ import { ArticlesResolveService } from "./../articles-resolve.service";
     RouterModule.forRoot([
       {
         path: "articles",
-        component: ArticleListComponent,
+        component: LastArticlesComponent,
         resolve: {
           articles: ArticlesResolveService
         }

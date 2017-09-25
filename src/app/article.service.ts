@@ -3,16 +3,16 @@ import { Article } from "./article";
 import { Observable } from "rxjs/Observable";
 import { Http, Response } from "@angular/http";
 import { environment } from "./../environments/environment";
-
+import { ArticleWrapper } from "./article-wrapper";
 @Injectable()
 export class ArticleService {
   constructor(private _http: Http) {}
 
-  getArticles(): Observable<Article[]> {
+  getArticles(page: number = 1): Observable<ArticleWrapper> {
     return this._http
-      .get(environment.url + "/api/1.0/posts/")
-      .map((response: Response): Article[] =>
-        Article.fromJsonToList(response.json())
+      .get(environment.url + `/api/1.0/posts/?page=${page}`)
+      .map((response: Response): ArticleWrapper =>
+      ArticleWrapper.fromJson(response.json())
       );
   }
 }
