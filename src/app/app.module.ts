@@ -24,7 +24,7 @@ import { ArticlesResolveService } from "./articles-resolve.service";
     UtilsModule,
     PublicModule,
     PrivateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [ArticlesResolveService],
   bootstrap: [AppComponent]

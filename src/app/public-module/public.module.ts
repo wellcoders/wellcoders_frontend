@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from './../users.service';
 import { AuthenticationService } from './../authentication.service';
 import { HttpModule } from '@angular/http';
-import { MdDialogModule, MdSnackBarModule } from '@angular/material'
+import { MdDialogModule, MdSnackBarModule } from '@angular/material';
 
 
 @NgModule({

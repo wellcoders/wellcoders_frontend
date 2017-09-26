@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ArticleListComponent } from "./../article-list/article-list.component";
 import { RegisterFormComponent } from "./../register-form/register-form.component";
 import { ArticlesResolveService } from "./../articles-resolve.service";
+import { ArticlesByAuthorComponent } from './../articles-by-author/articles-by-author.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,13 @@ import { ArticlesResolveService } from "./../articles-resolve.service";
         component: ArticleListComponent,
         resolve: {
           articles: ArticlesResolveService
+        }
+      },
+      {
+        path: ':username/articles',
+        component: ArticlesByAuthorComponent,
+        resolve: {
+          posts: ArticlesResolveService
         }
       },
       // Para probar con dos urls, eliminar después

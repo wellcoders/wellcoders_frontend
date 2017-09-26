@@ -1,5 +1,7 @@
 <div fxLayout="row" fxLayoutWrap>
     <div *ngFor="let article of articles" fxFlex.gt-md="33" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100">
-        <article-preview [article]="article"></article-preview>
+        <article-preview [article]="article"
+            (alSeleccionarAutor)="verAutoresPost($event)">
+        </article-preview>
     </div>
 </div>

@@ -1,18 +1,39 @@
-import { Injectable } from "@angular/core";
-import { Article } from "./article";
-import { Observable } from "rxjs/Observable";
-import { Http, Response } from "@angular/http";
-import { environment } from "./../environments/environment";
+import { Injectable, Inject } from '@angular/core';
+import { Http, RequestOptions, Response, Headers, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+import { environment } from './../environments/environment';
+import { BackendUri } from './settings';
+import { Article } from './article';
 
 @Injectable()
 export class ArticleService {
-  constructor(private _http: Http) {}
+
+  constructor(
+    private _http: Http,
+    @Inject(BackendUri) private _backendUri) { }
 
   getArticles(): Observable<Article[]> {
     return this._http
-      .get(environment.url + "/api/1.0/posts/")
+      .get(environment.url + '/api/1.0/posts/')
       .map((response: Response): Article[] =>
         Article.fromJsonToList(response.json())
       );
+  }
+
+  getUserArticles(username: String): Observable<Article[]> {
+    const search = new URLSearchParams();
+    search.set('author.username', username.toString());
+    search.set('_sort', 'publicationDate');
+    search.set('_order', 'DESC');
+    search.set('publicationDate_lte', new Date().getTime().toString());
+    const options = new RequestOptions();
+    options.search = search;
+    return this._http
+    .get(`${this._backendUri}/api/1.0/`, options)
+    .map((response: Response) =>
+    Article.fromJsonToList(response.json())
+    );
   }
 }

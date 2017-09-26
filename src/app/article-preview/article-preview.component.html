@@ -4,7 +4,7 @@
         <div md-card-avatar class="example-header-image">
             <i class="fa fa-user-circle fa-3x"></i>
         </div>
-        <md-card-title>{{article.owner.first_name}} {{article.owner.last_name}}</md-card-title>
+        <md-card-title (click)="notifyUserArticle(article.owner.username)">{{article.owner.first_name}} {{article.owner.last_name}}</md-card-title>
         <md-card-subtitle>{{article.publicationDate | FromNow}}</md-card-subtitle>
     </md-card-header>
 

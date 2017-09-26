@@ -8,6 +8,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { PublicModule } from "./../public-module/public.module";
 import { ArticleService } from "./../article.service";
 import { FromNowPipe } from './../from-now.pipe';
+import { BackendUriProvider } from './../settings';
+import { ArticlesByAuthorComponent } from './../articles-by-author/articles-by-author.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule, PublicModule],
@@ -15,9 +17,10 @@ import { FromNowPipe } from './../from-now.pipe';
     HeaderBarComponent,
     ArticleListComponent,
     ArticlePreviewComponent,
-    FromNowPipe
+    FromNowPipe,
+    ArticlesByAuthorComponent
   ],
-  exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent, FromNowPipe],
-  providers: [ArticleService]
+  exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent, FromNowPipe, ArticlesByAuthorComponent],
+  providers: [ArticleService, BackendUriProvider]
 })
 export class UtilsModule {}
