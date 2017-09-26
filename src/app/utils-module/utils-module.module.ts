@@ -4,23 +4,33 @@ import { HeaderBarComponent } from "./../header-bar/header-bar.component";
 import { ArticleListComponent } from "./../article-list/article-list.component";
 import { ArticlePreviewComponent } from "./../article-preview/article-preview.component";
 import { MaterialModule } from "./../material-module/material-module.module";
+import { PaginateComponent } from "./../paginate/paginate.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { PublicModule } from "./../public-module/public.module";
 import { ArticleService } from "./../article.service";
-import { FromNowPipe } from './../from-now.pipe';
-import { BackendUriProvider } from './../settings';
-import { ArticlesByAuthorComponent } from './../articles-by-author/articles-by-author.component';
+import { FromNowPipe } from "./../from-now.pipe";
+import { RoundPipe } from "./../round.pipe";
+import { AppearDirective } from "./../appear.directive";
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FlexLayoutModule, PublicModule],
+  imports: [CommonModule, MaterialModule, FlexLayoutModule],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,
     ArticlePreviewComponent,
+    PaginateComponent,
     FromNowPipe,
-    ArticlesByAuthorComponent
+    RoundPipe,
+    AppearDirective
   ],
-  exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent, FromNowPipe, ArticlesByAuthorComponent],
-  providers: [ArticleService, BackendUriProvider]
+  exports: [
+    HeaderBarComponent,
+    ArticleListComponent,
+    ArticlePreviewComponent,
+    PaginateComponent,
+    FromNowPipe,
+    RoundPipe
+  ],
+  entryComponents: [PaginateComponent],
+  providers: [ArticleService]
 })
 export class UtilsModule {}

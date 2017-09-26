@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { environment } from './../environments/environment';
 import { BackendUri } from './settings';
 import { Article } from './article';
-
+import { ArticleWrapper } from "./article-wrapper";
 @Injectable()
 export class ArticleService {
 
@@ -14,11 +14,11 @@ export class ArticleService {
     private _http: Http,
     @Inject(BackendUri) private _backendUri) { }
 
-  getArticles(): Observable<Article[]> {
+  getArticles(page: number = 1): Observable<ArticleWrapper> {
     return this._http
-      .get(environment.url + '/api/1.0/posts/')
-      .map((response: Response): Article[] =>
-        Article.fromJsonToList(response.json())
+      .get(environment.url + `/api/1.0/posts/?page=${page}`)
+      .map((response: Response): ArticleWrapper =>
+      ArticleWrapper.fromJson(response.json())
       );
   }
 
