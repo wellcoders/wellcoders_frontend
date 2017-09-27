@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { LastArticlesComponent } from "./../last-articles/last-articles.component";
 import { RegisterFormComponent } from "./../register-form/register-form.component";
 import { ArticlesResolveService } from "./../articles-resolve.service";
-import { ArticlesByAuthorComponent } from './../articles-by-author/articles-by-author.component';
+import { AuthorArticlesComponent } from './../author-articles/author-articles.component';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { ArticlesByAuthorComponent } from './../articles-by-author/articles-by-a
       },
       {
         path: ':username/articles',
-        component: ArticlesByAuthorComponent,
+        component: AuthorArticlesComponent,
         resolve: {
           posts: ArticlesResolveService
         }

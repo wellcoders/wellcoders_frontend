@@ -4,13 +4,12 @@ import { Article } from './../article';
 import { User } from './../user';
 
 @Component({
-  templateUrl: './articles-by-author.component.html',
-  styleUrls: ['./articles-by-author.component.css']
+  templateUrl: './author-articles.component.html',
+  styleUrls: ['./author-articles.component.css']
 })
-export class ArticlesByAuthorComponent implements OnInit {
+export class AuthorArticlesComponent implements OnInit {
 
   articles: Article[];
-  author: User;
 
   constructor(
     private _activatedRoute: ActivatedRoute
@@ -19,7 +18,6 @@ export class ArticlesByAuthorComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.data.subscribe((data: { articles: Article[] }) => {
       this.articles = data.articles;
-      this.author = data.articles[0].owner;
     });
   }
 
