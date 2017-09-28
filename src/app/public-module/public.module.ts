@@ -7,11 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from './../users.service';
 import { AuthenticationService } from './../authentication.service';
 import { HttpModule } from '@angular/http';
-import { MdDialogModule, MdSnackBarModule } from '@angular/material'
-
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule],
+  imports: [CommonModule, MaterialModule, FormsModule, HttpModule],
   declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog],
   exports: [RegisterFormComponent, FormsModule, LoginFormComponent, LoginFormDialog],
   providers: [UsersService, AuthenticationService],

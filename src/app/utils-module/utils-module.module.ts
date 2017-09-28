@@ -7,6 +7,7 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { PublicModule } from "./../public-module/public.module";
 import { ArticleService } from "./../article.service";
+import { CategoriesService } from './../categories.service';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule, PublicModule],
@@ -16,6 +17,6 @@ import { ArticleService } from "./../article.service";
     ArticlePreviewComponent
   ],
   exports: [HeaderBarComponent, ArticleListComponent, ArticlePreviewComponent],
-  providers: [ArticleService]
+  providers: [ArticleService, CategoriesService]
 })
 export class UtilsModule {}

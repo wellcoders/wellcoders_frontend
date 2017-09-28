@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 
 import {
   MdButtonModule,
@@ -7,7 +7,12 @@ import {
   MdIconModule,
   MdCardModule,
   MdGridListModule,
-  MdInputModule
+  MdInputModule,
+  MdDialogModule, 
+  MdSnackBarModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
+  MdSelectModule
 } from "@angular/material";
 
 @NgModule({
@@ -18,7 +23,12 @@ import {
     MdIconModule,
     MdCardModule,
     MdGridListModule,
-    MdInputModule
+    MdInputModule,
+    MdDialogModule, 
+    MdSnackBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdSelectModule
   ],
   exports: [
     MdButtonModule,
@@ -27,7 +37,16 @@ import {
     MdIconModule,
     MdCardModule,
     MdGridListModule,
-    MdInputModule
-  ]
+    MdInputModule,
+    MdDialogModule, 
+    MdSnackBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdSelectModule
+  ],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-ES'},
+  ],
 })
 export class MaterialModule {}
+
