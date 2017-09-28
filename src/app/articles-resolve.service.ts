@@ -10,6 +10,11 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
   constructor(private _articleService: ArticleService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<ArticleWrapper> {
-    return this._articleService.getArticles();
+    console.log('params', route.params.username);
+    if (route.params['username']) {
+      return this._articleService.getUserArticles(route.params['username']);
+    } else {
+      return this._articleService.getArticles();
+    }
   }
 }

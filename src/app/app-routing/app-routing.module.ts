@@ -17,10 +17,10 @@ import { AuthorArticlesComponent } from './../author-articles/author-articles.co
         }
       },
       {
-        path: ':username/articles',
+        path: ':username',
         component: AuthorArticlesComponent,
         resolve: {
-          posts: ArticlesResolveService
+          articles: ArticlesResolveService
         }
       },
       // Para probar con dos urls, eliminar después

@@ -14,8 +14,12 @@ export class ArticleListComponent implements OnInit {
   @Input() articles: Article[];
   @Input() totalPages: number;
   @Input() pageSize: number;
+  @Input() users: User[];
+
   @Output()
   loadNextPageEvent: EventEmitter<number> = new EventEmitter<number>();
+
+  private _userSeleccionado: User;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _router: Router) {}
@@ -28,6 +32,6 @@ export class ArticleListComponent implements OnInit {
   }
 
   verAutoresPost(user: User): void {
-    this._router.navigate([`/users/${user.username}/articles`]);
+    this._router.navigate([`${user.username}`]);
   }
 }

@@ -21,11 +21,11 @@ export class ArticleService {
       );
   }
 
-  getUserArticles(username: String): Observable<Article[]> {
+  getUserArticles(username: String, page: number = 1): Observable<ArticleWrapper> {
     return this._http
-    .get(environment.url + `/api/1.0/${username}/posts`)
-    .map((response: Response) =>
-    Article.fromJsonToList(response.json())
+    .get(environment.url + `/api/1.0/${username}/posts/?page=${page}`)
+    .map((response: Response): ArticleWrapper =>
+    ArticleWrapper.fromJson(response.json())
     );
   }
 }
