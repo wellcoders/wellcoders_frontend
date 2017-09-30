@@ -21,6 +21,14 @@ export class ArticleService {
       );
   }
 
+  getCategoryArticles(category: string, page: number = 1): Observable<ArticleWrapper> {
+    return this._http
+      .get(environment.url + `/api/1.0/tag/${category}/?page=${page}`)
+      .map((response: Response): ArticleWrapper =>
+      ArticleWrapper.fromJson(response.json())
+      );
+  }
+
   getUserArticles(username: String): Observable<Article[]> {
     return this._http
     .get(environment.url + `/api/1.0/${username}/posts`)

@@ -7,18 +7,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class PaginateComponent implements OnInit {
   @Input() page: number;
-  @Output()
-  loadNextPageEvent: EventEmitter<number> = new EventEmitter<number>();
+  @Input() list: string;
+  @Input() listName: string;
+  @Output() loadNextPageEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {}
 
-  notifyLoadNextPage(pageNumber: number): void {
+  notifyLoadNextPage(pageNumber: number, listName: string): void {
     console.log(
-      `PaginateComponent: El componenente paginación de la página ${this
-        .page} acaba de aparecer en el viewport. Se procede a cargar los artículos de esa página.`
+      `PaginateComponent: El componente paginación de la página ${pageNumber} del listado de ${listName} artículos acaba de aparecer en el viewport. Se emite el evento al componente padre.`
     );
-    this.loadNextPageEvent.emit(pageNumber);
+    this.loadNextPageEvent.emit({ pageNumber, listName });
   }
 }

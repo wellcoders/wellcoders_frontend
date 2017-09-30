@@ -3,6 +3,9 @@ import { Category } from "./category";
 import { Article } from "./article";
 
 export class ArticleWrapper {
+  static latestList: string = "latest";
+  static authorList: string = "author";
+  static categoryList: string = "category";
   private constructor(
     public articles: Article[],
     public count: number,

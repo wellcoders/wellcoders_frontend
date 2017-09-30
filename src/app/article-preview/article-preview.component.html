@@ -13,6 +13,6 @@
         <div [innerHtml]="plainTextToHtml(article.summary)"></div>
     </md-card-content>
     <md-card-actions>
-        <button md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
+        <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
     </md-card-actions>
 </md-card>

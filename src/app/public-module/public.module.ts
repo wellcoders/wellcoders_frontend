@@ -9,15 +9,16 @@ import { UsersService } from './../users.service';
 import { AuthenticationService } from './../authentication.service';
 import { HttpModule } from '@angular/http';
 import { MdDialogModule, MdSnackBarModule } from '@angular/material';
-import { LastArticlesComponent } from "./../last-articles/last-articles.component";
+import { LastestArticlesComponent } from "./../lastest-articles/lastest-articles.component";
 import { AuthorArticlesComponent } from './../author-articles/author-articles.component';
+import { CategoryArticlesComponent } from "./../category-articles/category-articles.component";
 
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule, UtilsModule],
-  declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog, LastArticlesComponent, 
-    AuthorArticlesComponent],
-  exports: [RegisterFormComponent, FormsModule, LoginFormComponent, LoginFormDialog, LastArticlesComponent, AuthorArticlesComponent],
+  declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, 
+    AuthorArticlesComponent, CategoryArticlesComponent],
+  exports: [RegisterFormComponent, FormsModule, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, AuthorArticlesComponent, CategoryArticlesComponent],
   providers: [UsersService, AuthenticationService],
   entryComponents: [RegisterFormDialog, LoginFormDialog]
 })

@@ -22,13 +22,14 @@ import { ArticleService } from "./../article.service";
 
 @Component({
   selector: "last-articles",
-  templateUrl: "./last-articles.component.html",
-  styleUrls: ["./last-articles.component.css"]
+  templateUrl: "./lastest-articles.component.html",
+  styleUrls: ["./lastest-articles.component.css"]
 })
-export class LastArticlesComponent implements OnInit {
+export class LastestArticlesComponent implements OnInit {
   articles: Article[];
   totalPages: number;
   pageSize: number;
+  listName: string = ArticleWrapper.latestList;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -51,6 +52,7 @@ export class LastArticlesComponent implements OnInit {
       articleWrapper.articles.map(article => {
         this.articles.push(article);
       });
+      this.totalPages = articleWrapper.totalPages;
     });
   }
 }
