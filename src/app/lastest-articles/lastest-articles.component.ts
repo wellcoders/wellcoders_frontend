@@ -33,7 +33,7 @@ export class LastestArticlesComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private articleService: ArticleService
+    private articleService: ArticleService,
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +47,6 @@ export class LastestArticlesComponent implements OnInit {
   }
 
   loadNextPage(pageNumber: number): void {
-    console.log(`Cargando artículos página ${pageNumber}`);
     this.articleService.getArticles(pageNumber).subscribe(articleWrapper => {
       articleWrapper.articles.map(article => {
         this.articles.push(article);

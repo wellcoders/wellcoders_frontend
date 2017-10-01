@@ -11,17 +11,17 @@ import { CategoryArticlesComponent } from "./../category-articles/category-artic
   imports: [
     RouterModule.forRoot([
       {
-        path: "articles",
+        path: "",
         component: LastestArticlesComponent,
         resolve: {
           articles: ArticlesResolveService
         }
       },
       {
-        path: ":username/articles",
+        path: ":username",
         component: AuthorArticlesComponent,
         resolve: {
-          posts: ArticlesResolveService
+          articles: ArticlesResolveService
         }
       },
       // Para probar con dos urls, eliminar después

@@ -1,5 +1,5 @@
 <div class="author-articles">
-  <h2>Historias de {{ author?.name }}</h2>
-  <article-list [articles]="articles"></article-list>
+  <h2>Historias de {{ author?.first_name }} {{ author?.last_name }}</h2>
+  <article-list [listName]="listName" (loadNextPageAuthorArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages"
+    [articles]="articles"></article-list>
 </div>
-

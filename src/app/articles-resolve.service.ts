@@ -12,10 +12,10 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
   resolve(route: ActivatedRouteSnapshot): Observable<ArticleWrapper> {
     let params = route.params;
     if (params.hasOwnProperty("categoryname")) {
-      console.log("Recuperando artículos por categoria");
       return this._articleService.getCategoryArticles(params.categoryname);
+    } else if (params.hasOwnProperty("username")) {
+      return this._articleService.getAuthorArticles(params.username);
     } else {
-      console.log("Recuperando últimos artículos");
       return this._articleService.getArticles();
     }
   }

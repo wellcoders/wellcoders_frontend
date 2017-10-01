@@ -14,6 +14,7 @@ export class ArticleService {
   ) { }
 
   getArticles(page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo últimos artículos de la página ${page}`);
     return this._http
       .get(environment.url + `/api/1.0/posts/?page=${page}`)
       .map((response: Response): ArticleWrapper =>
@@ -22,6 +23,7 @@ export class ArticleService {
   }
 
   getCategoryArticles(category: string, page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}`);
     return this._http
       .get(environment.url + `/api/1.0/tag/${category}/?page=${page}`)
       .map((response: Response): ArticleWrapper =>
@@ -29,11 +31,12 @@ export class ArticleService {
       );
   }
 
-  getUserArticles(username: String): Observable<Article[]> {
+  getAuthorArticles(username: String, page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo artículos del autor ${username} de la página ${page}`);
     return this._http
-    .get(environment.url + `/api/1.0/${username}/posts`)
-    .map((response: Response) =>
-    Article.fromJsonToList(response.json())
+    .get(environment.url + `/api/1.0/${username}/?page=${page}`)
+    .map((response: Response): ArticleWrapper =>
+    ArticleWrapper.fromJson(response.json())
     );
   }
 }

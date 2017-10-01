@@ -21,17 +21,14 @@ export class ArticleListComponent implements OnInit {
   @Output() loadNextPageAuthorArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
   @Output() loadNextPageCategoryArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _router: Router
-  ) {}
+  constructor(private _activatedRoute: ActivatedRoute,
+    private _router: Router) {}
 
   ngOnInit(): void {}
 
   loadNextPage(data): void {
     const listName = data.listName;
     const page = data.pageNumber;
-    console.log(`Cargando artículos página ${page} del listado ${listName}`);
     if (listName === ArticleWrapper.authorList) {
       this.loadNextPageAuthorArticlesEvent.emit(page);
     } else if (listName === ArticleWrapper.categoryList) {
@@ -41,12 +38,11 @@ export class ArticleListComponent implements OnInit {
     }
   }
 
-  verAutoresPost(user: User): void {
-    this._router.navigate([`/users/${user.username}/articles`]);
+  goToAuthorArticleList(username: string): void {
+    this._router.navigate([`${username}`]);
   }
 
   goToCategoryArticleList(category: Category): void {
-    console.log(`Redireccionando al listado de la categoría`)
     this._router.navigate([`/tag/${category.name}`]);
   }
 }

@@ -3,6 +3,7 @@ import {
   NgModule,
   OnInit,
   Input,
+  Inject,
   ComponentFactory,
   ComponentRef,
   ComponentFactoryResolver,
@@ -34,13 +35,13 @@ export class CategoryArticlesComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private articleService: ArticleService
+    private articleService: ArticleService,
   ) {}
 
   ngOnInit(): void {
-    this.category = this._activatedRoute.snapshot.url[1].path;
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
+        this.category = data.articles.articles[0].category.name;
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;
@@ -49,12 +50,13 @@ export class CategoryArticlesComponent implements OnInit {
   }
 
   loadNextPage(pageNumber: number): void {
-    console.log(`Cargando artículos página ${pageNumber}`);
-    this.articleService.getCategoryArticles(this.category, pageNumber).subscribe(articleWrapper => {
-      articleWrapper.articles.map(article => {
-        this.articles.push(article);
+    this.articleService
+      .getCategoryArticles(this.category, pageNumber)
+      .subscribe(articleWrapper => {
+        articleWrapper.articles.map(article => {
+          this.articles.push(article);
+        });
+        this.totalPages = articleWrapper.totalPages;
       });
-      this.totalPages = articleWrapper.totalPages;
-    });
   }
 }

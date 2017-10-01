@@ -1,24 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Article } from './../article';
-import { User } from './../user';
+import { Component, OnInit, Inject } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Article } from "./../article";
+import { User } from "./../user";
+import { ArticleService } from "./../article.service";
+import { ArticleWrapper } from "./../article-wrapper";
 
 @Component({
-  templateUrl: './author-articles.component.html',
-  styleUrls: ['./author-articles.component.css']
+  templateUrl: "./author-articles.component.html",
+  styleUrls: ["./author-articles.component.css"]
 })
 export class AuthorArticlesComponent implements OnInit {
-
   articles: Article[];
+  totalPages: number;
+  pageSize: number;
+  author: User;
+  listName: string = ArticleWrapper.authorList;
 
   constructor(
-    private _activatedRoute: ActivatedRoute
-  ) { }
+    private _activatedRoute: ActivatedRoute,
+    private articleService: ArticleService,
+  ) {}
 
   ngOnInit(): void {
-    this._activatedRoute.data.subscribe((data: { articles: Article[] }) => {
-      this.articles = data.articles;
-    });
+    this._activatedRoute.data.subscribe(
+      (data: { articles: ArticleWrapper }) => {
+        this.author = data.articles.articles[0].owner;
+        this.articles = data.articles.articles;
+        this.totalPages = data.articles.totalPages;
+        this.pageSize = data.articles.pageSize;
+      }
+    );
   }
 
+  loadNextPage(pageNumber: number): void {
+    this.articleService
+      .getAuthorArticles(this.author.username, pageNumber)
+      .subscribe(articleWrapper => {
+        articleWrapper.articles.map(article => {
+          this.articles.push(article);
+        });
+        this.totalPages = articleWrapper.totalPages;
+      });
+  }
 }

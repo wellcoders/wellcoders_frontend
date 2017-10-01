@@ -16,9 +16,6 @@ export class PaginateComponent implements OnInit {
   ngOnInit() {}
 
   notifyLoadNextPage(pageNumber: number, listName: string): void {
-    console.log(
-      `PaginateComponent: El componente paginación de la página ${pageNumber} del listado de ${listName} artículos acaba de aparecer en el viewport. Se emite el evento al componente padre.`
-    );
     this.loadNextPageEvent.emit({ pageNumber, listName });
   }
 }

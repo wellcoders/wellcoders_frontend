@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Article } from "./../article";
+import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
 import { UtilsModule } from "./../utils-module/utils-module.module";
@@ -12,11 +13,11 @@ import { UtilsModule } from "./../utils-module/utils-module.module";
 export class ArticlePreviewComponent implements OnInit {
   @Input() article: Article;
   @Input() user: User;
-  @Output() alSeleccionarAutor: EventEmitter<User>;
-  @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();;
+  @Output() whenAuthorSelected: EventEmitter<User> = new EventEmitter<User>();
+  @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
+  listName: string = ArticleWrapper.authorList;
 
   constructor() {
-    this.alSeleccionarAutor = new EventEmitter<User>();
   }
 
   ngOnInit() {}
@@ -25,13 +26,11 @@ export class ArticlePreviewComponent implements OnInit {
     return text ? `<p>${text.replace(/\n/gi, "</p><p>")}</p>` : "";
   }
 
-  // Notificamos la pulsación sobre el botón de 'Article Preview'
-  notifyUserArticle(user: User): void {
-    this.alSeleccionarAutor.emit(user);
+  notifyAuthorSelected(user: User): void {
+    this.whenAuthorSelected.emit(user);
   }
 
   notifyCategorySelected(category: Category): void {
-    console.log(`Redireccionando al listado de artículos de la categoría ${category.name}`);
     this.whenCategorySelected.emit(category);
   }
 }
