@@ -85,14 +85,14 @@
                     </div>
 
                     <div class="mat-input-wrapper mat-form-field-wrapper">
-                        <md-select class="full-width" placeholder="Status">
+                        <md-select name="status" ngModel #status="ngModel" class="full-width" placeholder="Status">
                             <md-option *ngFor="let status of statuses" [value]="status.code">
                                 {{ status.name }}
                             </md-option>
                         </md-select>
                     </div>
                     <div class="mat-input-wrapper mat-form-field-wrapper">
-                        <md-select class="full-width" placeholder="Category">
+                        <md-select name="category_id" ngModel #category_id="ngModel" class="full-width" placeholder="Category">
                             <md-option *ngFor="let category of categories" [value]="category.pk">
                                 {{ category.name }}
                             </md-option>

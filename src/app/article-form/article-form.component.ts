@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateAdapter } from '@angular/material';
 import { Article } from './../article'
 import { CategoriesService } from './../categories.service'
+import { ArticleService } from './../article.service'
 
 @Component({
   selector: 'article-form',
@@ -14,7 +15,8 @@ export class ArticleFormComponent implements OnInit {
               {code: 'PUB', name: 'Published'}];
   
   constructor(
-    private _categories: CategoriesService
+    private _categories: CategoriesService,
+    private _articles: ArticleService
   ) {
   }
 
@@ -42,7 +44,14 @@ export class ArticleFormComponent implements OnInit {
       this.minute = this.publish_date.getMinutes()
     }
 
+    var article = form.value
+    delete article.hour
+    delete article.minute
+
     debugger;
+    if(form.valid){
+      this._articles.createArticle(article).subscribe();
+    }
   }
 
 }
