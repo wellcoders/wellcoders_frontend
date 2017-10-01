@@ -4,6 +4,7 @@
     <span class="mat-caption" *ngIf="user">Wellcome, <a [mdMenuTriggerFor]="usermenu">{{ user.user.first_name }}</a></span>
 
     <md-menu #usermenu="mdMenu">
+      <button md-menu-item (click)="createArticle()">Create Article</button>
       <button md-menu-item (click)="logout()">Logout</button>
     </md-menu>
 

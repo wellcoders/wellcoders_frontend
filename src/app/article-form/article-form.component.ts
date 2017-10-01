@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { DateAdapter } from '@angular/material';
+import { DateAdapter, MdSnackBar } from '@angular/material';
 import { Article } from './../article'
 import { CategoriesService } from './../categories.service'
 import { ArticleService } from './../article.service'
+import { LocalStorageHandler } from './../local-storage-handler'
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 @Component({
   selector: 'article-form',
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.css']
 })
-export class ArticleFormComponent implements OnInit {
+export class ArticleFormComponent extends LocalStorageHandler implements OnInit {
   statuses = [{code: 'DRF', name: 'Draft'},
               {code: 'PUB', name: 'Published'}];
   
   constructor(
     private _categories: CategoriesService,
-    private _articles: ArticleService
+    private _articles: ArticleService,
+    private _router: Router,
+    public snackBar: MdSnackBar
   ) {
+    super();
   }
 
   hour = undefined;
@@ -27,7 +33,11 @@ export class ArticleFormComponent implements OnInit {
   result = undefined;
 
   ngOnInit() {
-    this._categories.list().subscribe((categories: Object[]) => this.categories = categories);
+    if(!this.user){
+      this._router.navigate(['/'])
+    }else{
+      this._categories.list().subscribe((categories: Object[]) => this.categories = categories);
+    }
   }
 
   publish(form: FormGroup):void{
@@ -48,9 +58,19 @@ export class ArticleFormComponent implements OnInit {
     delete article.hour
     delete article.minute
 
-    debugger;
     if(form.valid){
-      this._articles.createArticle(article).subscribe();
+      this._articles.createArticle(article).subscribe(
+        success => {
+          this.snackBar.open('Your article has been created!', '', { duration: 5000 });
+          this._router.navigate(['/']);
+        },
+        error => {
+          var message = 'An error ocurred. Please, try again later.'
+          
+          this.snackBar.open(message, '', { duration: 5000 });
+        }
+
+      );
     }
   }
 
