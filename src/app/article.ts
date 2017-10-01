@@ -27,6 +27,6 @@ export class Article {
   }
 
   static fromJsonToList(json: any): Article[] {
-    return (json as any[]).map((post: any): Article => Article.fromJson(post));
+    return (json.results as any[]).map((article: any): Article => Article.fromJson(article));
   }
 }
