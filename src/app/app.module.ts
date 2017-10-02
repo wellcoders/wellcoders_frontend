@@ -14,7 +14,6 @@ import { ArticlesResolveService } from "./articles-resolve.service";
 @NgModule({
   declarations: [
     AppComponent
-    // ArticleDetailComponent
   ],
   imports: [
     AppRoutingModule,

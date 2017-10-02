@@ -7,6 +7,7 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { PaginateComponent } from "./../paginate/paginate.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ArticleService } from "./../article.service";
+import { CategoriesService } from './../categories.service';
 import { FromNowPipe } from "./../from-now.pipe";
 import { RoundPipe } from "./../round.pipe";
 import { AppearDirective } from "./../appear.directive";
@@ -31,6 +32,6 @@ import { AppearDirective } from "./../appear.directive";
     RoundPipe
   ],
   entryComponents: [PaginateComponent],
-  providers: [ArticleService]
+  providers: [ArticleService, CategoriesService]
 })
 export class UtilsModule {}

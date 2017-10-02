@@ -6,12 +6,14 @@ import 'rxjs/add/operator/map';
 import { environment } from './../environments/environment';
 import { Article } from './article';
 import { ArticleWrapper } from "./article-wrapper";
+import { LocalStorageHandler } from "./local-storage-handler"
+
 @Injectable()
-export class ArticleService {
+export class ArticleService extends LocalStorageHandler{
 
   constructor(
     private _http: Http
-  ) { }
+  ) { super()}
 
   getArticles(page: number = 1): Observable<ArticleWrapper> {
     console.log(`Obteniendo últimos artículos de la página ${page}`);
@@ -38,5 +40,16 @@ export class ArticleService {
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );
+  }
+
+  createArticle(article: Object): Observable<any> {
+    
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+    
+    return this._http
+      .post(environment.url + `/api/1.0/posts/`, article, options);
   }
 }

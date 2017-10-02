@@ -14,6 +14,8 @@ import { AuthorArticlesComponent } from './../author-articles/author-articles.co
 import { CategoryArticlesComponent } from "./../category-articles/category-articles.component";
 
 
+
+
 @NgModule({
   imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule, UtilsModule],
   declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, 

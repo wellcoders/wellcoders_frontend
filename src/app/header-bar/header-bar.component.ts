@@ -5,6 +5,7 @@ import { LoginFormDialog } from "./../login-form/login-form.component"
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
 import { LocalStorageHandler } from "./../local-storage-handler"
 import { AuthenticationService } from './../authentication.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   constructor(
     private _authService: AuthenticationService,
     public dialog: MdDialog,
-    public snackBar: MdSnackBar) {
+    public snackBar: MdSnackBar,
+    private _router: Router) {
       super();
     }
 
@@ -25,6 +27,11 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   logout():void{
     this.snackBar.open('Goodbye, '+ this.user.user.first_name+ '. See you soon!', '', { duration: 5000 });
     this._authService.logout();
+    this._router.navigate(['/'])
+  }
+
+  createArticle():void{
+    this._router.navigate(['/article/create'])
   }
 
   openLoginDialog(): void {

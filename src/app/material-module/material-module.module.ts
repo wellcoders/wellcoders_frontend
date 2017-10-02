@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 import {
@@ -9,6 +9,11 @@ import {
   MdCardModule,
   MdGridListModule,
   MdInputModule,
+  MdDialogModule, 
+  MdSnackBarModule,
+  MdDatepickerModule,
+  MdNativeDateModule,
+  MdSelectModule,
   MdProgressBarModule
 } from "@angular/material";
 
@@ -21,6 +26,11 @@ import {
     MdCardModule,
     MdGridListModule,
     MdInputModule,
+    MdDialogModule, 
+    MdSnackBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdSelectModule,
     AngularFontAwesomeModule,
     MdProgressBarModule
   ],
@@ -32,8 +42,17 @@ import {
     MdCardModule,
     MdGridListModule,
     MdInputModule,
+    MdDialogModule, 
+    MdSnackBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdSelectModule,
     AngularFontAwesomeModule,
     MdProgressBarModule
+  ],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-ES'},
   ]
 })
 export class MaterialModule {}
+

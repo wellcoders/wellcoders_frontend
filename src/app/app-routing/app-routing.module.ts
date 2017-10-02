@@ -6,6 +6,7 @@ import { RegisterFormComponent } from "./../register-form/register-form.componen
 import { ArticlesResolveService } from "./../articles-resolve.service";
 import { AuthorArticlesComponent } from "./../author-articles/author-articles.component";
 import { CategoryArticlesComponent } from "./../category-articles/category-articles.component";
+import { ArticleFormComponent } from './../article-form/article-form.component'
 
 @NgModule({
   imports: [
@@ -24,10 +25,9 @@ import { CategoryArticlesComponent } from "./../category-articles/category-artic
           articles: ArticlesResolveService
         }
       },
-      // Para probar con dos urls, eliminar después
       {
-        path: "register",
-        component: RegisterFormComponent
+        path: `article/create`, 
+        component: ArticleFormComponent
       },
       {
         path: "tag/:categoryname",
