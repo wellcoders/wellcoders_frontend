@@ -30,6 +30,13 @@ import { ArticleFormComponent } from './../article-form/article-form.component'
         component: ArticleFormComponent
       },
       {
+        path: `article/:articleid/edit`, 
+        component: ArticleFormComponent,
+        resolve: {
+          articles: ArticlesResolveService
+        }
+      },
+      {
         path: "tag/:categoryname",
         component: CategoryArticlesComponent,
         resolve: {

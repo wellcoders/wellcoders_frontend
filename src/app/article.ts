@@ -4,6 +4,7 @@ import { Category } from "./category";
 export class Article {
   private constructor(
     public id: number,
+    public pk: number,
     public title: string,
     public summary: string,
     public body: string,
@@ -16,6 +17,7 @@ export class Article {
   static fromJson(json: any): Article {
     return new Article(
       json.id,
+      json.pk,
       json.title,
       json.summary,
       json.body,

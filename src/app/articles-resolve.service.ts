@@ -15,6 +15,8 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
       return this._articleService.getCategoryArticles(params.categoryname);
     } else if (params.hasOwnProperty("username")) {
       return this._articleService.getAuthorArticles(params.username);
+    } else if (params.hasOwnProperty("articleid")) {
+      return this._articleService.getArticleById(params.articleid);
     } else {
       return this._articleService.getArticles();
     }

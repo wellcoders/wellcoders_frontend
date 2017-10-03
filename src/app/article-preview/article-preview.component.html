@@ -14,5 +14,6 @@
     </md-card-content>
     <md-card-actions>
         <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
+        <button (click)="notifyEditArticle(article)" md-button *ngIf="user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
     </md-card-actions>
 </md-card>

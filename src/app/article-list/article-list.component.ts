@@ -45,4 +45,8 @@ export class ArticleListComponent implements OnInit {
   goToCategoryArticleList(category: Category): void {
     this._router.navigate([`/tag/${category.name}`]);
   }
+
+  goToEditArticle(article: Article): void {
+    this._router.navigate([`/article/${article.pk}/edit`]);
+  }
 }
