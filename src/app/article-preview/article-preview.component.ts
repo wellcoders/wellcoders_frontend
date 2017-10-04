@@ -5,6 +5,8 @@ import { User } from "./../user";
 import { Category } from "./../category";
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { LocalStorageHandler } from "./../local-storage-handler"
+import { MdDialog } from "@angular/material"
+import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
 
 @Component({
   selector: "article-preview",
@@ -17,9 +19,10 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
   @Output() whenAuthorSelected: EventEmitter<User> = new EventEmitter<User>();
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   @Output() whenEditArticle: EventEmitter<Article> = new EventEmitter<Article>();
+  @Output() whenDeleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
   listName: string = ArticleWrapper.authorList;
 
-  constructor() {
+  constructor(public dialog: MdDialog) {
     super();
   }
 
@@ -39,5 +42,20 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
 
   notifyEditArticle(article: Article): void {
     this.whenEditArticle.emit(article);
+  }
+
+  notifyDeleteArticle(article: Article): void {
+    let dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result){
+        this.whenDeleteArticle.emit(article);
+      }
+    });
+
+  
   }
 }

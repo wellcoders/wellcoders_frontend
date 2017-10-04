@@ -56,25 +56,27 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
 
     this._activatedRoute.data.subscribe(
       (data: { data: Object}) => {
-        this.article = data['articles'].json()
-      
-        if(this.article && this.article.owner.username != this.user.user.username){
-          this._router.navigate(['/'])
+        if(data['articles']){
+          this.article = data['articles'].json()
+        
+          if(this.article && this.article.owner.username != this.user.user.username){
+            this._router.navigate(['/'])
+          }
+
+          this.mode = 'update'
+
+          this.publish_date = new Date(this.article.publish_date);
+          this.title = this.article.title;
+          this.summary = this.article.summary;
+          this.status = this.article.status;
+          this.content = this.article.content;
+
+          if(this.categories){
+            this.category_id = this.article.category.pk
+          }
+          this.hour = this.publish_date.getHours();
+          this.minute = this.publish_date.getMinutes();
         }
-
-        this.mode = 'update'
-
-        this.publish_date = new Date(this.article.publish_date);
-        this.title = this.article.title;
-        this.summary = this.article.summary;
-        this.status = this.article.status;
-        this.content = this.article.content;
-
-        if(this.categories){
-          this.category_id = this.article.category.pk
-        }
-        this.hour = this.publish_date.getHours();
-        this.minute = this.publish_date.getMinutes();
       }
     )
   }
