@@ -11,6 +11,7 @@ import { CategoriesService } from './../categories.service';
 import { FromNowPipe } from "./../from-now.pipe";
 import { RoundPipe } from "./../round.pipe";
 import { AppearDirective } from "./../appear.directive";
+import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule],
@@ -21,7 +22,8 @@ import { AppearDirective } from "./../appear.directive";
     PaginateComponent,
     FromNowPipe,
     RoundPipe,
-    AppearDirective
+    AppearDirective,
+    ConfirmationDialog
   ],
   exports: [
     HeaderBarComponent,
@@ -29,9 +31,10 @@ import { AppearDirective } from "./../appear.directive";
     ArticlePreviewComponent,
     PaginateComponent,
     FromNowPipe,
-    RoundPipe
+    RoundPipe,
+    
   ],
-  entryComponents: [PaginateComponent],
+  entryComponents: [PaginateComponent, ConfirmationDialog],
   providers: [ArticleService, CategoriesService]
 })
 export class UtilsModule {}

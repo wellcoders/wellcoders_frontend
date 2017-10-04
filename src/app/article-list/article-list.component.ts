@@ -6,6 +6,9 @@ import { Category } from "./../category";
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "./../../environments/environment";
+import { ArticleService } from "./../article.service"
+import { MdSnackBar } from '@angular/material';
+
 
 @Component({
   selector: "article-list",
@@ -22,7 +25,9 @@ export class ArticleListComponent implements OnInit {
   @Output() loadNextPageCategoryArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private _activatedRoute: ActivatedRoute,
-    private _router: Router) {}
+    private _articles: ArticleService,
+    private _router: Router,
+    public snackBar: MdSnackBar) {}
 
   ngOnInit(): void {}
 
@@ -44,5 +49,18 @@ export class ArticleListComponent implements OnInit {
 
   goToCategoryArticleList(category: Category): void {
     this._router.navigate([`/tag/${category.name}`]);
+  }
+
+  goToEditArticle(article: Article): void {
+    this._router.navigate([`/article/${article.pk}/edit`]);
+  }
+
+  deleteArticle(article: Article): void{
+    this._articles.deleteArticle(article).subscribe(
+      success => {
+        this.articles = this.articles.filter(x => x.pk != article.pk);
+        this.snackBar.open('Your article has been deleted :(', '', { duration: 5000 });
+      }
+    );
   }
 }

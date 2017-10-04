@@ -52,4 +52,33 @@ export class ArticleService extends LocalStorageHandler{
     return this._http
       .post(environment.url + `/api/1.0/posts/`, article, options);
   }
+
+  updateArticle(article: Object): Observable<any> {
+    
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+    
+    return this._http.put(environment.url + `/api/1.0/posts/` + article['pk'] + '/', article, options);
+  }
+
+  deleteArticle(article: Object): Observable<any> {
+    
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+
+    let patchData = {};
+    patchData['pk'] = article['pk'];
+    patchData['status'] = 'DEL'
+
+    return this._http.patch(environment.url + `/api/1.0/posts/` + article['pk'] + '/', patchData, options);
+  }
+
+  getArticleById(id: number): Observable<any> {
+    return this._http
+      .get(environment.url + `/api/1.0/posts/`+ id + `/`);
+  }  
 }
