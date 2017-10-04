@@ -48,10 +48,13 @@ export class RegisterFormDialog {
         var message = 'An error ocurred. Please, try again later.'
         
         if(error){
-          var response = JSON.parse(error._body)
+          var response = error.json()
 
-          if(response['username']){
-            message = response['username'];
+          if(response.username){
+            message = response.username;
+          }
+          else if(response.email_error){
+            message = response.email_error;
           }
         }
         this.snackBar.open(message, '', { duration: 5000 });
