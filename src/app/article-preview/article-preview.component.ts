@@ -20,6 +20,8 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   @Output() whenEditArticle: EventEmitter<Article> = new EventEmitter<Article>();
   @Output() whenDeleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
+  @Output() whenArticleSelected: EventEmitter<Article> =  new EventEmitter<Article>();
+  
   listName: string = ArticleWrapper.authorList;
 
   constructor(public dialog: MdDialog) {
@@ -40,6 +42,10 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
     this.whenCategorySelected.emit(category);
   }
 
+  notifyArticleSelected(article: Article): void {
+    this.whenArticleSelected.emit(article);
+  }
+
   notifyEditArticle(article: Article): void {
     this.whenEditArticle.emit(article);
   }
@@ -55,7 +61,5 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
         this.whenDeleteArticle.emit(article);
       }
     });
-
-  
   }
 }

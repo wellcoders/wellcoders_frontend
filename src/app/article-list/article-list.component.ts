@@ -63,4 +63,8 @@ export class ArticleListComponent implements OnInit {
       }
     );
   }
+
+  goToDetail(article: Article): void {
+    this._router.navigate([`/article/${article.owner.username}/${article.titleSlug}`]);
+  }
 }

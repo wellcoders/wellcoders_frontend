@@ -8,13 +8,13 @@
         <md-card-subtitle>{{article.publicationDate | FromNow}}</md-card-subtitle>
     </md-card-header>
 
-    <md-card-content>
+    <md-card-content (click)="notifyArticleSelected(article)">
         <h3>{{article.title}}</h3>
         <div [innerHtml]="plainTextToHtml(article.summary)"></div>
     </md-card-content>
     <md-card-actions>
         <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
-        <button (click)="notifyEditArticle(article)" md-button *ngIf="user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
-        <button (click)="notifyDeleteArticle(article)" md-button *ngIf="user.user.username == article.owner.username"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
+        <button (click)="notifyEditArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
+        <button (click)="notifyDeleteArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
     </md-card-actions>
 </md-card>

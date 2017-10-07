@@ -7,6 +7,8 @@ import { ArticlesResolveService } from "./../articles-resolve.service";
 import { AuthorArticlesComponent } from "./../author-articles/author-articles.component";
 import { CategoryArticlesComponent } from "./../category-articles/category-articles.component";
 import { ArticleFormComponent } from './../article-form/article-form.component'
+import { ArticleDetailComponent } from './../article-detail/article-detail.component'
+import { NotFoundComponent } from './../not-found/not-found.component'
 
 @NgModule({
   imports: [
@@ -17,6 +19,10 @@ import { ArticleFormComponent } from './../article-form/article-form.component'
         resolve: {
           articles: ArticlesResolveService
         }
+      },
+      {
+        path: `404`, 
+        component: NotFoundComponent
       },
       {
         path: ":username",
@@ -32,6 +38,13 @@ import { ArticleFormComponent } from './../article-form/article-form.component'
       {
         path: `article/:articleid/edit`, 
         component: ArticleFormComponent,
+        resolve: {
+          articles: ArticlesResolveService
+        }
+      },
+      {
+        path: `article/:username/:titleslug`,
+        component: ArticleDetailComponent,
         resolve: {
           articles: ArticlesResolveService
         }
