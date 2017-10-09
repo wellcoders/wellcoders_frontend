@@ -24,6 +24,20 @@ export class ArticleService extends LocalStorageHandler{
       );
   }
 
+  getArticle(username: String, titleSlug: String): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    if (this.user) {
+      headers.append('Authorization', 'JWT ' + this.user.token);
+    }
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http
+      .get(environment.url + `/api/1.0/posts/?username=${username}&title_slug=${titleSlug}`, options)
+      .map((response: Response): ArticleWrapper =>
+        ArticleWrapper.fromJson(response.json())
+      );
+  }
+
   getCategoryArticles(category: string, page: number = 1): Observable<ArticleWrapper> {
     console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}`);
     return this._http

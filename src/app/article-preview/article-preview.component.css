@@ -1,3 +1,7 @@
 md-card-title {
     cursor: pointer;
 }
+
+md-card-content {
+    cursor: pointer;
+}

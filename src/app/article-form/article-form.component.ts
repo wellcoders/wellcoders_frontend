@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateAdapter, MdSnackBar } from '@angular/material';
 import { Article } from './../article'
@@ -6,7 +6,9 @@ import { CategoriesService } from './../categories.service'
 import { ArticleService } from './../article.service'
 import { LocalStorageHandler } from './../local-storage-handler'
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+//import { UtilsModule } from "./../utils-module/utils-module.module";
+import { SlugifyPipe } from './../slugify.pipe';
+import { NativeWindow } from './../window';
 
 @Component({
   selector: 'article-form',
@@ -19,6 +21,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
   
   article = undefined;
   title = undefined;
+  title_slug = undefined;
   summary = undefined;
   content = undefined;
   status = undefined;
@@ -36,13 +39,16 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
     private _articles: ArticleService,
     private _router: Router,
     public snackBar: MdSnackBar,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _slugify: SlugifyPipe,
+    @Inject(NativeWindow) private _window
   ) {
     super();
   }
 
   
   ngOnInit() {
+    this._window.scrollTo(0, 0);
     if(!this.user){
       this._router.navigate(['/'])
     }else{
@@ -102,6 +108,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
     delete article.minute
 
     if(form.valid){
+      article.title_slug = this._slugify.transform(article.title);
       if(this.mode == 'update'){
         article.pk = this.article.pk;
         this._articles.updateArticle(article).subscribe(
@@ -127,7 +134,6 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
             
             this.snackBar.open(message, '', { duration: 5000 });
           }
-
         );
       }
     }

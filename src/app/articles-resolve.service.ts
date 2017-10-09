@@ -11,7 +11,9 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<ArticleWrapper> {
     let params = route.params;
-    if (params.hasOwnProperty("categoryname")) {
+    if (params.hasOwnProperty("username") && params.hasOwnProperty("titleslug")) {
+      return this._articleService.getArticle(params.username, params.titleslug)
+    } else if (params.hasOwnProperty("categoryname")) {
       return this._articleService.getCategoryArticles(params.categoryname);
     } else if (params.hasOwnProperty("username")) {
       return this._articleService.getAuthorArticles(params.username);
