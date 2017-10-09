@@ -1,0 +1,124 @@
+<div fxLayout="row" fxLayoutWrap>
+    <form ngForm #userForm="ngForm" (ngSubmit)="updateProfile()" class="mat-typography" fxFlex.gt-md="60" fxFlex.md="60" fxFlex.sm="100" fxFlex.xs="100">
+        <md-card>
+            <md-card-header >
+                <md-card-title >
+                    <div fxLayoutAlign="space-between start">
+                        <h1 fxFlex="grow">Profile</h1>
+                        <button md-button (click)="open('_editUser')" type="button" [hidden]="_editUser">Edit</button>
+                        <button md-raised-button type="submit" [hidden]="!_editUser" [disabled]="userForm.invalid || !profileChanges()">Accept</button>
+                        <button md-raised-button (click)="resetProfile()" type="button" [hidden]="!_editUser">Cancel</button>    
+                    </div>
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <div class="mat-card-header-text">
+                    <md-form-field class="full-width"> 
+                        <input mdInput type="text" [(ngModel)]="_user.username" name="username" placeholder="Username"  #username="ngModel" required [disabled]="!_editUser">
+                        <md-error *ngIf="username.hasError('required')">
+                            Username is <strong>required</strong>
+                        </md-error>
+                    </md-form-field>
+
+                    <md-form-field class="full-width"> 
+                        <input mdInput type="text" [(ngModel)]="_user.first_name" name="first_name" placeholder="First name"  #first_name="ngModel" [disabled]="!_editUser">
+                        <md-error *ngIf="first_name.hasError('required')">
+                            First name is <strong>required</strong>
+                        </md-error>
+                    </md-form-field>
+
+                    <md-form-field class="full-width"> 
+                        <input mdInput type="text" [(ngModel)]="_user.last_name" name="last_name" placeholder="Last name" #last_name="ngModel" [disabled]="!_editUser" >
+                        <md-error *ngIf="last_name.hasError('required')">
+                            Last name is <strong>required</strong>
+                        </md-error>
+                    </md-form-field>
+
+                    <md-form-field class="full-width">
+                        <input mdInput type="email" [(ngModel)]="_user.email" name="email" placeholder="E-mail" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" required [disabled]="!_editUser">
+                        <md-error *ngIf="email.hasError('pattern')">
+                            Please enter a valid email address
+                        </md-error>
+                        <md-error *ngIf="email.hasError('required')">
+                            Email is <strong>required</strong>
+                        </md-error>
+                    </md-form-field>
+                </div>
+            </md-card-content>
+        </md-card>
+    </form>
+    <form ngForm #pwd="ngForm" (ngSubmit)="updatePassword()" class="mat-typography" fxFlex.gt-md="39" fxFlex.md="39" fxFlex.sm="100" fxFlex.xs="100">
+        <md-card>
+            <md-card-header>
+                <md-card-title>
+                    <div fxLayoutAlign="space-between start">
+                        <h1 fxFlex="grow">Password</h1>
+                        <button md-button (click)="open('_editPwd')" type="button" [hidden]="_editPwd">Change</button>
+                        <button md-raised-button type="submit" [hidden]="!_editPwd" [disabled]="pwd.invalid || new_password.value !== repeat_password.value">Accept</button>
+                        <button md-raised-button (click)="resetPwd(pwd)" type="button" [hidden]="!_editPwd">Cancel</button>    
+                    </div>
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <div class="mat-card-header-text">
+                        <div [hidden]="_editPwd">
+                            <h1 fxLayoutAlign="center none">
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-asterisk " aria-hidden="true"></i>
+                            </h1>
+                        </div>
+                        <div [hidden]="!_editPwd">
+                            <md-form-field class="full-width">
+                                <input mdInput type="password" name="oldpassword" placeholder="Old password" [(ngModel)]="oldpassword" #old_password="ngModel" required>
+                            <md-error *ngIf="old_password.hasError('required')">
+                                Password is <strong>required</strong>
+                            </md-error>
+                        </md-form-field>
+                        <md-form-field class="full-width">
+                            <input mdInput type="password" name="newpassword" placeholder="New password" [(ngModel)]="newpassword" #new_password="ngModel" required>
+                            <md-error *ngIf="new_password.hasError('required')">
+                                Password is <strong>required</strong>
+                            </md-error>
+                        </md-form-field>
+                        <md-form-field class="full-width">
+                            <input mdInput type="password" name="repeatpassword" placeholder="Repeat new password" [(ngModel)]="repeatpassword" #repeat_password="ngModel" required [errorStateMatcher]="changeStaterptPass">
+                            <md-error *ngIf="repeat_password.hasError('required')">
+                                Password is <strong>required</strong>
+                            </md-error>
+                            <md-error *ngIf="repeat_password.value != new_password.value">
+                                Passwords <strong>do not match</strong>
+                            </md-error>
+                        </md-form-field>
+                    </div>
+                </div>
+            </md-card-content>
+            <md-card-header>
+                <md-card-title>
+                    <h1 fxFlex="grow">Delete account</h1>
+                    <button md-button (click)="open('_deleteUser')" type="button" [hidden]="_deleteUser">Do it!</button>
+                    <button md-raised-button (click)="resetDelete()" type="button" [hidden]="!_deleteUser">Cancel</button>    
+            </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <div class="mat-card-header-text">
+                    <p>Permanently delete your account and all of your content.</p>
+                </div>
+                <div *ngIf="_deleteUser">
+                    <md-form-field class="full-width">
+                        <input mdInput type="text" name="confirm_deletion" placeholder="To confirm type here your username ({{_username}})" [(ngModel)]="confirmdeletion" #confirm_deletion="ngModel" required>
+                        <md-error *ngIf="confirm_deletion.hasError('required')">
+                            Your username is <strong>required</strong>
+                        </md-error>
+                    </md-form-field>
+                    <button class="full-width" md-raised-button type="button" color="warn" [disabled]="confirm_deletion.value != _username" (click)="deleteUser()">Delete</button>
+                </div>
+            </md-card-content>
+        </md-card>
+    </form>
+</div>

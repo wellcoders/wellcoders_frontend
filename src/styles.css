@@ -40,3 +40,15 @@ md-card {
 .wysiwyg-fix {
     padding: .4375em 0;
 }
+
+.mat-card-header-text  {
+    width: 100% !important;
+}
+
+*[hidden] {
+    display: none !important;
+}
+
+._overhand {
+    cursor:pointer;
+}
