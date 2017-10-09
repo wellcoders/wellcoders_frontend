@@ -7,17 +7,12 @@ import { PublicModule } from "./public-module/public.module";
 import { PrivateModule } from "./private-module/private.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
-// import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { ArticlesResolveService } from "./articles-resolve.service";
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleDetailComponent,
-    NotFoundComponent
   ],
   imports: [
     AppRoutingModule,

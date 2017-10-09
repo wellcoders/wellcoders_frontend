@@ -1,51 +1,33 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { MdDialog } from "@angular/material"
 import { Article } from "./../article";
-import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
-import { UtilsModule } from "./../utils-module/utils-module.module";
-import { LocalStorageHandler } from "./../local-storage-handler"
-import { MdDialog } from "@angular/material"
 import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
-import { ArticleCommon } from "./../article-common"
+import { LocalStorageHandler } from './../local-storage-handler';
 
 @Component({
-  selector: "article-preview",
-  templateUrl: "./article-preview.component.html",
-  styleUrls: ["./article-preview.component.css"]
+  selector: 'article-actions-box',
+  templateUrl: './article-actions-box.component.html',
+  styleUrls: ['./article-actions-box.component.css']
 })
-export class ArticlePreviewComponent extends LocalStorageHandler implements OnInit {
+export class ArticleActionsBoxComponent extends LocalStorageHandler implements OnInit {
   @Input() article: Article;
   @Input() user: User;
-  @Output() whenAuthorSelected: EventEmitter<User> = new EventEmitter<User>();
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   @Output() whenEditArticle: EventEmitter<Article> = new EventEmitter<Article>();
   @Output() whenDeleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
-  @Output() whenArticleSelected: EventEmitter<Article> =  new EventEmitter<Article>();
-  
-  listName: string = ArticleWrapper.authorList;
 
   constructor(public dialog: MdDialog) {
     super();
   }
 
   ngOnInit() {
-  }
 
-  plainTextToHtml(text: string): string {
-    return ArticleCommon.plainTextToHtml(text);
-  }
-
-  notifyAuthorSelected(user: User): void {
-    this.whenAuthorSelected.emit(user);
   }
 
   notifyCategorySelected(category: Category): void {
     this.whenCategorySelected.emit(category);
-  }
-
-  notifyArticleSelected(article: Article): void {
-    this.whenArticleSelected.emit(article);
   }
 
   notifyEditArticle(article: Article): void {

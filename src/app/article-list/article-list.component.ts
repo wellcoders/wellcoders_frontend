@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from "@angular/core";
 import { Article } from "./../article";
 import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
 import { UtilsModule } from "./../utils-module/utils-module.module";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, NavigationError } from "@angular/router";
 import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"
 import { MdSnackBar } from '@angular/material';
-
+import { NativeWindow } from './../window';
 
 @Component({
   selector: "article-list",
@@ -27,9 +27,12 @@ export class ArticleListComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute,
     private _articles: ArticleService,
     private _router: Router,
-    public snackBar: MdSnackBar) {}
+    public snackBar: MdSnackBar,
+    @Inject(NativeWindow) private _window) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._window.scrollTo(0, 0);
+  }
 
   loadNextPage(data): void {
     const listName = data.listName;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MdSnackBar } from '@angular/material';
 import { Article } from "./../article";
@@ -6,7 +6,10 @@ import { ArticleWrapper } from "./../article-wrapper";
 import { ArticleService } from "./../article.service"
 import { User } from "./../user";
 import { Category } from "./../category";
-import { LocalStorageHandler } from './../local-storage-handler'
+import { LocalStorageHandler } from './../local-storage-handler';
+import { UtilsModule } from "./../utils-module/utils-module.module";
+import { ArticleCommon } from "./../article-common"
+import { NativeWindow } from './../window';
 
 @Component({
   selector: 'article-detail',
@@ -15,31 +18,28 @@ import { LocalStorageHandler } from './../local-storage-handler'
 })
 export class ArticleDetailComponent extends LocalStorageHandler implements OnInit {
   @Input() article: Article;
-  @Output() loadNextPageLastestArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
-  @Output() loadNextPageAuthorArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
-  @Output() loadNextPageCategoryArticlesEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _articles: ArticleService,
     private _router: Router,
-    public snackBar: MdSnackBar) 
-    {
+    public snackBar: MdSnackBar,
+    @Inject(NativeWindow) private _window) {
       super();
     }
 
   ngOnInit() {
+    this._window.scrollTo(0, 0);
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
-        if(data.articles.count == 1) {
+        if(data.articles && data.articles.count == 1) {
           this.article = data.articles.articles[0];
         } else {
           this._router.navigate(['404']);
         }
-      }, error => {
-        this._router.navigate(['']);
-        error = error.json();
-        this.snackBar.open('An error ocurred. Try again later', '', { duration: 5000 });
-      }
+      },
+      /*error => {
+        this._router.navigate(['404']);
+      }*/
     );
   }
 
@@ -63,4 +63,7 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
     );
   }
 
+  plainTextToHtml(text: string): string {
+    return ArticleCommon.plainTextToHtml(text);
+  }
 }

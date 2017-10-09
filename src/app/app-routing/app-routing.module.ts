@@ -9,6 +9,7 @@ import { CategoryArticlesComponent } from "./../category-articles/category-artic
 import { ArticleFormComponent } from './../article-form/article-form.component'
 import { ArticleDetailComponent } from './../article-detail/article-detail.component'
 import { NotFoundComponent } from './../not-found/not-found.component'
+import { ArticleCommon } from './../article-common'
 
 @NgModule({
   imports: [
@@ -60,8 +61,12 @@ import { NotFoundComponent } from './../not-found/not-found.component'
         path: "**",
         redirectTo: "/articles"
       }
-    ])
-  ],
+    ],
+    { 
+      //enableTracing: true,  
+      errorHandler: ArticleCommon.errorHandler
+    }
+)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
