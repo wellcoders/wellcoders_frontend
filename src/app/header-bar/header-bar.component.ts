@@ -60,14 +60,11 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   goHome():void {
     this._router.navigate(['/']);
   } 
-=======
   notifyCategorySelected(category: Category): void {
       this._router.navigate([`/tag/${category.name}`]);
   }
->>>>>>> a657154025a31e885bb9fd3970b5ca9b5ac87959
 }
 
