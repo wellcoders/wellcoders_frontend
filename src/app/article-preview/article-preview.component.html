@@ -1,5 +1,7 @@
 <md-card class="example-card">
-    <img md-card-image *ngIf="article.media" [src]="article.media" alt="Photo of {{article.title}}">
+    <div *ngIf="article.media" class="image-container">
+        <img md-card-image [src]="article.media" alt="Photo of {{article.title}}">
+    </div>
     <md-card-header>
         <div md-card-avatar class="example-header-image">
             <i class="fa fa-user-circle fa-3x"></i>

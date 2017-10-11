@@ -31,7 +31,11 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   }
 
   createArticle():void{
-    this._router.navigate(['/article/create'])
+    this._router.navigate(['/article/create']);
+  }
+
+  settings():void {
+    this._router.navigate(['/users/settings']);
   }
 
   openLoginDialog(): void {
@@ -45,7 +49,10 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
     let dialogRef = this.dialog.open(RegisterFormDialog, {
       width: '455px'
     });
-
   }
+
+  goHome():void {
+    this._router.navigate(['/']);
+  } 
 }
 

@@ -10,6 +10,7 @@ import { ArticleFormComponent } from './../article-form/article-form.component'
 import { ArticleDetailComponent } from './../article-detail/article-detail.component'
 import { NotFoundComponent } from './../not-found/not-found.component'
 import { ArticleCommon } from './../article-common'
+import { SettingsFormComponent } from './../settings-form/settings-form.component'
 
 @NgModule({
   imports: [
@@ -49,6 +50,10 @@ import { ArticleCommon } from './../article-common'
         resolve: {
           articles: ArticlesResolveService
         }
+      },
+      {
+        path: "users/settings",
+        component: SettingsFormComponent
       },
       {
         path: "tag/:categoryname",
