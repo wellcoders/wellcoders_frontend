@@ -41,7 +41,9 @@ export class CategoryArticlesComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
-        this.category = data.articles.articles[0].category.name;
+        if (data.articles.articles.length > 0) {
+          this.category = data.articles.articles[0].category.name;
+        }
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;

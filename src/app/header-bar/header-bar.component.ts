@@ -1,11 +1,13 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, Output, EventEmitter } from "@angular/core";
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { RegisterFormDialog } from "./../register-form/register-form.component";
-import { LoginFormDialog } from "./../login-form/login-form.component"
+import { LoginFormDialog } from "./../login-form/login-form.component";
+import { CategoriesService } from "./../categories.service";
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
 import { LocalStorageHandler } from "./../local-storage-handler"
 import { AuthenticationService } from './../authentication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Category } from "./../category";
 
 
 @Component({
@@ -14,15 +16,22 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ["./header-bar.component.css"]
 })
 export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
+  @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
+  categories = [];
   constructor(
     private _authService: AuthenticationService,
     public dialog: MdDialog,
     public snackBar: MdSnackBar,
+    public categoriesService: CategoriesService,
     private _router: Router) {
       super();
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.categoriesService.list().subscribe((categories: Object[]) => {
+      this.categories = categories;
+    });
+  }
 
   logout():void{
     this.snackBar.open('Goodbye, '+ this.user.user.first_name+ '. See you soon!', '', { duration: 5000 });
@@ -51,8 +60,14 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
     });
   }
 
+<<<<<<< HEAD
   goHome():void {
     this._router.navigate(['/']);
   } 
+=======
+  notifyCategorySelected(category: Category): void {
+      this._router.navigate([`/tag/${category.name}`]);
+  }
+>>>>>>> a657154025a31e885bb9fd3970b5ca9b5ac87959
 }
 
