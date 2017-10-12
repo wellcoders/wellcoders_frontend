@@ -6,6 +6,9 @@ import { CategoriesService } from './../categories.service'
 import { ArticleService } from './../article.service'
 import { LocalStorageHandler } from './../local-storage-handler'
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MediaService } from './../media.service'
+import { environment } from './../../environments/environment';
+import { DragelementDirective } from './../dragelement.directive'
 
 
 @Component({
@@ -28,15 +31,19 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
   categories = [];
   category_id = undefined;
   result = undefined;
+  media = undefined;
 
   mode = 'create'
+
+  that = this;
 
   constructor(
     private _categories: CategoriesService,
     private _articles: ArticleService,
     private _router: Router,
     public snackBar: MdSnackBar,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _media: MediaService
   ) {
     super();
   }
@@ -70,6 +77,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
           this.summary = this.article.summary;
           this.status = this.article.status;
           this.content = this.article.content;
+          this.media = this.article.media;
 
           if(this.categories){
             this.category_id = this.article.category.pk
@@ -131,6 +139,53 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
         );
       }
     }
+  
   }
+
+  putResource(event, field, image_size='', append=false, only_url=true){
+    event.preventDefault();
+    event.stopPropagation();
+
+    var element = event.srcElement;
+
+    if(event.dataTransfer.files.length == 1){
+      
+      var file = event.dataTransfer.files[0];
+
+      var formData = new FormData()
+      formData.append('file', file);
+    
+      this._media.uploadFile(formData).subscribe(
+        success => {
+          var responseObject = success.json()
+          
+          var result = environment.url + '/static/uploads/' + responseObject.name + image_size + responseObject.extension;
+          
+          if(!only_url){
+            result = '<img src="' + result + '" />'
+          }
+
+          if(append)
+          {
+            this[field] = this[field] + result;
+          }else{
+            this[field] = result
+          }         
+        
+        }
+      );
+
+    }
+ 
+  }
+
+  onDragOver(event){
+    debugger;
+  }
+
+  onDragLeave(event){
+    debugger;
+  }
+
 
 }

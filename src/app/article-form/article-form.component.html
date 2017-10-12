@@ -18,15 +18,15 @@
                     </md-form-field>
 
                     <md-form-field class="full-width">
-                        <input mdInput type="text" name="media" placeholder="Media" [(ngModel)]="media">
-                        <md-hint align="start"><strong>Set a url of an image or a video</strong> </md-hint>
+                        <input mdInput type="text" name="media" placeholder="Media" [(ngModel)]="media" (drop)="putResource($event,'media')" dragElement >
+                        <md-hint align="start"><strong>Set a url of an image or drag it from your computer</strong> </md-hint>
                     </md-form-field>
 
                     <div class="full-width mat-form-field" ng-reflect-class-base="full-width">
                         <div class="mat-form-field-wrapper">
                             <div class="mat-form-field-flex">
                                 <div class="mat-form-field-infix">
-                                    <label class="mat-input-placeholder mat-form-field-placeholder mat-empty mat-form-field-empty mat-float mat-form-field-float position-fix">
+                                    <label class="mat-input-placeholder mat-form-field-placeholder mat-empty mat-form-field-empty mat-float mat-form-field-float position-fix" >
                                         Content
                                     </label>
                                     <div class="wysiwyg-fix">
@@ -40,11 +40,13 @@
                                                 { name: 'styles', items: [ 'Format' ]}
                                             ]
                                         
-                                        }" required>
+                                        }" required >
                                         </ckeditor>
+                                        <dragitem dragElement (drop)="putResource($event,'content','',true,false)" placeholder="Drag a picture to add it to content!"></dragitem>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="mat-input-underline mat-form-field-underline">
                                 <span class="mat-input-ripple mat-form-field-ripple"></span>
                             </div>
