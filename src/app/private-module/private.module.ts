@@ -6,6 +6,9 @@ import { SettingsFormComponent } from './../settings-form/settings-form.componen
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { MediaService } from './../media.service'
+import { DragelementDirective } from './../dragelement.directive'
+import { DragitemComponent } from './../dragitem/dragitem.component';
 
 
 @NgModule({
@@ -18,8 +21,11 @@ import { CKEditorModule } from 'ng2-ckeditor';
   ],
   declarations: [
     ArticleFormComponent,
+    DragelementDirective,
+    DragitemComponent,
     SettingsFormComponent
   ],
-  exports: [ArticleFormComponent]
+  exports: [ArticleFormComponent, DragelementDirective, DragitemComponent],
+  providers: [MediaService]
 })
 export class PrivateModule { }

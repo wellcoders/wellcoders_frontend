@@ -17,7 +17,7 @@ import { ArticleCommon } from "./../article-common"
 export class ArticlePreviewComponent extends LocalStorageHandler implements OnInit {
   @Input() article: Article;
   @Input() user: User;
-  @Output() whenAuthorSelected: EventEmitter<User> = new EventEmitter<User>();
+  @Output() whenAuthorSelected: EventEmitter<string> = new EventEmitter<string>();
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   @Output() whenEditArticle: EventEmitter<Article> = new EventEmitter<Article>();
   @Output() whenDeleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
@@ -36,7 +36,7 @@ export class ArticlePreviewComponent extends LocalStorageHandler implements OnIn
     return ArticleCommon.plainTextToHtml(text);
   }
 
-  notifyAuthorSelected(user: User): void {
+  notifyAuthorSelected(user: string): void {
     this.whenAuthorSelected.emit(user);
   }
 

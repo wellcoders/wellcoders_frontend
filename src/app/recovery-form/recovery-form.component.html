@@ -1,0 +1,19 @@
+<form ngForm #user="ngForm" (ngSubmit)="submitUser(user)" class="mat-typography">  
+    <md-form-field ngClass="{{ rowStyle }}">
+        <input mdInput type="email"
+        name="email"
+        placeholder="E-mail"
+        ngModel #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+        required>
+        <md-error *ngIf="email.hasError('pattern')">
+        Please enter a valid email address
+        </md-error>
+        <md-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+        </md-error>
+  
+    </md-form-field>
+  
+  <button ngClass="{{ rowStyle }}" md-raised-button color="Primary" type="submit" [disabled]="user.invalid" >Recover</button>
+</form>

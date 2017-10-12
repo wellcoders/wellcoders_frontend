@@ -5,7 +5,8 @@ export class User {
     public first_name: string,
     public last_name: string,
     public email: string,
-    public password: string
+    public password: string,
+    public user: any
   ) {}
 
   static fromJson(json: any): User {
@@ -14,8 +15,9 @@ export class User {
       json.username,
       json.first_name,
       json.last_name,
+      json.password,
       json.email,
-      json.password
+      ''
     );
   }
 
