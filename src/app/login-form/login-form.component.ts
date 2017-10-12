@@ -4,6 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import { Subscription } from "rxjs/Subscription";
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
+import { RecoveryFormDialog } from './../recovery-form/recovery-form.component'
 
 
 @Component({
@@ -34,6 +35,7 @@ export class LoginFormDialog {
   constructor(
     private _authService: AuthenticationService,
     public dialogRef: MdDialogRef<LoginFormDialog>,
+    public dialog: MdDialog,
     @Inject(MD_DIALOG_DATA) public data: any,
     public snackBar: MdSnackBar) { }
 
@@ -60,6 +62,14 @@ export class LoginFormDialog {
       }
     )
     this.dialogRef.close();
+  }
+
+  openRecoveryPassword(){
+    this.dialogRef.close();
+    
+    this.dialog.open(RecoveryFormDialog, {
+      width: '455px'
+    });
   }
 
 }

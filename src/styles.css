@@ -57,3 +57,15 @@ md-card {
     border-color: #999999;
     font: 400 16px/28px Roboto,"Helvetica Neue",sans-serif;
 }
+
+.mat-card-header-text  {
+    width: 100% !important;
+}
+
+*[hidden] {
+    display: none !important;
+}
+
+._overhand {
+    cursor:pointer;
+}

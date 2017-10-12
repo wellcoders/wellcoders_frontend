@@ -34,4 +34,8 @@ export class AuthenticationService {
          this.token = null;
          localStorage.removeItem('currentUser');
      }
+
+     recovery(user: object): Observable<any> {
+        return this._http.post(environment.url + `/api/1.0/recovery/`, user);
+    }
 }

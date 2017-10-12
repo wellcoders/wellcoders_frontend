@@ -11,7 +11,12 @@ import { CategoriesService } from './../categories.service';
 import { FromNowPipe } from "./../from-now.pipe";
 import { RoundPipe } from "./../round.pipe";
 import { AppearDirective } from "./../appear.directive";
-import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
+import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component";
+import { ArticleDetailComponent } from './../article-detail/article-detail.component';
+import { NotFoundComponent } from './../not-found/not-found.component';
+import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
+import { SlugifyPipe } from './../slugify.pipe';
+import { NativeWindowProvider } from './../window';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule],
@@ -23,7 +28,11 @@ import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog
     FromNowPipe,
     RoundPipe,
     AppearDirective,
-    ConfirmationDialog
+    ConfirmationDialog,
+    ArticleDetailComponent,
+    NotFoundComponent,
+    ArticleActionsBoxComponent,
+    SlugifyPipe
   ],
   exports: [
     HeaderBarComponent,
@@ -32,9 +41,11 @@ import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog
     PaginateComponent,
     FromNowPipe,
     RoundPipe,
-    
+    ArticleDetailComponent,
+    ArticleActionsBoxComponent,
+    SlugifyPipe
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
-  providers: [ArticleService, CategoriesService]
+  providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider]
 })
 export class UtilsModule {}

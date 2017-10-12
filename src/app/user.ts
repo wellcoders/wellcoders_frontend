@@ -1,5 +1,6 @@
 export class User {
   private constructor(
+    public pk: number,
     public username: string,
     public first_name: string,
     public last_name: string,
@@ -10,6 +11,7 @@ export class User {
 
   static fromJson(json: any): User {
     return new User(
+      json.pk,
       json.username,
       json.first_name,
       json.last_name,
@@ -18,4 +20,8 @@ export class User {
       ''
     );
   }
+
+  // static empty(): User {
+  //   return new User(-1, "", "", "", "", "");
+  // }
 }

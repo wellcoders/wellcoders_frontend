@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateAdapter, MdSnackBar } from '@angular/material';
 import { Article } from './../article'
@@ -9,6 +9,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MediaService } from './../media.service'
 import { environment } from './../../environments/environment';
 import { DragelementDirective } from './../dragelement.directive'
+//import { UtilsModule } from "./../utils-module/utils-module.module";
+import { NativeWindow } from './../window';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
   
   article = undefined;
   title = undefined;
+  title_slug = undefined;
   summary = undefined;
   content = undefined;
   status = undefined;
@@ -43,13 +46,15 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
     private _router: Router,
     public snackBar: MdSnackBar,
     private _activatedRoute: ActivatedRoute,
-    private _media: MediaService
+    private _media: MediaService,
+    @Inject(NativeWindow) private _window
   ) {
     super();
   }
 
   
   ngOnInit() {
+    this._window.scrollTo(0, 0);
     if(!this.user){
       this._router.navigate(['/'])
     }else{
@@ -78,6 +83,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
           this.status = this.article.status;
           this.content = this.article.content;
           this.media = this.article.media;
+          this.title_slug = this.article.title_slug;
 
           if(this.categories){
             this.category_id = this.article.category.pk
@@ -135,7 +141,6 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
             
             this.snackBar.open(message, '', { duration: 5000 });
           }
-
         );
       }
     }

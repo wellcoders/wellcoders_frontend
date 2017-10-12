@@ -1,3 +1,40 @@
 md-card-title {
     cursor: pointer;
 }
+
+md-card-content {
+    cursor: pointer;
+}
+
+md-card-title:hover{
+    text-decoration: underline;
+}
+
+.example-header-image {
+    margin-right: 8px;
+}
+
+.image-container {
+    position: relative;
+    margin: -24px -24px 16px !important;
+    width: calc(100% + 48px);
+    padding-top: calc(100% + 48px);
+}
+
+@media (max-width: 600px) {
+    .image-container {
+      width: calc(100% + 32px);
+      margin: -24px -16px 24px !important;
+      padding-top: calc(100% + 32px);
+    }
+  }
+  
+
+.image-container .mat-card-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;;
+    top: 0;
+    margin: 0;
+    object-fit: cover;
+}
