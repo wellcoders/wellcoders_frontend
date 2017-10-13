@@ -1,1 +1,5 @@
-<article-list [listName]="listName" (loadNextPageLastestArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages" [articles]="articles"></article-list>
+<div class="latest-articles">
+    <h2 class="mat-headline">Últimos artículos</h2>
+</div>
+<article-list [listName]="listName" (loadNextPageLastestArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages"
+    [articles]="articles"></article-list>

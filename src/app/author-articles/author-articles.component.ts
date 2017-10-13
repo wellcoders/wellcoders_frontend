@@ -10,6 +10,7 @@ import { ArticleWrapper } from "./../article-wrapper";
   styleUrls: ["./author-articles.component.css"]
 })
 export class AuthorArticlesComponent implements OnInit {
+  status_published = 'PUB';
   articles: Article[];
   totalPages: number;
   pageSize: number;
@@ -24,7 +25,9 @@ export class AuthorArticlesComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
-        this.author = data.articles.articles[0].owner;
+        if (data.articles.articles.length > 0) {
+          this.author = data.articles.articles[0].owner;
+        }
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;
@@ -34,7 +37,7 @@ export class AuthorArticlesComponent implements OnInit {
 
   loadNextPage(pageNumber: number): void {
     this.articleService
-      .getAuthorArticles(this.author.username, pageNumber)
+      .getAuthorArticles(this.author.username, pageNumber, this.status_published)
       .subscribe(articleWrapper => {
         articleWrapper.articles.map(article => {
           this.articles.push(article);

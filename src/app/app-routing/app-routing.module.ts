@@ -6,72 +6,81 @@ import { RegisterFormComponent } from "./../register-form/register-form.componen
 import { ArticlesResolveService } from "./../articles-resolve.service";
 import { AuthorArticlesComponent } from "./../author-articles/author-articles.component";
 import { CategoryArticlesComponent } from "./../category-articles/category-articles.component";
-import { ArticleFormComponent } from './../article-form/article-form.component'
-import { ArticleDetailComponent } from './../article-detail/article-detail.component'
-import { NotFoundComponent } from './../not-found/not-found.component'
-import { ArticleCommon } from './../article-common'
-import { SettingsFormComponent } from './../settings-form/settings-form.component'
+import { ArticleFormComponent } from "./../article-form/article-form.component";
+import { ArticleDetailComponent } from "./../article-detail/article-detail.component";
+import { NotFoundComponent } from "./../not-found/not-found.component";
+import { ArticleCommon } from "./../article-common";
+import { SettingsFormComponent } from "./../settings-form/settings-form.component";
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([
-      {
-        path: "",
-        component: LastestArticlesComponent,
-        resolve: {
-          articles: ArticlesResolveService
+    RouterModule.forRoot(
+      [
+        {
+          path: "",
+          component: LastestArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: `404`,
+          component: NotFoundComponent
+        },
+        {
+          path: ":username",
+          component: AuthorArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: `article/create`,
+          component: ArticleFormComponent
+        },
+        {
+          path: `article/:articleid/edit`,
+          component: ArticleFormComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: `article/:username/:titleslug`,
+          component: ArticleDetailComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: "users/settings",
+          component: SettingsFormComponent
+        },
+        {
+          path: "tag/:categoryname",
+          component: CategoryArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: ":username/:status",
+          component: AuthorArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
+          path: "**",
+          redirectTo: "/articles"
         }
-      },
+      ],
       {
-        path: `404`, 
-        component: NotFoundComponent
-      },
-      {
-        path: ":username",
-        component: AuthorArticlesComponent,
-        resolve: {
-          articles: ArticlesResolveService
-        }
-      },
-      {
-        path: `article/create`, 
-        component: ArticleFormComponent
-      },
-      {
-        path: `article/:articleid/edit`, 
-        component: ArticleFormComponent,
-        resolve: {
-          articles: ArticlesResolveService
-        }
-      },
-      {
-        path: `article/:username/:titleslug`,
-        component: ArticleDetailComponent,
-        resolve: {
-          articles: ArticlesResolveService
-        }
-      },
-      {
-        path: "users/settings",
-        component: SettingsFormComponent
-      },
-      {
-        path: "tag/:categoryname",
-        component: CategoryArticlesComponent,
-        resolve: {
-          articles: ArticlesResolveService
-        }
-      },
-      {
-        path: "**",
-        redirectTo: "/articles"
+        //enableTracing: true,
+        errorHandler: ArticleCommon.errorHandler
       }
-    ],
-    { 
-      //enableTracing: true,  
-      errorHandler: ArticleCommon.errorHandler
-    }
-)],
+    )
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

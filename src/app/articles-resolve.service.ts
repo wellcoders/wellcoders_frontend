@@ -15,8 +15,12 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
       return this._articleService.getArticle(params.username, params.titleslug)
     } else if (params.hasOwnProperty("categoryname")) {
       return this._articleService.getCategoryArticles(params.categoryname);
-    } else if (params.hasOwnProperty("username")) {
+    } else if (params.hasOwnProperty("username") && !params.hasOwnProperty("status")) {
       return this._articleService.getAuthorArticles(params.username);
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "drafts") {
+      return this._articleService.getAuthorArticles(params.username, 1, "DRF");
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "deleted") {
+      return this._articleService.getAuthorArticles(params.username, 1, "DEL");
     } else if (params.hasOwnProperty("articleid")) {
       return this._articleService.getArticleById(params.articleid);
     } else {

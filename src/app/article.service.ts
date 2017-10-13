@@ -11,6 +11,8 @@ import { LocalStorageHandler } from "./local-storage-handler"
 @Injectable()
 export class ArticleService extends LocalStorageHandler{
 
+  default_status: string = "PUB";
+
   constructor(
     private _http: Http
   ) { super()}
@@ -47,10 +49,10 @@ export class ArticleService extends LocalStorageHandler{
       );
   }
 
-  getAuthorArticles(username: String, page: number = 1): Observable<ArticleWrapper> {
+  getAuthorArticles(username: String, page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
     console.log(`Obteniendo artículos del autor ${username} de la página ${page}`);
     return this._http
-    .get(environment.url + `/api/1.0/${username}/?page=${page}`)
+    .get(environment.url + `/api/1.0/${username}/?page=${page}&status=${status}`)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );

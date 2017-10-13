@@ -5,6 +5,8 @@
 
     <md-menu #usermenu="mdMenu">
       <button md-menu-item (click)="createArticle()"><i class="fa fa-keyboard-o fa-lg" aria-hidden="true"></i> - Create Article</button>
+      <button md-menu-item (click)="drafts()"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i> - Borradores</button>      
+      <button md-menu-item (click)="deleted()"><i class="fa fa-remove fa-lg" aria-hidden="true"></i> - Eliminados</button>      
       <button md-menu-item (click)="settings()"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> - Settings</button>
       <button md-menu-item (click)="logout()"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> - Logout</button>
     </md-menu>
