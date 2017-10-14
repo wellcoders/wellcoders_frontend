@@ -17,9 +17,10 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
+import {ShareModule} from 'ng2share/share.module';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FlexLayoutModule],
+  imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,
