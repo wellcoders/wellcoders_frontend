@@ -12,7 +12,8 @@ export class Article {
     public media: string,
     public publicationDate: Date,
     public category: Category,
-    public owner: User
+    public owner: User,
+    public numComments: number
   ) {}
 
   static fromJson(json: any): Article {
@@ -26,7 +27,8 @@ export class Article {
       json.media,
       json.publish_date,
       json.category,
-      json.owner
+      json.owner,
+      json.num_comments
     );
   }
 
