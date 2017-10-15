@@ -2,12 +2,6 @@
   <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
   <button (click)="notifyEditArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
   <button (click)="notifyDeleteArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
-  <button (click)="notifyFavorite(article)" md-button *ngIf="user != null"><i *ngIf="!article.is_favorite" class="fa fa-star-o"></i><i *ngIf="article.is_favorite" class="fa fa-star"></i>&nbsp;&nbsp;Favorite</button>  
-  <share-container
-  direction="horizontal"
-  [expandable]="false"
-  [textEnabled]="false"
-  [platforms]="['twitter','facebook']">
-</share-container>
-<button (click)="notifyArticleSelected(article)" md-button><i [class]="class"></i>&nbsp; {{article.numComments}}</button>
+  <button (click)="notifyFavorite(article)" md-button *ngIf="user != null"><i *ngIf="!article.is_favorite" class="fa fa-star-o"></i><i *ngIf="article.is_favorite" class="fa fa-star"></i>&nbsp;&nbsp;Favorite</button>
+  <button (click)="notifyArticleSelected(article)" md-button><i [class]="class"></i>&nbsp; {{article.numComments}}</button>
 </md-card-actions>
