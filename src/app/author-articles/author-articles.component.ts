@@ -16,6 +16,7 @@ export class AuthorArticlesComponent implements OnInit {
   pageSize: number;
   author: User;
   listName: string = ArticleWrapper.authorList;
+  searchText: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -33,11 +34,15 @@ export class AuthorArticlesComponent implements OnInit {
         this.pageSize = data.articles.pageSize;
       }
     );
+
+    this._activatedRoute
+    .queryParams
+    .subscribe(param => { this.searchText = param.q });
   }
 
   loadNextPage(pageNumber: number): void {
     this.articleService
-      .getAuthorArticles(this.author.username, pageNumber, this.status_published)
+      .getAuthorArticles(this.author.username, this.searchText, pageNumber, this.status_published)
       .subscribe(articleWrapper => {
         articleWrapper.articles.map(article => {
           this.articles.push(article);

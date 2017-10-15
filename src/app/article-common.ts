@@ -11,6 +11,14 @@ export class ArticleCommon {
     router.navigate([`/tag/${category.name}`], navigationExtras);
   }
 
+  static navigateToAuthor(username: string, router: Router): void {
+    let navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true
+    };
+    router.navigate([`${username}`], navigationExtras);
+  }
+
 
 
 

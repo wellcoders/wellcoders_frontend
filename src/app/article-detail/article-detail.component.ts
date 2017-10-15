@@ -44,7 +44,7 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
   }
 
   goToAuthorArticleList(username: string): void {
-    this._router.navigate([`${username}`]);
+    ArticleCommon.navigateToAuthor(username, this._router);
   }
 
   goToCategoryArticleList(category: Category): void {

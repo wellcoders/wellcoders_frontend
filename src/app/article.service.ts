@@ -51,10 +51,11 @@ export class ArticleService extends LocalStorageHandler{
       );
   }
 
-  getAuthorArticles(username: String, page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
-    console.log(`Obteniendo artículos del autor ${username} de la página ${page}`);
+  getAuthorArticles(username: String, searchText: string = "", page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
+    console.log(`Obteniendo artículos del autor ${username} de la página ${page}. Search text: ${searchText}`);
+    let queryString = this.getQueryString(page, searchText) + `&status=${status}`;
     return this._http
-    .get(environment.url + `/api/1.0/${username}/?page=${page}&status=${status}`)
+    .get(environment.url + `/api/1.0/${username}/?${queryString}`)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );

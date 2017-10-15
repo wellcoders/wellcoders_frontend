@@ -10,11 +10,11 @@ import { FormsModule } from '@angular/forms';
   animations: [
     trigger('searchinput', [
       state('void', style({
-        'transform': 'translateX(100%)',
+        'transform': 'translateY(-100%)',
         'opacity': 0
       })),
       state('hidden', style({
-        'transform': 'translateX(100%)',
+        'transform': 'translateY(-100%)',
         'opacity': 0
       })),
       state('shown', style({

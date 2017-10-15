@@ -18,9 +18,23 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
       return this._articleService.getArticleById(params.articleid);
     } else if (params.hasOwnProperty("categoryname")) {
       return this._articleService.getCategoryArticles(params.categoryname, searchText);
-    } else if (params.hasOwnProperty("username")) {
+    } else if (params.hasOwnProperty("username") && !params.hasOwnProperty("status")) {
       return this._articleService.getAuthorArticles(params.username, searchText);
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "drafts") {
+      return this._articleService.getAuthorArticles(params.username, searchText, 1, "DRF");
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "deleted") {
+      return this._articleService.getAuthorArticles(params.username, searchText, 1, "DEL");
     }
     return this._articleService.getArticles(searchText);
   }
+
+  /*
+    } else if (params.hasOwnProperty("username") && !params.hasOwnProperty("status")) {
+      return this._articleService.getAuthorArticles(params.username);
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "drafts") {
+      return this._articleService.getAuthorArticles(params.username, 1, "DRF");
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "deleted") {
+      return this._articleService.getAuthorArticles(params.username, 1, "DEL");
+
+  */
 }
