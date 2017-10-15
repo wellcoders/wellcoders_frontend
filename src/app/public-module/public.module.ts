@@ -20,7 +20,8 @@ import { SearchedArticlesComponent } from './../searched-articles/searched-artic
   imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule, UtilsModule],
   declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, 
     AuthorArticlesComponent, CategoryArticlesComponent, RecoveryFormComponent, RecoveryFormDialog, SearchedArticlesComponent],
-  exports: [RegisterFormComponent, FormsModule, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, AuthorArticlesComponent, CategoryArticlesComponent],
+  exports: [RegisterFormComponent, FormsModule, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, 
+    AuthorArticlesComponent, CategoryArticlesComponent],
   providers: [UsersService, AuthenticationService],
   entryComponents: [RegisterFormDialog, LoginFormDialog, RecoveryFormDialog]
 })

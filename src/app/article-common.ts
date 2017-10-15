@@ -19,7 +19,28 @@ export class ArticleCommon {
     router.navigate([`${username}`], navigationExtras);
   }
 
+  static navigateToDrafts(username: string, router: Router): void {
+    let navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true
+    };
+    router.navigate([`${username}/drafts`], navigationExtras);
+  }
 
+  static navigateToDeleted(username: string, router: Router): void {
+    let navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true
+    };
+    router.navigate([`${username}/deleted`], navigationExtras);
+  }
+
+  static statusVaues = {
+    published: 'PUB',
+    drafts: 'DRF',
+    deleted: 'DEL'
+
+  }
 
 
 

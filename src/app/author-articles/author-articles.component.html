@@ -1,5 +1,8 @@
-<div class="author-articles">
-  <h2 class="mat-headline">Historias de {{ author?.first_name }} {{ author?.last_name }}</h2>
+<div class="list-header">
+    <h2 class="mat-headline">{{ title }}
+            <small *ngIf="searchText"> {{ subtitle }}</small></h2>
 </div>
 <article-list [listName]="listName" (loadNextPageAuthorArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages"
     [articles]="articles"></article-list>
+
+    

@@ -73,6 +73,7 @@ import { SearchedArticlesComponent } from "./../searched-articles/searched-artic
           component: AuthorArticlesComponent,
           resolve: {
             articles: ArticlesResolveService
+
           }
         },
         {

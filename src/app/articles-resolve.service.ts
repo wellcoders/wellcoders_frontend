@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { ArticleWrapper } from "./article-wrapper";
 import { Article } from "./article";
 import { ArticleService } from "./article.service";
+import { ArticleCommon } from "./article-common"
 
 @Injectable()
 export class ArticlesResolveService implements Resolve<ArticleWrapper> {
@@ -20,21 +21,9 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
       return this._articleService.getCategoryArticles(params.categoryname, searchText);
     } else if (params.hasOwnProperty("username") && !params.hasOwnProperty("status")) {
       return this._articleService.getAuthorArticles(params.username, searchText);
-    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "drafts") {
-      return this._articleService.getAuthorArticles(params.username, searchText, 1, "DRF");
-    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "deleted") {
-      return this._articleService.getAuthorArticles(params.username, searchText, 1, "DEL");
+    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status")) {
+      return this._articleService.getAuthorArticles(params.username, searchText, 1, ArticleCommon.statusVaues[params.status]);
     }
     return this._articleService.getArticles(searchText);
   }
-
-  /*
-    } else if (params.hasOwnProperty("username") && !params.hasOwnProperty("status")) {
-      return this._articleService.getAuthorArticles(params.username);
-    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "drafts") {
-      return this._articleService.getAuthorArticles(params.username, 1, "DRF");
-    } else if (params.hasOwnProperty("username") && params.hasOwnProperty("status") && params.status === "deleted") {
-      return this._articleService.getAuthorArticles(params.username, 1, "DEL");
-
-  */
 }

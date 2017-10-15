@@ -34,6 +34,10 @@ export class CategoryArticlesComponent implements OnInit {
   category: string;
   searchText: string;
 
+  title: string;
+  subtitle: string;
+  currentCategoryname: string;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
@@ -44,16 +48,28 @@ export class CategoryArticlesComponent implements OnInit {
       (data: { articles: ArticleWrapper }) => {
         if (data.articles.articles.length > 0) {
           this.category = data.articles.articles[0].category.name;
-        }
+        } 
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;
+
+        this.setHeader();
       }
     );
 
     this._activatedRoute
     .queryParams
-    .subscribe(param => { this.searchText = param.q });
+    .subscribe(param => { 
+      this.searchText = param.q;
+      this.setHeader();
+    });
+
+    this._activatedRoute
+    .params
+    .subscribe(param => {
+       this.currentCategoryname = param.categoryname
+       this.setHeader();
+     });
   }
 
   loadNextPage(pageNumber: number): void {
@@ -65,5 +81,17 @@ export class CategoryArticlesComponent implements OnInit {
         });
         this.totalPages = articleWrapper.totalPages;
       });
+  }
+
+  setHeader() {
+    if (this.articles.length>0 || this.searchText) {
+      this.title = `Artículos de ${this.currentCategoryname}`
+    } else {
+      this.title = `No hay artículos de  ${this.currentCategoryname}`
+    }
+    this.subtitle = "";
+    if(this.searchText) {
+      this.subtitle = `- ${this.articles.length} contienen ${this.searchText}`;
+    }
   }
 }

@@ -2,7 +2,8 @@
     <span class="docs-button mat-button _overhand" (click)="goHome()">Wellcoders!</span>
     <span class="spacer"></span>
     <search-box (onSearch)="search($event)"></search-box>
-    <span class="mat-caption" *ngIf="user">Wellcome, <a class="_overhand" [mdMenuTriggerFor]="usermenu">{{ user.user.first_name ? user.user.first_name : user.user.username }}</a></span>
+    <span class="mat-caption" *ngIf="user"><a md-button [mdMenuTriggerFor]="usermenu">Wellcome, {{ user.user.first_name ? user.user.first_name : user.user.username }}</a>
+    </span>
 
     <md-menu #usermenu="mdMenu">
       <button md-menu-item (click)="createArticle()"><i class="fa fa-keyboard-o fa-lg" aria-hidden="true"></i> - Create Article</button>

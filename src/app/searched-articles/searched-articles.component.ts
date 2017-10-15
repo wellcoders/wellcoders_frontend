@@ -16,7 +16,7 @@ export class SearchedArticlesComponent implements OnInit {
   totalPages: number;
   pageSize: number;
   category: string;
-  searchMessage: string;
+  header: string;
   searchText: string;
 
   constructor(private _activatedRoute: ActivatedRoute,
@@ -35,9 +35,9 @@ export class SearchedArticlesComponent implements OnInit {
     this.articleService
       .getArticles(text, page)
       .subscribe(articleWrapper => {
-        this.searchMessage = 'No article found';
+        this.header = `No se encontraron artículos - ${text}`;
         if (articleWrapper.articles.length > 0) {
-          this.searchMessage = `Searh: ${text}` ; 
+          this.header = `${articleWrapper.articles.length} artículos contienen ${text}` ; 
         }
         this.articles = articleWrapper.articles;
         this.totalPages = articleWrapper.totalPages;
