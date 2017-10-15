@@ -11,6 +11,7 @@ import { ArticleDetailComponent } from "./../article-detail/article-detail.compo
 import { NotFoundComponent } from "./../not-found/not-found.component";
 import { ArticleCommon } from "./../article-common";
 import { SettingsFormComponent } from "./../settings-form/settings-form.component";
+import { EmptyListComponent } from './../empty-list/empty-list.component';
 
 @NgModule({
   imports: [
@@ -24,9 +25,20 @@ import { SettingsFormComponent } from "./../settings-form/settings-form.componen
           }
         },
         {
+          path: `empty`,
+          component: EmptyListComponent
+        },
+        {
           path: `404`,
           component: NotFoundComponent
         },
+        {
+          path: `article/:articleid/edit`,
+          component: ArticleFormComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },        
         {
           path: "favorites",
           component: AuthorArticlesComponent,
@@ -44,13 +56,6 @@ import { SettingsFormComponent } from "./../settings-form/settings-form.componen
         {
           path: `article/create`,
           component: ArticleFormComponent
-        },
-        {
-          path: `article/:articleid/edit`,
-          component: ArticleFormComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          }
         },
         {
           path: `article/:username/:titleslug`,

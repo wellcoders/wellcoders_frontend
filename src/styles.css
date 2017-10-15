@@ -76,3 +76,22 @@ md-card {
     text-align: center;
     display: inline-block;
 }
+
+.center-aligner{
+    height: 33vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-font-family *{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.center-horizontally{
+    text-align: center;
+}
+
+.fa-big{
+    font-size: 60px !important;
+}

@@ -56,9 +56,15 @@ export class ArticleService extends LocalStorageHandler{
   }
 
   getAuthorArticles(username: String, page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    if (this.user) {
+      headers.append('Authorization', 'JWT ' + this.user.token);
+    }
+    let options = new RequestOptions({ headers: headers });
+
     console.log(`Obteniendo artículos del autor ${username} de la página ${page}`);
     return this._http
-    .get(environment.url + `/api/1.0/${username}/?page=${page}&status=${status}`)
+    .get(environment.url + `/api/1.0/${username}/?page=${page}&status=${status}`, options)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );
