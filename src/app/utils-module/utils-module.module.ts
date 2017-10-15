@@ -17,6 +17,7 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
+import { SearchBoxComponent } from './../search-box/search-box.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule],
@@ -32,7 +33,8 @@ import { NativeWindowProvider } from './../window';
     ArticleDetailComponent,
     NotFoundComponent,
     ArticleActionsBoxComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    SearchBoxComponent
   ],
   exports: [
     HeaderBarComponent,
@@ -43,7 +45,8 @@ import { NativeWindowProvider } from './../window';
     RoundPipe,
     ArticleDetailComponent,
     ArticleActionsBoxComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    SearchBoxComponent
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
   providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider]

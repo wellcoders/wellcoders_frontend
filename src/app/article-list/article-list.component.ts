@@ -9,6 +9,7 @@ import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"
 import { MdSnackBar } from '@angular/material';
 import { NativeWindow } from './../window';
+import { ArticleCommon } from "./../article-common";
 
 @Component({
   selector: "article-list",
@@ -51,7 +52,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   goToCategoryArticleList(category: Category): void {
-    this._router.navigate([`/tag/${category.name}`]);
+    ArticleCommon.navigateToCategory(category, this._router);
   }
 
   goToEditArticle(article: Article): void {

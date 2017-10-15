@@ -17,10 +17,11 @@ export class ArticleService extends LocalStorageHandler{
     private _http: Http
   ) { super()}
 
-  getArticles(page: number = 1): Observable<ArticleWrapper> {
-    console.log(`Obteniendo últimos artículos de la página ${page}`);
+  getArticles(searchText: string = "", page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo últimos artículos de la página ${page}. Search text: ${searchText}`);
+    let queryString = this.getQueryString(page, searchText);
     return this._http
-      .get(environment.url + `/api/1.0/posts/?page=${page}`)
+      .get(environment.url + `/api/1.0/posts/?${ queryString }`)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
@@ -40,10 +41,11 @@ export class ArticleService extends LocalStorageHandler{
       );
   }
 
-  getCategoryArticles(category: string, page: number = 1): Observable<ArticleWrapper> {
-    console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}`);
+  getCategoryArticles(category: string, searchText: string = "", page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}. Search text: ${searchText}`);
+    let queryString = this.getQueryString(page, searchText);
     return this._http
-      .get(environment.url + `/api/1.0/tag/${category}/?page=${page}`)
+      .get(environment.url + `/api/1.0/tag/${category}/?${queryString}`)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
@@ -96,5 +98,13 @@ export class ArticleService extends LocalStorageHandler{
   getArticleById(id: number): Observable<any> {
     return this._http
       .get(environment.url + `/api/1.0/posts/`+ id + `/`);
-  }  
+  } 
+  
+  getQueryString(page: number, searchText: string): string {
+    let queryString = `page=${page}`;
+    if (searchText) {
+      queryString += `&search=${searchText}`;
+    }
+    return queryString;
+  }
 }

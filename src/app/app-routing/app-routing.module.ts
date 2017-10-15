@@ -11,6 +11,7 @@ import { ArticleDetailComponent } from "./../article-detail/article-detail.compo
 import { NotFoundComponent } from "./../not-found/not-found.component";
 import { ArticleCommon } from "./../article-common";
 import { SettingsFormComponent } from "./../settings-form/settings-form.component";
+import { SearchedArticlesComponent } from "./../searched-articles/searched-articles.component";
 
 @NgModule({
   imports: [
@@ -22,6 +23,10 @@ import { SettingsFormComponent } from "./../settings-form/settings-form.componen
           resolve: {
             articles: ArticlesResolveService
           }
+        },
+        {
+          path: `search`,
+          component: SearchedArticlesComponent
         },
         {
           path: `404`,

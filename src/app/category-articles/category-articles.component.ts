@@ -32,6 +32,7 @@ export class CategoryArticlesComponent implements OnInit {
   pageSize: number;
   listName: string = ArticleWrapper.categoryList;
   category: string;
+  searchText: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -49,11 +50,15 @@ export class CategoryArticlesComponent implements OnInit {
         this.pageSize = data.articles.pageSize;
       }
     );
+
+    this._activatedRoute
+    .queryParams
+    .subscribe(param => { this.searchText = param.q });
   }
 
   loadNextPage(pageNumber: number): void {
     this.articleService
-      .getCategoryArticles(this.category, pageNumber)
+      .getCategoryArticles(this.category, this.searchText, pageNumber)
       .subscribe(articleWrapper => {
         articleWrapper.articles.map(article => {
           this.articles.push(article);

@@ -6,8 +6,9 @@ import { CategoriesService } from "./../categories.service";
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
 import { LocalStorageHandler } from "./../local-storage-handler"
 import { AuthenticationService } from './../authentication.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, Params, NavigationExtras } from '@angular/router';
 import { Category } from "./../category";
+import { ArticleCommon } from "./../article-common";
 
 
 @Component({
@@ -18,6 +19,7 @@ import { Category } from "./../category";
 export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   categories = [];
+
   constructor(
     private _authService: AuthenticationService,
     public dialog: MdDialog,
@@ -72,7 +74,13 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
     this._router.navigate(['/']);
   } 
   notifyCategorySelected(category: Category): void {
-      this._router.navigate([`/tag/${category.name}`]);
+    ArticleCommon.navigateToCategory(category, this._router);
   }
+
+  search(text: string): void {
+    this._router.navigate([ `/search`], { queryParams: { q: text } });
+  }
+
+
 }
 
