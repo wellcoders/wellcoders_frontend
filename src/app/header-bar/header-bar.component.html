@@ -4,11 +4,12 @@
     <span class="mat-caption" *ngIf="user">Wellcome, <a class="_overhand" [mdMenuTriggerFor]="usermenu">{{ user.user.first_name ? user.user.first_name : user.user.username }}</a></span>
 
     <md-menu #usermenu="mdMenu">
-      <button md-menu-item (click)="createArticle()"><i class="fa fa-keyboard-o fa-lg" aria-hidden="true"></i> - Create Article</button>
-      <button md-menu-item (click)="drafts()"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i> - Borradores</button>      
-      <button md-menu-item (click)="deleted()"><i class="fa fa-remove fa-lg" aria-hidden="true"></i> - Eliminados</button>      
-      <button md-menu-item (click)="settings()"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> - Settings</button>
-      <button md-menu-item (click)="logout()"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> - Logout</button>
+      <button md-menu-item (click)="createArticle()"><span class="dropdown-icon"><i class="fa fa-keyboard-o fa-lg" aria-hidden="true"></i></span>Create Article</button>
+      <button md-menu-item (click)="drafts()"><span class="dropdown-icon"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></span>Borradores</button>      
+      <button md-menu-item (click)="deleted()"><span class="dropdown-icon"><i class="fa fa-remove fa-lg" aria-hidden="true"></i></span>Eliminados</button>
+      <button md-menu-item (click)="favorites()"><span class="dropdown-icon"><i class="fa fa-star fa-lg" aria-hidden="true"></i></span>Favorites</button>       
+      <button md-menu-item (click)="settings()"><span class="dropdown-icon"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i></span>Settings</button>
+      <button md-menu-item (click)="logout()"><span class="dropdown-icon"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></span>Logout</button>
     </md-menu>
 
   <span *ngIf="!user" class="docs-button mat-button"><button md-button (click)="openLoginDialog()">Login</button></span>

@@ -1,4 +1,4 @@
-<div class="latest-articles">
+<div *ngIf="articles.lenght" class="latest-articles">
     <h2 class="mat-headline">Últimos artículos</h2>
 </div>
 <article-list [listName]="listName" (loadNextPageLastestArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages"

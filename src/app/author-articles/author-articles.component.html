@@ -1,4 +1,4 @@
-<div class="author-articles">
+<div *ngIf="articles.lenght" class="author-articles">
   <h2 class="mat-headline">Historias de {{ author?.first_name }} {{ author?.last_name }}</h2>
 </div>
 <article-list [listName]="listName" (loadNextPageAuthorArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages"

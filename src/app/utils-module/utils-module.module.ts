@@ -18,6 +18,8 @@ import { ArticleActionsBoxComponent } from './../article-actions-box/article-act
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
 import {ShareModule} from 'ng2share/share.module';
+import { EmptyListComponent } from './../empty-list/empty-list.component';
+
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule],
@@ -33,7 +35,8 @@ import {ShareModule} from 'ng2share/share.module';
     ArticleDetailComponent,
     NotFoundComponent,
     ArticleActionsBoxComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    EmptyListComponent
   ],
   exports: [
     HeaderBarComponent,
