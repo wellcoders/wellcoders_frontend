@@ -1,5 +1,4 @@
 import { NgModule, LOCALE_ID } from "@angular/core";
-import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 import {
   MdButtonModule,
@@ -31,7 +30,6 @@ import {
     MdDatepickerModule,
     MdNativeDateModule,
     MdSelectModule,
-    AngularFontAwesomeModule,
     MdProgressBarModule
   ],
   exports: [
@@ -47,7 +45,6 @@ import {
     MdDatepickerModule,
     MdNativeDateModule,
     MdSelectModule,
-    AngularFontAwesomeModule,
     MdProgressBarModule
   ],
   providers: [

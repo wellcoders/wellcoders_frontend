@@ -9,6 +9,7 @@ import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"
 import { MdSnackBar } from '@angular/material';
 import { NativeWindow } from './../window';
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   selector: "article-list",
@@ -28,11 +29,15 @@ export class ArticleListComponent implements OnInit {
     private _articles: ArticleService,
     private _router: Router,
     public snackBar: MdSnackBar,
+    public scrollService: ScrollService,
     @Inject(NativeWindow) private _window) {}
 
   ngOnInit(): void {
-    //this._window.scrollTo(0, 0);
   }
+
+  ngAfterViewInit() {
+    this.scrollService.scrollToTop();
+   }
 
   loadNextPage(data): void {
     const listName = data.listName;

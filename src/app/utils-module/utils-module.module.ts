@@ -8,6 +8,7 @@ import { PaginateComponent } from "./../paginate/paginate.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ArticleService } from "./../article.service";
 import { CategoriesService } from './../categories.service';
+import { ScrollService } from "./../scroll.service" ;
 import { FromNowPipe } from "./../from-now.pipe";
 import { RoundPipe } from "./../round.pipe";
 import { AppearDirective } from "./../appear.directive";
@@ -17,12 +18,13 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
-import {ShareModule} from 'ng2share/share.module';
+import { ShareModule } from 'ng2share/share.module';
 import { EmptyListComponent } from './../empty-list/empty-list.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule],
+  imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule, AngularFontAwesomeModule],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,
@@ -47,9 +49,10 @@ import { EmptyListComponent } from './../empty-list/empty-list.component';
     RoundPipe,
     ArticleDetailComponent,
     ArticleActionsBoxComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    AngularFontAwesomeModule
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
-  providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider]
+  providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider, ScrollService]
 })
 export class UtilsModule {}

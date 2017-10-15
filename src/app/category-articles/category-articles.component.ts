@@ -20,6 +20,7 @@ import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service";
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   selector: "category-articles",
@@ -36,6 +37,7 @@ export class CategoryArticlesComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
+    public scrollService: ScrollService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +51,10 @@ export class CategoryArticlesComponent implements OnInit {
         this.pageSize = data.articles.pageSize;
       }
     );
+  }
+
+  ngAfterViewInit() {
+    this.scrollService.scrollToTop();
   }
 
   loadNextPage(pageNumber: number): void {

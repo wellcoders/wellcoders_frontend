@@ -4,6 +4,7 @@ import { Article } from "./../article";
 import { User } from "./../user";
 import { ArticleService } from "./../article.service";
 import { ArticleWrapper } from "./../article-wrapper";
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   templateUrl: "./author-articles.component.html",
@@ -20,6 +21,7 @@ export class AuthorArticlesComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
+    public scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class AuthorArticlesComponent implements OnInit {
       }
     );
   }
+
+  ngAfterViewInit() {
+    this.scrollService.scrollToTop();
+   }
 
   loadNextPage(pageNumber: number): void {
     this.articleService
