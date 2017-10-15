@@ -5,7 +5,8 @@
             (whenAuthorSelected)="goToAuthorArticleList($event)" 
             (whenArticleSelected)="goToDetail($event)" 
             (whenEditArticle)="goToEditArticle($event)" 
-            (whenDeleteArticle)="deleteArticle($event)" 
+            (whenDeleteArticle)="deleteArticle($event)"
+            (whenFavoriteClicked)="favoriteClicked($event)" 
             [article]="article"></article-preview>
         <div *ngIf="(i + 1) % pageSize == 0; then content"></div>
         <ng-template #content>

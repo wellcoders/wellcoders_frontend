@@ -31,7 +31,7 @@ export class ArticleListComponent implements OnInit {
     @Inject(NativeWindow) private _window) {}
 
   ngOnInit(): void {
-    this._window.scrollTo(0, 0);
+    //this._window.scrollTo(0, 0);
   }
 
   loadNextPage(data): void {
@@ -66,6 +66,20 @@ export class ArticleListComponent implements OnInit {
       }
     );
   }
+
+  favoriteClicked(article: Article): void{
+    this._articles.favoriteClicked(article).subscribe(
+      success => {
+        this.articles = this.articles.map(
+          function(x){
+            if(x.pk == article.pk){
+              x['is_favorite']=!x['is_favorite']
+            }
+            return x }
+          );
+      }
+    );
+  }  
 
   goToDetail(article: Article): void {
     this._router.navigate([`/article/${article.owner.username}/${article.titleSlug}`]);

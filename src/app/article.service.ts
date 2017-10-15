@@ -19,8 +19,14 @@ export class ArticleService extends LocalStorageHandler{
 
   getArticles(page: number = 1): Observable<ArticleWrapper> {
     console.log(`Obteniendo últimos artículos de la página ${page}`);
+    let headers = new Headers();
+    if (this.user) {
+      headers.append('Authorization', 'JWT ' + this.user.token);
+    }
+    let options = new RequestOptions({ headers: headers });
+
     return this._http
-      .get(environment.url + `/api/1.0/posts/?page=${page}`)
+      .get(environment.url + `/api/1.0/posts/?page=${page}`, options)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
@@ -97,4 +103,32 @@ export class ArticleService extends LocalStorageHandler{
     return this._http
       .get(environment.url + `/api/1.0/posts/`+ id + `/`);
   }  
+
+  favoriteClicked(article: Object): Observable<any> {
+    
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+
+    if(article['is_favorite']){
+      return this._http.delete(environment.url + `/api/1.0/posts/` + article['pk'] + '/favorite/', options);
+  
+    }else{
+      return this._http.post(environment.url + `/api/1.0/posts/` + article['pk'] + '/favorite/', '', options);
+    }
+  }  
+
+  getFavoriteArticles(page: number = 1): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http
+    .get(environment.url + `/api/1.0/favorites/?page=${page}`, options)
+    .map((response: Response): ArticleWrapper =>
+    ArticleWrapper.fromJson(response.json())
+    );
+  }
 }

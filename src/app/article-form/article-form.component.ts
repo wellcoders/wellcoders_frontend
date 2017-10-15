@@ -54,7 +54,6 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
 
   
   ngOnInit() {
-    this._window.scrollTo(0, 0);
     if(!this.user){
       this._router.navigate(['/'])
     }else{

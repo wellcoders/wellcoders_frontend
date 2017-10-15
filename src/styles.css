@@ -70,3 +70,9 @@ md-card {
 ._overhand {
     cursor:pointer;
 }
+
+.dropdown-icon{
+    width: 35px;
+    text-align: center;
+    display: inline-block;
+}

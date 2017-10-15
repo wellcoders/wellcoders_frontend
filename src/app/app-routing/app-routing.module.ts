@@ -28,6 +28,13 @@ import { SettingsFormComponent } from "./../settings-form/settings-form.componen
           component: NotFoundComponent
         },
         {
+          path: "favorites",
+          component: AuthorArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },
+        {
           path: ":username",
           component: AuthorArticlesComponent,
           resolve: {
