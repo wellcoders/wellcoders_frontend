@@ -20,4 +20,6 @@
         <share-container direction="horizontal" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook']">
         </share-container>
     </div>
+
+    <comments-list (loadNextPageEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages" [comments]="_comments"></comments-list>
 </md-card>

@@ -100,3 +100,7 @@ md-card {
 .fa-big {
   font-size: 60px !important;
 }
+
+button.pq.mat-button {
+  min-width: 42px;
+}

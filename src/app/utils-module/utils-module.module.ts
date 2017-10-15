@@ -7,6 +7,7 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { PaginateComponent } from "./../paginate/paginate.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ArticleService } from "./../article.service";
+import { CommentsService } from "./../comments.service";
 import { CategoriesService } from './../categories.service';
 import { ScrollService } from "./../scroll.service" ;
 import { FromNowPipe } from "./../from-now.pipe";
@@ -21,6 +22,8 @@ import { NativeWindowProvider } from './../window';
 import { ShareModule } from 'ng2share/share.module';
 import { EmptyListComponent } from './../empty-list/empty-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { CommentsListComponent } from './../comments-list/comments-list.component';
+import { CommentDetailComponent } from './../comment-detail/comment-detail.component';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
     NotFoundComponent,
     ArticleActionsBoxComponent,
     SlugifyPipe,
-    EmptyListComponent
+    EmptyListComponent,
+    CommentsListComponent,
+    CommentDetailComponent
   ],
   exports: [
     HeaderBarComponent,
@@ -53,6 +58,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
     AngularFontAwesomeModule
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
-  providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider, ScrollService]
+  providers: [ArticleService, CategoriesService, CommentsService, SlugifyPipe, NativeWindowProvider, ScrollService]
 })
 export class UtilsModule {}

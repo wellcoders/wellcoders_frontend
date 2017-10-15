@@ -14,7 +14,7 @@ import { BrowserXhr } from '@angular/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
