@@ -70,3 +70,7 @@ md-card {
 ._overhand {
     cursor:pointer;
 }
+
+button.pq.mat-button {
+    min-width: 42px;
+}

@@ -18,4 +18,7 @@
     (whenDeleteArticle)="deleteArticle($event)" 
     [article]="article">
   </article-actions-box>
+
+  <comments-list (loadNextPageEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages" [comments]="_comments"></comments-list>
+
 </md-card>

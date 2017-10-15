@@ -7,6 +7,7 @@ import { MaterialModule } from "./../material-module/material-module.module";
 import { PaginateComponent } from "./../paginate/paginate.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ArticleService } from "./../article.service";
+import { CommentsService } from "./../comments.service";
 import { CategoriesService } from './../categories.service';
 import { FromNowPipe } from "./../from-now.pipe";
 import { RoundPipe } from "./../round.pipe";
@@ -17,7 +18,10 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
-import {ShareModule} from 'ng2share/share.module';
+import { ShareModule } from 'ng2share/share.module';
+import { CommentsListComponent } from './../comments-list/comments-list.component';
+import { CommentDetailComponent } from './../comment-detail/comment-detail.component';
+
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule],
@@ -33,7 +37,9 @@ import {ShareModule} from 'ng2share/share.module';
     ArticleDetailComponent,
     NotFoundComponent,
     ArticleActionsBoxComponent,
-    SlugifyPipe
+    SlugifyPipe,
+    CommentsListComponent,
+    CommentDetailComponent
   ],
   exports: [
     HeaderBarComponent,
@@ -47,6 +53,6 @@ import {ShareModule} from 'ng2share/share.module';
     SlugifyPipe
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
-  providers: [ArticleService, CategoriesService, SlugifyPipe, NativeWindowProvider]
+  providers: [ArticleService, CategoriesService, CommentsService, SlugifyPipe, NativeWindowProvider]
 })
 export class UtilsModule {}

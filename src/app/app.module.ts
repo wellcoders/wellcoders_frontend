@@ -12,7 +12,7 @@ import { ArticlesResolveService } from "./articles-resolve.service";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
