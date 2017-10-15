@@ -16,17 +16,17 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class SettingsFormComponent extends LocalStorageHandler implements OnInit {
 
-  private _user:User;
-  private _editUser: boolean = false;
-  private _editPwd: boolean = false;
-  private _deleteUser: boolean = false;
+  public _user:User;
+  public _editUser: boolean = false;
+  public _editPwd: boolean = false;
+  public _deleteUser: boolean = false;
 
-  private oldpassword: string = "";
-  private newpassword: string = "";
-  private repeatpassword: string = "";
-  private _username: string = "";
+  public oldpassword: string = "";
+  public newpassword: string = "";
+  public repeatpassword: string = "";
+  public _username: string = "";
 
-  private confirmdeletion: string = "";
+  public confirmdeletion: string = "";
 
   constructor(
     private _usersService: UsersService,

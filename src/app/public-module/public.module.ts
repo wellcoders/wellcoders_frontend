@@ -15,6 +15,7 @@ import { CategoryArticlesComponent } from "./../category-articles/category-artic
 import { RecoveryFormComponent, RecoveryFormDialog } from './../recovery-form/recovery-form.component';
 
 
+
 @NgModule({
   imports: [CommonModule, MaterialModule, FormsModule, HttpModule, MdDialogModule, MdSnackBarModule, UtilsModule],
   declarations: [RegisterFormComponent, RegisterFormDialog, LoginFormComponent, LoginFormDialog, LastestArticlesComponent, 

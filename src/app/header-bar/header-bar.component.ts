@@ -51,6 +51,10 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
     this._router.navigate([`/${this.user.user.username}/deleted`]);
   }
 
+  favorites():void {
+    this._router.navigate([`/favorites`]);
+  }
+
   settings():void {
     this._router.navigate(['/users/settings']);
   }

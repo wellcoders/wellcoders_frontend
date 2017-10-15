@@ -28,7 +28,6 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
     }
 
   ngOnInit() {
-    this._window.scrollTo(0, 0);
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
         if(data.articles && data.articles.count == 1) {
