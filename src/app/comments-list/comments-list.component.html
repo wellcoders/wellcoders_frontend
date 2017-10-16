@@ -1,0 +1,10 @@
+<div class="comments-list">
+  <h1>Comentarios</h1>
+  <div *ngFor="let comment of comments, let i = index;">
+    <comment-detail   [item]="comment" ></comment-detail>
+    <div *ngIf="(i + 1) % pageSize == 0; then content"></div>
+    <ng-template #content>
+        <paginate (loadNextPageEvent)="loadNextPage($event)" [page]="((i + 1) / pageSize | Round) + 1"></paginate>
+    </ng-template>
+  </div>
+</div>

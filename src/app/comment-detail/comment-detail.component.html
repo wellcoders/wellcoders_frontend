@@ -1,0 +1,19 @@
+<div class="comment-detail">
+    <div fxLayoutAlign="space-between start" class="comment-header">
+        <div class="comment-author" fxFlex="grow">
+            <i class="fa fa-user-circle fa-3x"></i>
+            <ul>
+                <li>{{ comment.owner.first_name ? (comment.owner.first_name + " " + comment.owner.last_name) : comment.owner.username }}</li>
+                <li>{{ comment.created_at | FromNow }}</li>
+            </ul>
+        </div>
+        <div *ngIf="user != null && user.user.username == comment.owner.username" fxLayout="row" class="comment-controls">
+            <button  md-button (click)="open('_editUser')" type="button" [hidden]="_editUser">Edit</button>
+            <button class="pq" color="warn" md-button (click)="open('_editUser')" type="button" [hidden]="_editUser"><i class="fa fa-trash-o"></i></button>
+        </div>
+    </div>
+    <div class="comment-body">
+        <p>{{ comment.content }}</p>
+    </div>
+
+</div>
