@@ -37,7 +37,7 @@ export class SearchedArticlesComponent implements OnInit {
       .subscribe(articleWrapper => {
         this.header = `No se encontraron artículos - ${text}`;
         if (articleWrapper.articles.length > 0) {
-          this.header = `${articleWrapper.articles.length} artículos contienen ${text}` ; 
+          this.header = `${articleWrapper.count} artículos contienen ${text}` ; 
         }
         this.articles = articleWrapper.articles;
         this.totalPages = articleWrapper.totalPages;

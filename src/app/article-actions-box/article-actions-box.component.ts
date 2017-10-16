@@ -17,13 +17,22 @@ export class ArticleActionsBoxComponent extends LocalStorageHandler implements O
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   @Output() whenEditArticle: EventEmitter<Article> = new EventEmitter<Article>();
   @Output() whenDeleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
+  @Output() whenArticleSelected: EventEmitter<Article> =  new EventEmitter<Article>();
+  class: string;
+  @Output() whenFavoriteClicked: EventEmitter<Article> =  new EventEmitter<Article>();
 
   constructor(public dialog: MdDialog) {
     super();
   }
 
   ngOnInit() {
-
+    if (this.article.numComments == 0) {
+      this.class = "fa fa-comment-o";
+    } else if (this.article.numComments == 1) {
+      this.class = "fa fa-comment";
+    } else if (this.article.numComments > 1) {
+      this.class = "fa fa-comments";
+    }
   }
 
   notifyCategorySelected(category: Category): void {
@@ -32,6 +41,10 @@ export class ArticleActionsBoxComponent extends LocalStorageHandler implements O
 
   notifyEditArticle(article: Article): void {
     this.whenEditArticle.emit(article);
+  }
+
+  notifyArticleSelected(article: Article): void {
+    this.whenArticleSelected.emit(article);
   }
 
   notifyDeleteArticle(article: Article): void {
@@ -46,4 +59,8 @@ export class ArticleActionsBoxComponent extends LocalStorageHandler implements O
       }
     });
   }
+
+  notifyFavorite(article: Article): void {
+    this.whenFavoriteClicked.emit(article);
+  } 
 }

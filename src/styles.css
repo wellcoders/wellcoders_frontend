@@ -1,71 +1,102 @@
 @import "~https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import "../node_modules/font-awesome/css/font-awesome.css";
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "~font-awesome/css/font-awesome.min.css";
+
 html,
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 md-card {
-    max-width: 80%;
-    margin: 2em auto;
+  max-width: 80%;
+  margin: 2em auto;
+  padding-bottom: 0.2em !important;
+}
+
+.mat-card-avatar {
+  margin-right: 0.8em;
 }
 
 .full-width {
-    width: 100% !important;
+  width: 100% !important;
 }
 
-.date-row>.datepicker {
-    width: 49% !important;
+.date-row > .datepicker {
+  width: 49% !important;
 }
 
-.date-row>.timefield {
-    width: 24% !important;
+.date-row > .timefield {
+  width: 24% !important;
 }
 
 .mat-input-wrapper .mat-select-trigger {
-    font-size: 14px !important;
+  font-size: 14px !important;
 }
 
 .mat-label {
-    color: rgba(255, 255, 255, .7) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .position-fix {
-    position: initial !important;
+  position: initial !important;
 }
 
 .wysiwyg-fix {
-    padding: .4375em 0;
+  padding: 0.4375em 0;
 }
 
-.dragging{
-    background-color: #dff0d8 !important
+.dragging {
+  background-color: #dff0d8 !important;
 }
 
-.dragitem{
-    width: calc(100% - 8px);
-    height: 100px;
-    line-height: 100px;
-    margin: .4375em 0;
-    text-align: center;
-    border-collapse: collapse;
-    border-width: 4px;
-    border-style: dashed;
-    border-color: #999999;
-    font: 400 16px/28px Roboto,"Helvetica Neue",sans-serif;
+.dragitem {
+  width: calc(100% - 8px);
+  height: 100px;
+  line-height: 100px;
+  margin: 0.4375em 0;
+  text-align: center;
+  border-collapse: collapse;
+  border-width: 4px;
+  border-style: dashed;
+  border-color: #999999;
+  font: 400 16px/28px Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-card-header-text  {
-    width: 100% !important;
+.mat-card-header-text {
+  width: 100% !important;
 }
 
 *[hidden] {
-    display: none !important;
+  display: none !important;
 }
 
 ._overhand {
-    cursor:pointer;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  width: 35px;
+  text-align: center;
+  display: inline-block;
+}
+
+.center-aligner {
+  height: 33vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-font-family * {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.center-horizontally {
+  text-align: center;
+}
+
+.fa-big {
+  font-size: 60px !important;
 }

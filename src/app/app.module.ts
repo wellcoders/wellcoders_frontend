@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { ArticlesResolveService } from "./articles-resolve.service";
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
+import { BrowserXhr } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { ArticlesResolveService } from "./articles-resolve.service";
     PublicModule,
     PrivateModule,
     BrowserAnimationsModule,
+    NgProgressModule,
   ],
-  providers: [ArticlesResolveService],
+  providers: [ArticlesResolveService,  {provide: BrowserXhr, useClass: NgProgressBrowserXhr}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

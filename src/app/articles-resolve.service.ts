@@ -13,7 +13,9 @@ export class ArticlesResolveService implements Resolve<ArticleWrapper> {
     let params = route.params;
     let searchText = route.queryParams.q;
 
-    if (!searchText && params.hasOwnProperty("username") && params.hasOwnProperty("titleslug")) {
+    if (route.url.length && route.url[0].path == "favorites") {
+      return this._articleService.getFavoriteArticles(searchText);
+    } else if (!searchText && params.hasOwnProperty("username") && params.hasOwnProperty("titleslug")) {
       return this._articleService.getArticle(params.username, params.titleslug)
     } else if (!searchText && params.hasOwnProperty("articleid")) {
       return this._articleService.getArticleById(params.articleid);

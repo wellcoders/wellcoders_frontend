@@ -6,6 +6,7 @@ import { ArticleService } from "./../article.service";
 import { ArticleWrapper } from "./../article-wrapper";
 import { ArticleCommon } from './../article-common';
 import { LocalStorageHandler } from './../local-storage-handler';
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   templateUrl: "./author-articles.component.html",
@@ -15,6 +16,7 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
   articles: Article[];
   totalPages: number;
   pageSize: number;
+  count: number;
   author: User;
   listName: string = ArticleWrapper.authorList;
   searchText: string;
@@ -28,14 +30,19 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
   constructor(
     private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
+    public scrollService: ScrollService
   ) { super(); }
+
+  
 
   ngOnInit(): void {
     this._activatedRoute.data.subscribe(
-      (data: { articles: ArticleWrapper, status: string }) => {
+      (data: { articles: ArticleWrapper, currentSelection: string}) => {
+        let currentSelection = this.currentStatus;
         if (data.articles.articles.length > 0) {
           this.author = data.articles.articles[0].owner;
         }
+        this.count = data.articles.count;
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;
@@ -60,6 +67,10 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
       });
   }
 
+  ngAfterViewInit() {
+    this.scrollService.scrollToTop();
+   }
+
   loadNextPage(pageNumber: number): void {
     this.articleService
       .getAuthorArticles(this.author.username, this.searchText, pageNumber, this.currentStatus)
@@ -75,7 +86,9 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
     if (this.articles.length>0 || this.searchText) {
       switch (this.currentStatus) {
         case ArticleCommon.statusVaues.published: {
-          if (this.user && this.user.user.username == this.currentAuthorUsername) {
+          if (!this.currentAuthorUsername) {
+            this.title = `Mis favoritos`;
+          } else if (this.user && this.user.user.username == this.currentAuthorUsername) {
             this.title = `Mis artículos`;
           } else {
             this.title = `Articulos de ${this.currentAuthorUsername}`
@@ -91,7 +104,9 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
     } else {
       switch (this.currentStatus) {
         case ArticleCommon.statusVaues.published: {
-          if (this.user.user.username == this.currentAuthorUsername) {
+          if (!this.currentAuthorUsername) {
+            this.title = `No hay favoritos`;
+          } else if (this.user.user.username == this.currentAuthorUsername) {
             this.title = `No has publicado ningún artículo`;
           } else {
             this.title = `No hay artículos de ${this.author.first_name} ${this.author.last_name}`
@@ -107,7 +122,7 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
     }
     this.subtitle = "";
     if(this.searchText) {
-      this.subtitle = `- ${this.articles.length} contienen ${this.searchText}`;
+      this.subtitle = `- ${this.count} contienen ${this.searchText}`;
     }
   }
 }

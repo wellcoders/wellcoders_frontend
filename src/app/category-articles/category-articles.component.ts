@@ -20,6 +20,7 @@ import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ActivatedRoute } from "@angular/router";
 import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service";
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   selector: "category-articles",
@@ -30,6 +31,7 @@ export class CategoryArticlesComponent implements OnInit {
   articles: Article[];
   totalPages: number;
   pageSize: number;
+  count: number;
   listName: string = ArticleWrapper.categoryList;
   category: string;
   searchText: string;
@@ -41,6 +43,7 @@ export class CategoryArticlesComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
+    public scrollService: ScrollService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +52,7 @@ export class CategoryArticlesComponent implements OnInit {
         if (data.articles.articles.length > 0) {
           this.category = data.articles.articles[0].category.name;
         } 
+        this.count = data.articles.count;
         this.articles = data.articles.articles;
         this.totalPages = data.articles.totalPages;
         this.pageSize = data.articles.pageSize;
@@ -72,6 +76,10 @@ export class CategoryArticlesComponent implements OnInit {
      });
   }
 
+  ngAfterViewInit() {
+    this.scrollService.scrollToTop();
+  }
+
   loadNextPage(pageNumber: number): void {
     this.articleService
       .getCategoryArticles(this.category, this.searchText, pageNumber)
@@ -91,7 +99,7 @@ export class CategoryArticlesComponent implements OnInit {
     }
     this.subtitle = "";
     if(this.searchText) {
-      this.subtitle = `- ${this.articles.length} contienen ${this.searchText}`;
+      this.subtitle = `- ${this.count} contienen ${this.searchText}`;
     }
   }
 }

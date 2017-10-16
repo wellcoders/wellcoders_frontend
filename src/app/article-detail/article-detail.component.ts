@@ -10,6 +10,7 @@ import { LocalStorageHandler } from './../local-storage-handler';
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ArticleCommon } from "./../article-common"
 import { NativeWindow } from './../window';
+import { ScrollService } from "./../scroll.service";
 
 @Component({
   selector: 'article-detail',
@@ -23,12 +24,12 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
     private _articles: ArticleService,
     private _router: Router,
     public snackBar: MdSnackBar,
+    public scrollService: ScrollService,
     @Inject(NativeWindow) private _window) {
       super();
     }
 
   ngOnInit() {
-    this._window.scrollTo(0, 0);
     this._activatedRoute.data.subscribe(
       (data: { articles: ArticleWrapper }) => {
         if(data.articles && data.articles.count == 1) {
@@ -37,10 +38,11 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
           this._router.navigate(['404']);
         }
       },
-      /*error => {
-        this._router.navigate(['404']);
-      }*/
     );
+  }
+
+  ngAfterViewInit() {
+   this.scrollService.scrollToTop();
   }
 
   goToAuthorArticleList(username: string): void {

@@ -18,10 +18,16 @@ export class ArticleService extends LocalStorageHandler{
   ) { super()}
 
   getArticles(searchText: string = "", page: number = 1): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    if (this.user) {
+      headers.append('Authorization', 'JWT ' + this.user.token);
+    }
+    let options = new RequestOptions({ headers: headers });
     console.log(`Obteniendo últimos artículos de la página ${page}. Search text: ${searchText}`);
+
     let queryString = this.getQueryString(page, searchText);
     return this._http
-      .get(environment.url + `/api/1.0/posts/?${ queryString }`)
+      .get(environment.url + `/api/1.0/posts/?${ queryString }`, options)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
@@ -52,10 +58,15 @@ export class ArticleService extends LocalStorageHandler{
   }
 
   getAuthorArticles(username: String, searchText: string = "", page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    if (this.user) {
+      headers.append('Authorization', 'JWT ' + this.user.token);
+    }
+    let options = new RequestOptions({ headers: headers });
     console.log(`Obteniendo artículos del autor ${username} de la página ${page}. Search text: ${searchText}`);
     let queryString = this.getQueryString(page, searchText) + `&status=${status}`;
     return this._http
-    .get(environment.url + `/api/1.0/${username}/?${queryString}`)
+    .get(environment.url + `/api/1.0/${username}/?${queryString}`, options)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );
@@ -107,5 +118,35 @@ export class ArticleService extends LocalStorageHandler{
       queryString += `&search=${searchText}`;
     }
     return queryString;
+  }  
+
+  favoriteClicked(article: Object): Observable<any> {
+    
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+
+    if(article['is_favorite']){
+      return this._http.delete(environment.url + `/api/1.0/posts/` + article['pk'] + '/favorite/', options);
+  
+    }else{
+      return this._http.post(environment.url + `/api/1.0/posts/` + article['pk'] + '/favorite/', '', options);
+    }
+  }  
+
+  getFavoriteArticles(searchText: string = "",  page: number = 1): Observable<ArticleWrapper> {
+    let headers = new Headers();
+    headers.append('Authorization', 'JWT ' + this.user.token);
+
+    let options = new RequestOptions({ headers: headers });
+
+    let queryString = this.getQueryString(page, searchText);
+
+    return this._http
+    .get(environment.url + `/api/1.0/favorites/?${queryString}`, options)
+    .map((response: Response): ArticleWrapper =>
+    ArticleWrapper.fromJson(response.json())
+    );
   }
 }

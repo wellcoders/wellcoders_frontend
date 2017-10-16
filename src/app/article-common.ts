@@ -35,11 +35,18 @@ export class ArticleCommon {
     router.navigate([`${username}/deleted`], navigationExtras);
   }
 
+  static navigateToFavorites(router: Router): void {
+    let navigationExtras: NavigationExtras = {
+      queryParamsHandling: 'preserve',
+      preserveFragment: true
+    };
+    router.navigate([`/favorites`], navigationExtras);
+  }
+
   static statusVaues = {
     published: 'PUB',
     drafts: 'DRF',
     deleted: 'DEL'
-
   }
 
 

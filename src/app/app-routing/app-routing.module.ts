@@ -12,6 +12,7 @@ import { NotFoundComponent } from "./../not-found/not-found.component";
 import { ArticleCommon } from "./../article-common";
 import { SettingsFormComponent } from "./../settings-form/settings-form.component";
 import { SearchedArticlesComponent } from "./../searched-articles/searched-articles.component";
+import { EmptyListComponent } from './../empty-list/empty-list.component';
 
 @NgModule({
   imports: [
@@ -29,8 +30,27 @@ import { SearchedArticlesComponent } from "./../searched-articles/searched-artic
           component: SearchedArticlesComponent
         },
         {
+          path: `empty`,
+          component: EmptyListComponent
+        },
+        {
           path: `404`,
           component: NotFoundComponent
+        },
+        {
+          path: `article/:articleid/edit`,
+          component: ArticleFormComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          }
+        },        
+        {
+          path: "favorites",
+          component: AuthorArticlesComponent,
+          resolve: {
+            articles: ArticlesResolveService
+          },
+          data: { currentSelection: "FAV"}
         },
         {
           path: ":username",
@@ -42,13 +62,6 @@ import { SearchedArticlesComponent } from "./../searched-articles/searched-artic
         {
           path: `article/create`,
           component: ArticleFormComponent
-        },
-        {
-          path: `article/:articleid/edit`,
-          component: ArticleFormComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          }
         },
         {
           path: `article/:username/:titleslug`,

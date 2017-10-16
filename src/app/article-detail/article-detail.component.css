@@ -1,3 +1,7 @@
 md-card-title {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+share-container {
+  margin-top: -1em;
 }
