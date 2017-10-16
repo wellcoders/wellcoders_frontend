@@ -1,5 +1,5 @@
-<empty-list *ngIf="!articles.length"></empty-list>
-<div *ngIf="articles.length" fxLayout="row"  fxLayoutWrap>
+<empty-list *ngIf="!articles || !articles.length"></empty-list>
+<div *ngIf="articles && articles.length" fxLayout="row"  fxLayoutWrap>
     <div *ngFor="let article of articles; let i = index;" fxFlex.gt-md="33" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100">
         <article-preview 
             (whenCategorySelected)="goToCategoryArticleList($event)" 

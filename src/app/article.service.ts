@@ -17,16 +17,17 @@ export class ArticleService extends LocalStorageHandler{
     private _http: Http
   ) { super()}
 
-  getArticles(page: number = 1): Observable<ArticleWrapper> {
-    console.log(`Obteniendo últimos artículos de la página ${page}`);
+  getArticles(searchText: string = "", page: number = 1): Observable<ArticleWrapper> {
     let headers = new Headers();
     if (this.user) {
       headers.append('Authorization', 'JWT ' + this.user.token);
     }
     let options = new RequestOptions({ headers: headers });
+    console.log(`Obteniendo últimos artículos de la página ${page}. Search text: ${searchText}`);
 
+    let queryString = this.getQueryString(page, searchText);
     return this._http
-      .get(environment.url + `/api/1.0/posts/?page=${page}`, options)
+      .get(environment.url + `/api/1.0/posts/?${ queryString }`, options)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
@@ -46,25 +47,26 @@ export class ArticleService extends LocalStorageHandler{
       );
   }
 
-  getCategoryArticles(category: string, page: number = 1): Observable<ArticleWrapper> {
-    console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}`);
+  getCategoryArticles(category: string, searchText: string = "", page: number = 1): Observable<ArticleWrapper> {
+    console.log(`Obteniendo artículos de la categoría ${category} de la página ${page}. Search text: ${searchText}`);
+    let queryString = this.getQueryString(page, searchText);
     return this._http
-      .get(environment.url + `/api/1.0/tag/${category}/?page=${page}`)
+      .get(environment.url + `/api/1.0/tag/${category}/?${queryString}`)
       .map((response: Response): ArticleWrapper =>
       ArticleWrapper.fromJson(response.json())
       );
   }
 
-  getAuthorArticles(username: String, page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
+  getAuthorArticles(username: String, searchText: string = "", page: number = 1, status: string = this.default_status): Observable<ArticleWrapper> {
     let headers = new Headers();
     if (this.user) {
       headers.append('Authorization', 'JWT ' + this.user.token);
     }
     let options = new RequestOptions({ headers: headers });
-
-    console.log(`Obteniendo artículos del autor ${username} de la página ${page}`);
+    console.log(`Obteniendo artículos del autor ${username} de la página ${page}. Search text: ${searchText}`);
+    let queryString = this.getQueryString(page, searchText) + `&status=${status}`;
     return this._http
-    .get(environment.url + `/api/1.0/${username}/?page=${page}&status=${status}`, options)
+    .get(environment.url + `/api/1.0/${username}/?${queryString}`, options)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );
@@ -108,6 +110,14 @@ export class ArticleService extends LocalStorageHandler{
   getArticleById(id: number): Observable<any> {
     return this._http
       .get(environment.url + `/api/1.0/posts/`+ id + `/`);
+  } 
+  
+  getQueryString(page: number, searchText: string): string {
+    let queryString = `page=${page}`;
+    if (searchText) {
+      queryString += `&search=${searchText}`;
+    }
+    return queryString;
   }  
 
   favoriteClicked(article: Object): Observable<any> {
@@ -125,14 +135,16 @@ export class ArticleService extends LocalStorageHandler{
     }
   }  
 
-  getFavoriteArticles(page: number = 1): Observable<ArticleWrapper> {
+  getFavoriteArticles(searchText: string = "",  page: number = 1): Observable<ArticleWrapper> {
     let headers = new Headers();
     headers.append('Authorization', 'JWT ' + this.user.token);
 
     let options = new RequestOptions({ headers: headers });
 
+    let queryString = this.getQueryString(page, searchText);
+
     return this._http
-    .get(environment.url + `/api/1.0/favorites/?page=${page}`, options)
+    .get(environment.url + `/api/1.0/favorites/?${queryString}`, options)
     .map((response: Response): ArticleWrapper =>
     ArticleWrapper.fromJson(response.json())
     );

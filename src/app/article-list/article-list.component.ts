@@ -9,6 +9,7 @@ import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"
 import { MdSnackBar } from '@angular/material';
 import { NativeWindow } from './../window';
+import { ArticleCommon } from "./../article-common";
 import { ScrollService } from "./../scroll.service";
 
 @Component({
@@ -52,11 +53,11 @@ export class ArticleListComponent implements OnInit {
   }
 
   goToAuthorArticleList(username: string): void {
-    this._router.navigate([`${username}`]);
+    ArticleCommon.navigateToAuthor(username, this._router);
   }
 
   goToCategoryArticleList(category: Category): void {
-    this._router.navigate([`/tag/${category.name}`]);
+    ArticleCommon.navigateToCategory(category, this._router);
   }
 
   goToEditArticle(article: Article): void {

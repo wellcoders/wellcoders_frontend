@@ -47,7 +47,7 @@ export class LastestArticlesComponent implements OnInit {
   }
 
   loadNextPage(pageNumber: number): void {
-    this.articleService.getArticles(pageNumber).subscribe(articleWrapper => {
+    this.articleService.getArticles("", pageNumber).subscribe(articleWrapper => {
       articleWrapper.articles.map(article => {
         this.articles.push(article);
       });

@@ -19,6 +19,7 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { ArticleActionsBoxComponent } from './../article-actions-box/article-actions-box.component';
 import { SlugifyPipe } from './../slugify.pipe';
 import { NativeWindowProvider } from './../window';
+import { SearchBoxComponent } from './../search-box/search-box.component';
 import { ShareModule } from 'ng2share/share.module';
 import { EmptyListComponent } from './../empty-list/empty-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
@@ -41,6 +42,7 @@ import { CommentDetailComponent } from './../comment-detail/comment-detail.compo
     NotFoundComponent,
     ArticleActionsBoxComponent,
     SlugifyPipe,
+    SearchBoxComponent,
     EmptyListComponent,
     CommentsListComponent,
     CommentDetailComponent
@@ -55,6 +57,7 @@ import { CommentDetailComponent } from './../comment-detail/comment-detail.compo
     ArticleDetailComponent,
     ArticleActionsBoxComponent,
     SlugifyPipe,
+    SearchBoxComponent,
     AngularFontAwesomeModule
   ],
   entryComponents: [PaginateComponent, ConfirmationDialog],
