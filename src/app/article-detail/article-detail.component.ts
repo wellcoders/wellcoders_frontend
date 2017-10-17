@@ -5,7 +5,6 @@ import { Article } from "./../article";
 import { ArticleWrapper } from "./../article-wrapper";
 import { CommentWrapper } from "./../comment-wrapper";
 import { ArticleService } from "./../article.service";
-import { CommentsService } from "./../comments.service";
 import { User } from "./../user";
 import { Comment } from "./../comment";
 import { Category } from "./../category";
@@ -24,19 +23,16 @@ import { ScrollService } from "./../scroll.service";
 export class ArticleDetailComponent extends LocalStorageHandler implements OnInit {
   @Input() article: Article;
 
-  private _comments: Comment[];
   private totalPages: number;
   private pageSize: number;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _articles: ArticleService,
-    private _commentsService: CommentsService,
     private _router: Router,
     public snackBar: MdSnackBar,
     public scrollService: ScrollService,
     @Inject(NativeWindow) private _window) {
       super();
-      this._comments = [];
     }
 
   ngOnInit() {
@@ -45,18 +41,6 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
       (data: { articles: ArticleWrapper }) => {
         if(data.articles && data.articles.count == 1) {
           this.article = data.articles.articles[0];
-           this._commentsService.getComments(this.article).subscribe(
-             result => {
-              self.totalPages = result.totalPages;
-              self.pageSize = result.pageSize;
-
-              result.comments.map(comment => {
-                self._comments.push(comment);
-              })
-             },
-            error => {
-               self.snackBar.open('An error ocurred. Try again later', '', { duration: 5000 });
-            });
         } else {
           this._router.navigate(['404']);
         }
@@ -92,22 +76,5 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
     return ArticleCommon.plainTextToHtml(text);
   }
 
-  loadNextPage(pageNumber: number): void {
-    this._commentsService.getComments(this.article, pageNumber).subscribe(
-      (commentWrapper => {
-        commentWrapper.comments.map(comment => {
-          this._comments.push(comment);
-        })
-      })
-    )
-  }
 
-  processCommentWrapper = function(commentWrapper: CommentWrapper): void {
-    this.totalPages = commentWrapper.totalPages;
-    this.pageSize = commentWrapper.pageSize;
-  
-    commentWrapper.comments.map(comment => {
-      this._comments.push(comment);
-    })
-  }
 }

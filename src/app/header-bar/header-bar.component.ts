@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { RegisterFormDialog } from "./../register-form/register-form.component";
 import { LoginFormDialog } from "./../login-form/login-form.component";

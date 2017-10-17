@@ -30,6 +30,8 @@ export class LoginFormComponent implements OnInit {
 @Component({
   templateUrl: './login-form-dialog.html'
 })
+
+
 export class LoginFormDialog {
 
   constructor(

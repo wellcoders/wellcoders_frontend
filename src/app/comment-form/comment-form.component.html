@@ -1,0 +1,31 @@
+<form ngForm #commentForm="ngForm" (submit)="submit(commentForm)" class="mat-typography" rowStyle="full-width">
+    <md-card-content>
+            <div class="full-width mat-form-field" ng-reflect-class-base="full-width">
+                <div class="mat-form-field-wrapper">
+                    <div class="mat-form-field-flex">
+                        <div class="mat-form-field-infix">
+                            <label class="mat-input-placeholder mat-form-field-placeholder mat-empty mat-form-field-empty mat-float mat-form-field-float position-fix" >
+                                Content
+                            </label>
+                            <div class="wysiwyg-fix">
+                                <ckeditor name="content" required [(ngModel)]="content"
+                                    [config]="{toolbar: [
+                                                        { name: 'document', items: [ 'Source' ] },
+                                                        { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ]},
+                                                        { name: 'links', items: [ 'Link' ] },
+                                                        { name: 'paragraph', items: [ 'NumberedList', 'BulletedList' ]}
+                                              ]}">
+                                </ckeditor>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mat-input-underline mat-form-field-underline">
+                        <span class="mat-input-ripple mat-form-field-ripple"></span>
+                    </div>
+                </div>
+            </div>
+             <button class="full-width" md-raised-button type="submit" [disabled]="commentForm.invalid">Accept</button>
+
+        </md-card-content>
+</form>

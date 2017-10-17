@@ -3,7 +3,8 @@ import { Article } from "./../article";
 import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
-import { UtilsModule } from "./../utils-module/utils-module.module";
+//import { UtilsModule } from "./../utils-module/utils-module.module";
+import { PublicModule } from "./../public-module/public.module";
 import { ActivatedRoute, Router, NavigationError } from "@angular/router";
 import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"

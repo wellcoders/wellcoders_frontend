@@ -23,12 +23,22 @@ import { SearchBoxComponent } from './../search-box/search-box.component';
 import { ShareModule } from 'ng2share/share.module';
 import { EmptyListComponent } from './../empty-list/empty-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { CKEditorModule } from 'ng2-ckeditor';
 import { CommentsListComponent } from './../comments-list/comments-list.component';
 import { CommentDetailComponent } from './../comment-detail/comment-detail.component';
-
+import { CommentFormComponent, CommentFormDialog } from './../comment-form/comment-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FlexLayoutModule, ShareModule, AngularFontAwesomeModule],
+  imports: [
+    CommonModule, 
+    MaterialModule, 
+    FlexLayoutModule, 
+    ShareModule, 
+    AngularFontAwesomeModule,
+    CKEditorModule,
+    FormsModule
+  ],
   declarations: [
     HeaderBarComponent,
     ArticleListComponent,
@@ -45,7 +55,9 @@ import { CommentDetailComponent } from './../comment-detail/comment-detail.compo
     SearchBoxComponent,
     EmptyListComponent,
     CommentsListComponent,
-    CommentDetailComponent
+    CommentDetailComponent,
+    CommentFormComponent,
+    CommentFormDialog,
   ],
   exports: [
     HeaderBarComponent,
@@ -60,7 +72,18 @@ import { CommentDetailComponent } from './../comment-detail/comment-detail.compo
     SearchBoxComponent,
     AngularFontAwesomeModule
   ],
-  entryComponents: [PaginateComponent, ConfirmationDialog],
-  providers: [ArticleService, CategoriesService, CommentsService, SlugifyPipe, NativeWindowProvider, ScrollService]
+  entryComponents: [
+    PaginateComponent, 
+    ConfirmationDialog, 
+    CommentFormDialog
+  ],
+  providers: [
+    ArticleService, 
+    CategoriesService, 
+    CommentsService, 
+    SlugifyPipe, 
+    NativeWindowProvider,
+    ScrollService
+  ]
 })
 export class UtilsModule {}
