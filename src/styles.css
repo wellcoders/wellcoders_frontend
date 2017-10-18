@@ -104,3 +104,9 @@ md-card {
 button.pq.mat-button {
   min-width: 42px;
 }
+
+div.article-content img {
+  max-width: 100%;
+  display: block;
+  margin: 21px auto;
+}
