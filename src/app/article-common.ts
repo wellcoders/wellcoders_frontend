@@ -49,19 +49,8 @@ export class ArticleCommon {
     deleted: 'DEL'
   }
 
-
-
-
   static plainTextToHtml(text: string): string {
     return text ? `<p>${text.replace(/\n/gi, "</p><p>")}</p>` : "";
-  }
-
-  static errorHandler(error) {
-    if (error.status == 404) {
-      window.location.replace("/404");
-    } else {
-      console.error(error.stack);
-    }
   }
 }
   

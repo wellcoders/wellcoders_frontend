@@ -28,6 +28,7 @@ import { CommentsListComponent } from './../comments-list/comments-list.componen
 import { CommentDetailComponent } from './../comment-detail/comment-detail.component';
 import { CommentFormComponent, CommentFormDialog } from './../comment-form/comment-form.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from './../error/error.component';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { FormsModule } from '@angular/forms';
     CommentDetailComponent,
     CommentFormComponent,
     CommentFormDialog,
+    ErrorComponent
   ],
   exports: [
     HeaderBarComponent,

@@ -12,6 +12,7 @@ import { ArticlesResolveService } from "./articles-resolve.service";
 import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -13,6 +13,7 @@ import { ArticleCommon } from "./../article-common";
 import { SettingsFormComponent } from "./../settings-form/settings-form.component";
 import { SearchedArticlesComponent } from "./../searched-articles/searched-articles.component";
 import { EmptyListComponent } from './../empty-list/empty-list.component';
+import { ErrorComponent } from './../error/error.component'
 
 @NgModule({
   imports: [
@@ -53,6 +54,10 @@ import { EmptyListComponent } from './../empty-list/empty-list.component';
           data: { currentSelection: "FAV"}
         },
         {
+          path: `error`,
+          component: ErrorComponent
+        },
+        {
           path: ":username",
           component: AuthorArticlesComponent,
           resolve: {
@@ -91,12 +96,12 @@ import { EmptyListComponent } from './../empty-list/empty-list.component';
         },
         {
           path: "**",
-          redirectTo: "/articles"
+          redirectTo: "/"
         }
       ],
       {
         //enableTracing: true,
-        errorHandler: ArticleCommon.errorHandler
+        //errorHandler: ArticleCommon.errorHandler
       }
     )
   ],
