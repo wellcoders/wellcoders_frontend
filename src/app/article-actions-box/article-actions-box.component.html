@@ -1,8 +1,24 @@
 <md-card-actions >
-  <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
-  <button (click)="notifyEditArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
-  <button (click)="notifyDeleteArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
-  <button (click)="notifyFavorite(article)" md-button *ngIf="user != null"><i *ngIf="!article.is_favorite" class="fa fa-star-o"></i><i *ngIf="article.is_favorite" class="fa fa-star"></i>&nbsp;&nbsp;Favorite</button>
-  <span fxFlex="grow"></span>
-  <button (click)="notifyArticleSelected(article)" md-button><i [class]="class"></i>&nbsp; {{article.numComments}}</button>
+  <div class="generic-actions">
+    <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>
+      &nbsp;&nbsp;{{article.category.name}}
+    </button>
+    <button class="favourite-btn" (click)="notifyFavorite(article)" md-button *ngIf="user != null">
+      <i *ngIf="!article.is_favorite" class="fa fa-star-o"></i><i *ngIf="article.is_favorite" class="fa fa-star"></i>
+      <span>&nbsp;&nbsp;Favorite</span>
+    </button>
+    <span fxFlex="grow"></span>
+    <button class="num-comments" (click)="notifyArticleSelected(article)" md-button>
+      <i [class]="class"></i>&nbsp; {{article.numComments}}
+    </button>
+  </div>
+  <div class="author-actions" *ngIf="user != null && user.user.username == article.owner.username">
+    <button (click)="notifyDeleteArticle(article)" md-mini-fab color="warn" >
+        <i class="fa fa-trash fa-lg"></i>
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button (click)="notifyEditArticle(article)" md-mini-fab color="primary">
+        <i class="fa fa-edit fa-lg"></i>
+    </button>
+  </div>
 </md-card-actions>
