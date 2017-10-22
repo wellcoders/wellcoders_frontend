@@ -61,7 +61,7 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
   }
 
   goToEditArticle(article: Article): void {
-    this._router.navigate([`/article/${article.pk}/edit`]);
+    this._router.navigate([`/article/${article.owner.username}/${article.titleSlug}/edit`]);
   }
 
   deleteArticle(article: Article): void{
@@ -71,6 +71,14 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
       }
     );
   }
+
+  favoriteClicked(article: Article): void{
+    this._articles.favoriteClicked(article).subscribe(
+      success => {
+        this.article.is_favorite=!this.article.is_favorite;
+      }
+    );
+  }  
 
   plainTextToHtml(text: string): string {
     return ArticleCommon.plainTextToHtml(text);

@@ -18,6 +18,7 @@ export class SearchedArticlesComponent implements OnInit {
   category: string;
   header: string;
   searchText: string;
+  listName: any;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private articleService: ArticleService) { }

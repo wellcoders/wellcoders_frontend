@@ -14,7 +14,7 @@ import { Subscription } from "rxjs/Subscription";
 export class CommentFormComponent implements OnInit {
   @Output() submitComment: EventEmitter<Object> = new EventEmitter();
   
-  private content:string;
+  public content:string;
   
   ngOnInit(): void {}
 

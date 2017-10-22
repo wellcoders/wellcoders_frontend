@@ -3,15 +3,12 @@ import { Article } from "./../article";
 import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
-//import { UtilsModule } from "./../utils-module/utils-module.module";
-import { PublicModule } from "./../public-module/public.module";
+import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ActivatedRoute, Router, NavigationError } from "@angular/router";
 import { environment } from "./../../environments/environment";
 import { ArticleService } from "./../article.service"
 import { MdSnackBar } from '@angular/material';
 import { NativeWindow } from './../window';
-import { ArticleCommon } from "./../article-common";
-import { ScrollService } from "./../scroll.service";
 
 @Component({
   selector: "article-list",
@@ -31,15 +28,11 @@ export class ArticleListComponent implements OnInit {
     private _articles: ArticleService,
     private _router: Router,
     public snackBar: MdSnackBar,
-    public scrollService: ScrollService,
     @Inject(NativeWindow) private _window) {}
 
   ngOnInit(): void {
+    //this._window.scrollTo(0, 0);
   }
-
-  ngAfterViewInit() {
-    this.scrollService.scrollToTop();
-   }
 
   loadNextPage(data): void {
     const listName = data.listName;
@@ -54,15 +47,15 @@ export class ArticleListComponent implements OnInit {
   }
 
   goToAuthorArticleList(username: string): void {
-    ArticleCommon.navigateToAuthor(username, this._router);
+    this._router.navigate([`articles/${username}`]);
   }
 
   goToCategoryArticleList(category: Category): void {
-    ArticleCommon.navigateToCategory(category, this._router);
+    this._router.navigate([`/tag/${category.name}`]);
   }
 
   goToEditArticle(article: Article): void {
-    this._router.navigate([`/article/${article.pk}/edit`]);
+    this._router.navigate([`articles/${article.owner.username}/${article.titleSlug}/edit`]);
   }
 
   deleteArticle(article: Article): void{
@@ -89,6 +82,6 @@ export class ArticleListComponent implements OnInit {
   }  
 
   goToDetail(article: Article): void {
-    this._router.navigate([`/article/${article.owner.username}/${article.titleSlug}`]);
+    this._router.navigate([`articles/${article.owner.username}/${article.titleSlug}`]);
   }
 }

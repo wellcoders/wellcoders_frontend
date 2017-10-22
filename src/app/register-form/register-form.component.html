@@ -52,9 +52,22 @@
         name="password"
         placeholder="Password"
         ngModel #password="ngModel"
+        (keyup)="passwordValidator(password, repeat_password)"
         required>
         <md-error *ngIf="password.hasError('required')">
         Password is <strong>required</strong>
+        </md-error>     
+    </md-form-field>
+
+    <md-form-field ngClass="{{ rowStyle }}">
+        <input mdInput type="password"
+        name="repeat_password"
+        placeholder="Repeat Password"
+        ngModel #repeat_password="ngModel"
+        (keyup)="passwordValidator(password, repeat_password)"
+        required>
+        <md-error *ngIf="repeat_password.hasError('not_matched')">
+            Passwords <strong>do not match</strong>
         </md-error>
     </md-form-field>
     

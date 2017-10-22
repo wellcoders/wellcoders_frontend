@@ -14,7 +14,8 @@ export class Article {
     public category: Category,
     public owner: User,
     public numComments: number,
-    public is_favorite: boolean = false
+    public is_favorite: boolean = false,
+    public status: string
   ) {}
 
   static fromJson(json: any): Article {
@@ -30,7 +31,8 @@ export class Article {
       json.category,
       json.owner,
       json.num_comments,
-      json.is_favorite
+      json.is_favorite,
+      json.status
     );
   }
 

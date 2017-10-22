@@ -16,23 +16,23 @@ export class ArticleCommon {
       queryParamsHandling: 'preserve',
       preserveFragment: true
     };
-    router.navigate([`${username}`], navigationExtras);
+    router.navigate([`articles/${username}`], navigationExtras);
   }
 
-  static navigateToDrafts(username: string, router: Router): void {
+  static navigateToDrafts(router: Router): void {
     let navigationExtras: NavigationExtras = {
       queryParamsHandling: 'preserve',
       preserveFragment: true
     };
-    router.navigate([`${username}/drafts`], navigationExtras);
+    router.navigate([`user/articles/drafts`], navigationExtras);
   }
 
-  static navigateToDeleted(username: string, router: Router): void {
+  static navigateToDeleted(router: Router): void {
     let navigationExtras: NavigationExtras = {
       queryParamsHandling: 'preserve',
       preserveFragment: true
     };
-    router.navigate([`${username}/deleted`], navigationExtras);
+    router.navigate([`user/articles/deleted`], navigationExtras);
   }
 
   static navigateToFavorites(router: Router): void {
@@ -40,10 +40,10 @@ export class ArticleCommon {
       queryParamsHandling: 'preserve',
       preserveFragment: true
     };
-    router.navigate([`/favorites`], navigationExtras);
+    router.navigate([`user/favorites`], navigationExtras);
   }
 
-  static statusVaues = {
+  static statusValues = {
     published: 'PUB',
     drafts: 'DRF',
     deleted: 'DEL'

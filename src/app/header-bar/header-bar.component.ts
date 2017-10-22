@@ -42,15 +42,15 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   }
 
   createArticle():void{
-    this._router.navigate(['/article/create']);
+    this._router.navigate(['/user/new-article']);
   }
 
   drafts():void {
-    ArticleCommon.navigateToDrafts(this.user.user.username, this._router);
+    ArticleCommon.navigateToDrafts(this._router);
   }
 
   deleted():void {
-    ArticleCommon.navigateToDeleted(this.user.user.username, this._router);
+    ArticleCommon.navigateToDeleted(this._router);
   }
 
   favorites():void {
@@ -58,7 +58,7 @@ export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
   }
 
   settings():void {
-    this._router.navigate(['/users/settings']);
+    this._router.navigate(['/user/settings']);
   }
 
   openLoginDialog(): void {

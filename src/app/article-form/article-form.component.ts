@@ -67,7 +67,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
     this._activatedRoute.data.subscribe(
       (data: { data: Object}) => {
         if(data['articles']){
-          this.article = data['articles'].json()
+          this.article = data['articles']['articles'][0]
         
           if(this.article && this.article.owner.username != this.user.user.username){
             this._router.navigate(['/'])
@@ -75,7 +75,7 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
 
           this.mode = 'update'
 
-          this.publish_date = new Date(this.article.publish_date);
+          this.publish_date = new Date(this.article.publicationDate);
           this.title = this.article.title;
           this.summary = this.article.summary;
           this.status = this.article.status;
@@ -161,10 +161,22 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
         success => {
           var responseObject = success.json()
           
-          var result = environment.url + '/static/uploads/' + responseObject.name + image_size + responseObject.extension;
+          var result = environment.url + '/static/uploads/' + responseObject.filename + image_size + responseObject.extension;
           
           if(!only_url){
-            result = '<img src="' + result + '" />'
+            if(responseObject.picturefiles.length){
+              var picture = '<picture>'
+              for(var file in responseObject.picturefiles){
+                file = responseObject.picturefiles[file]
+                picture += '<source srcset="' + environment.url + '/static/uploads/' + file['filename'] + file['extension'] + '" media="(min-width: '+ file['width'] +'px)">'
+              }
+              picture += '<img src="' + result + '" />'
+              picture += '</picture>'
+              result = picture
+            }
+            else{
+              result = '<img src="' + result + '" />'
+            }
           }
 
           if(append)
@@ -174,20 +186,17 @@ export class ArticleFormComponent extends LocalStorageHandler implements OnInit 
             this[field] = result
           }         
         
+        },
+        error => {
+          var error = error.json();
+
+          if(error['error']){
+            this.snackBar.open(error['error'], '', { duration: 5000 });
+          };
         }
       );
 
     }
  
   }
-
-  onDragOver(event){
-    debugger;
-  }
-
-  onDragLeave(event){
-    debugger;
-  }
-
-
 }

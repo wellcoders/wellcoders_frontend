@@ -9,19 +9,15 @@
             <md-card-content>
                 <div class="mat-card-header-text">
                     <md-form-field class="full-width">
-
-                        <input mdInput type="text" name="title" placeholder="Title" [(ngModel)]="title" required>
-
+                        <input mdInput type="text" maxlength="155" name="title" placeholder="Title" [(ngModel)]="title" required>
                     </md-form-field>
                     <md-form-field class="full-width">
-                        <textarea mdInput mdTextareaAutosize [mdAutosizeMinRows]="5" name="summary" placeholder="Summary" [(ngModel)]="summary" required></textarea>
+                        <textarea maxlength="155" mdInput mdTextareaAutosize [mdAutosizeMinRows]="5" name="summary" placeholder="Summary" [(ngModel)]="summary" required></textarea>
                     </md-form-field>
-
                     <md-form-field class="full-width">
                         <input mdInput type="text" name="media" placeholder="Media" [(ngModel)]="media" (drop)="putResource($event,'media')" dragElement >
                         <md-hint align="start"><strong>Set a url of an image or drag it from your computer</strong> </md-hint>
                     </md-form-field>
-
                     <div class="full-width mat-form-field" ng-reflect-class-base="full-width">
                         <div class="mat-form-field-wrapper">
                             <div class="mat-form-field-flex">

@@ -19,7 +19,7 @@ export class CommentsListComponent extends LocalStorageHandler implements OnInit
   @Input() pageSize: number;
   @Input() post:number;
 
-  private comments: Comment[];
+  public comments: Comment[];
   private _viewForm: Boolean = false;
   
   constructor(
