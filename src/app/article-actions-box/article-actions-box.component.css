@@ -1,3 +1,26 @@
-.mat-button {
-  text-align: left;
+.author-actions .mat-raised-button {
+  width: 49%;
+}
+
+.author-actions {
+  margin: 16px 16px 0 16px;
+}
+
+.generic-actions {
+  position: relative;
+  top: -10px;
+}
+
+@media(max-width: 600px) {
+
+  .generic-actions span{ 
+    display: none;
+  }
+
+  .num-comments, .favourite-btn {
+    min-width: 36px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
 }

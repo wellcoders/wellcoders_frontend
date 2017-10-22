@@ -14,7 +14,7 @@
         <h3>{{article.title}}</h3>
         <div [innerHtml]="plainTextToHtml(article.summary)"></div>
     </md-card-content>
-    <article-actions-box 
+    <article-actions-box user-actions="right"
         (whenArticleSelected)="notifyArticleSelected($event)" 
         (whenCategorySelected)="notifyCategorySelected($event)" 
         (whenEditArticle)="notifyEditArticle($event)" 

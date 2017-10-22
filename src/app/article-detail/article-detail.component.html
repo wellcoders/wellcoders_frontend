@@ -10,12 +10,12 @@
 
     <md-card-content>
         <h3>{{article.title}}</h3>
-        <div [innerHtml]="plainTextToHtml(article.content)"></div>
+        <div [innerHtml]="plainTextToHtml(article.content)" class="article-content"></div>
     </md-card-content>
 
-    <div fxLayout="row" fxLayoutAlign=" center">
-        <article-actions-box (whenCategorySelected)="goToCategoryArticleList($event)" (whenEditArticle)="goToEditArticle($event)"
-            (whenDeleteArticle)="deleteArticle($event)" (whenFavoriteClicked)="favoriteClicked($event)"  [article]="article">
+    <div fxLayout="row" fxLayoutAlign=" baseline" class="user-actions">
+        <article-actions-box fxFlex="grow" user-actions="left" (whenCategorySelected)="goToCategoryArticleList($event)" (whenEditArticle)="goToEditArticle($event)"
+            (whenDeleteArticle)="deleteArticle($event)" (whenFavoriteClicked)="favoriteClicked($event)" [article]="article">
         </article-actions-box>
         <share-container direction="horizontal" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook']">
         </share-container>

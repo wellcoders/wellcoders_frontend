@@ -108,3 +108,29 @@ button.pq.mat-button {
 .fa{
   font-family: FontAwesome !important;
 }
+
+div.article-content img {
+  max-width: 100%;
+  display: block;
+  margin: 21px auto;
+}
+
+article-actions-box[user-actions="left"] .author-actions {
+  text-align: left;
+}
+
+article-actions-box[user-actions="center"] .author-actions {
+  text-align: center;
+}
+
+article-actions-box[user-actions="right"] .author-actions {
+  text-align: right;
+}
+
+@media(max-width: 600px) {
+  article-actions-box {
+    max-width: 70%;
+  }
+}
+
+

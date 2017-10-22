@@ -1,3 +1,8 @@
+.example-card {
+    display:static;
+    position: relative;
+}
+
 md-card-title {
     cursor: pointer;
 }
