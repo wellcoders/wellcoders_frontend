@@ -5,3 +5,9 @@ md-card-title {
 share-container {
   margin-top: -1em;
 }
+
+.user-actions {
+  width: 100%;
+  position: relative;
+}
+

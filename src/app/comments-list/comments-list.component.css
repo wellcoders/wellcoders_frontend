@@ -8,3 +8,10 @@
     width: 215px;
     text-align: right;
 }
+
+@media(max-width: 600px) {
+    .comment-controls button {
+        padding: 0 4px;
+        min-width: 36px;
+    }
+}
