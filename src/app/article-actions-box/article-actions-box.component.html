@@ -1,4 +1,4 @@
-<md-card-actions>
+<md-card-actions >
   <button (click)="notifyCategorySelected(article.category)" md-button><i class="fa fa-tag"></i>&nbsp;&nbsp;{{article.category.name}}</button>
   <button (click)="notifyEditArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</button>
   <button (click)="notifyDeleteArticle(article)" md-button *ngIf="user != null && user.user.username == article.owner.username"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
