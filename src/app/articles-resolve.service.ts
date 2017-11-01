@@ -7,10 +7,10 @@ import { ArticleWrapper } from "./article-wrapper";
 import { Article } from "./article";
 import { ArticleService } from "./article.service";
 import { ArticleCommon } from "./article-common"
-import { LocalStorageHandler } from './local-storage-handler'
+import { SessionStorageHandler } from './local-storage-handler'
 
 @Injectable()
-export class ArticlesResolveService extends LocalStorageHandler implements Resolve<ArticleWrapper> {
+export class ArticlesResolveService extends SessionStorageHandler implements Resolve<ArticleWrapper> {
   constructor(private _articleService: ArticleService, private _router: Router) {
     super();
   }

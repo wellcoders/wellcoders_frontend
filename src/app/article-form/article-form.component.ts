@@ -4,7 +4,7 @@ import { DateAdapter, MdSnackBar } from '@angular/material';
 import { Article } from './../article'
 import { CategoriesService } from './../categories.service'
 import { ArticleService } from './../article.service'
-import { LocalStorageHandler } from './../local-storage-handler'
+import { SessionStorageHandler } from './../local-storage-handler'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MediaService } from './../media.service'
 import { environment } from './../../environments/environment';
@@ -18,7 +18,7 @@ import { NativeWindow } from './../window';
   templateUrl: './article-form.component.html',
   styleUrls: ['./article-form.component.css']
 })
-export class ArticleFormComponent extends LocalStorageHandler implements OnInit {
+export class ArticleFormComponent extends SessionStorageHandler implements OnInit {
   statuses = [{code: 'DRF', name: 'Draft'},
               {code: 'PUB', name: 'Published'}];
   

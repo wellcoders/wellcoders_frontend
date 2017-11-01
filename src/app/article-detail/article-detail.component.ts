@@ -8,7 +8,7 @@ import { ArticleService } from "./../article.service";
 import { User } from "./../user";
 import { Comment } from "./../comment";
 import { Category } from "./../category";
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ArticleCommon } from "./../article-common"
 import { NativeWindow } from './../window';
@@ -20,7 +20,7 @@ import { ScrollService } from "./../scroll.service";
   styleUrls: ['./article-detail.component.css']
 })
 
-export class ArticleDetailComponent extends LocalStorageHandler implements OnInit {
+export class ArticleDetailComponent extends SessionStorageHandler implements OnInit {
   @Input() article: Article;
 
   private totalPages: number;

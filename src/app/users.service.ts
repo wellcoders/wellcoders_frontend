@@ -4,12 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
 import { environment } from './../environments/environment';
 import { User } from './user';
-import { LocalStorageHandler } from "./local-storage-handler"
+import { SessionStorageHandler } from "./local-storage-handler"
 
 
 
 @Injectable()
-export class UsersService  extends LocalStorageHandler{
+export class UsersService  extends SessionStorageHandler{
 
   constructor(
     private _http: Http) { 
@@ -35,7 +35,7 @@ export class UsersService  extends LocalStorageHandler{
               let bdUser = User.fromJson(response.json());
               if (bdUser) {
                 let o = self.updateUser(bdUser);
-                localStorage.setItem('currentUser', JSON.stringify(o));
+                sessionStorage.setItem('currentUser', JSON.stringify(o));
                 return true;
               } else {
                 return false;

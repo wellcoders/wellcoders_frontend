@@ -4,7 +4,7 @@ import { RegisterFormDialog } from "./../register-form/register-form.component";
 import { LoginFormDialog } from "./../login-form/login-form.component";
 import { CategoriesService } from "./../categories.service";
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
-import { LocalStorageHandler } from "./../local-storage-handler"
+import { SessionStorageHandler } from "./../local-storage-handler"
 import { AuthenticationService } from './../authentication.service';
 import { Router, Params, NavigationExtras } from '@angular/router';
 import { Category } from "./../category";
@@ -16,7 +16,7 @@ import { ArticleCommon } from "./../article-common";
   templateUrl: "./header-bar.component.html",
   styleUrls: ["./header-bar.component.css"]
 })
-export class HeaderBarComponent extends LocalStorageHandler implements OnInit {
+export class HeaderBarComponent extends SessionStorageHandler implements OnInit {
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();
   categories = [];
 

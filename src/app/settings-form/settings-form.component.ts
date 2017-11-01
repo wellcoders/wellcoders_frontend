@@ -5,7 +5,7 @@ import { User } from './../user';
 import { UsersService } from './../users.service'; 
 import { AuthenticationService } from './../authentication.service'; 
 
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -14,7 +14,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './settings-form.component.html',
   styleUrls: ['./settings-form.component.css']
 })
-export class SettingsFormComponent extends LocalStorageHandler implements OnInit {
+export class SettingsFormComponent extends SessionStorageHandler implements OnInit {
 
   public _user:User;
   public _editUser: boolean = false;

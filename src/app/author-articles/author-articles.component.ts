@@ -5,14 +5,14 @@ import { User } from "./../user";
 import { ArticleService } from "./../article.service";
 import { ArticleWrapper } from "./../article-wrapper";
 import { ArticleCommon } from './../article-common';
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { ScrollService } from "./../scroll.service";
 
 @Component({
   templateUrl: "./author-articles.component.html",
   styleUrls: ["./author-articles.component.css"]
 })
-export class AuthorArticlesComponent extends LocalStorageHandler implements OnInit  {
+export class AuthorArticlesComponent extends SessionStorageHandler implements OnInit  {
   articles: Article[];
   totalPages: number;
   pageSize: number;

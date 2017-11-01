@@ -4,7 +4,7 @@ import { MdSnackBar } from '@angular/material';
 
 import { Comment } from './../comment';
 import { CommentFormDialog } from "./../comment-form/comment-form.component";
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { CommentsService } from "./../comments.service";
 
 @Component({
@@ -13,7 +13,7 @@ import { CommentsService } from "./../comments.service";
   styleUrls: ['./comments-list.component.css']
 })
 
-export class CommentsListComponent extends LocalStorageHandler implements OnInit {
+export class CommentsListComponent extends SessionStorageHandler implements OnInit {
 
   @Input() totalPages: number;
   @Input() pageSize: number;
