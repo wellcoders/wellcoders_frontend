@@ -39,45 +39,83 @@ import { ErrorComponent } from './../error/error.component'
           component: NotFoundComponent
         },
         {
-          path: `article/:articleid/edit`,
-          component: ArticleFormComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          }
-        },        
-        {
-          path: "favorites",
-          component: AuthorArticlesComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          },
-          data: { currentSelection: "FAV"}
-        },
-        {
           path: `error`,
           component: ErrorComponent
         },
         {
-          path: ":username",
-          component: AuthorArticlesComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          }
+          path: "articles",
+          children:[
+            {
+              path: "",
+              pathMatch: "full",
+              redirectTo: "/"
+            },
+            {
+              path: ":username",
+              children: [
+                {
+                  path: '',
+                  component: AuthorArticlesComponent,
+                  resolve: {
+                    articles: ArticlesResolveService
+                  },
+                },
+                {
+                  path: `:titleslug`,
+                  children: [
+                    {
+                      path: '',
+                      component: ArticleDetailComponent
+                    },
+                    {
+                      path: `edit`,
+                      component: ArticleFormComponent
+                    },
+                  ],
+                  resolve: {
+                    articles: ArticlesResolveService
+                  }, 
+                }
+              ]
+            }
+          ]
         },
         {
           path: `article/create`,
           component: ArticleFormComponent
         },
         {
-          path: `article/:username/:titleslug`,
-          component: ArticleDetailComponent,
-          resolve: {
-            articles: ArticlesResolveService
-          }
-        },
-        {
-          path: "users/settings",
-          component: SettingsFormComponent
+          path: "user",
+          children: [
+           {
+            path: "",
+            pathMatch: "full",
+            redirectTo: "/user/settings"
+           },
+           {
+             path: "settings",
+             component: SettingsFormComponent,
+           },
+           {
+             path: "new-article",
+             component: ArticleFormComponent
+           },
+           {
+             path: "articles/:status",
+             component: AuthorArticlesComponent,
+             resolve: {
+              articles: ArticlesResolveService
+            }             
+           },
+           {
+            path: "favorites",
+            component: AuthorArticlesComponent,
+            resolve: {
+              articles: ArticlesResolveService
+            },
+            data: { currentSelection: "FAV"}
+          },
+          ]
         },
         {
           path: "tag/:categoryname",
@@ -89,20 +127,14 @@ import { ErrorComponent } from './../error/error.component'
         {
           path: ":username/:status",
           component: AuthorArticlesComponent,
-          resolve: {
-            articles: ArticlesResolveService
 
-          }
         },
         {
           path: "**",
           redirectTo: "/"
         }
       ],
-      {
-        //enableTracing: true,
-        //errorHandler: ArticleCommon.errorHandler
-      }
+
     )
   ],
   exports: [RouterModule]

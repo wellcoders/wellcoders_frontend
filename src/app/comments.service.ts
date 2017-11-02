@@ -7,12 +7,12 @@ import { Article } from './article';
 import { User } from './user';
 import { CommentWrapper } from "./comment-wrapper";
 import { Comment } from "./comment";
-import { LocalStorageHandler } from "./local-storage-handler"
+import { SessionStorageHandler } from "./local-storage-handler"
 
 
 
 @Injectable()
-export class CommentsService extends LocalStorageHandler{
+export class CommentsService extends SessionStorageHandler{
 
   constructor(private _http: Http) {
     super();

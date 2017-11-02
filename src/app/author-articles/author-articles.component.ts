@@ -5,14 +5,14 @@ import { User } from "./../user";
 import { ArticleService } from "./../article.service";
 import { ArticleWrapper } from "./../article-wrapper";
 import { ArticleCommon } from './../article-common';
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { ScrollService } from "./../scroll.service";
 
 @Component({
   templateUrl: "./author-articles.component.html",
   styleUrls: ["./author-articles.component.css"]
 })
-export class AuthorArticlesComponent extends LocalStorageHandler implements OnInit  {
+export class AuthorArticlesComponent extends SessionStorageHandler implements OnInit  {
   articles: Article[];
   totalPages: number;
   pageSize: number;
@@ -61,7 +61,7 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
      this._activatedRoute
      .params
      .subscribe(param => {
-        this.currentStatus = param.status?ArticleCommon.statusVaues[param.status]:ArticleCommon.statusVaues.published;
+        this.currentStatus = param.status?ArticleCommon.statusValues[param.status]:ArticleCommon.statusValues.published;
         this.currentAuthorUsername = param.username
         this.setHeader();
       });
@@ -85,7 +85,7 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
   setHeader(): void {
     if (this.articles.length>0 || this.searchText) {
       switch (this.currentStatus) {
-        case ArticleCommon.statusVaues.published: {
+        case ArticleCommon.statusValues.published: {
           if (!this.currentAuthorUsername) {
             this.title = `Mis favoritos`;
           } else if (this.user && this.user.user.username == this.currentAuthorUsername) {
@@ -94,16 +94,16 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
             this.title = `Articulos de ${this.currentAuthorUsername}`
           }
         } break;
-        case ArticleCommon.statusVaues.drafts: {
+        case ArticleCommon.statusValues.drafts: {
           this.title = `Mis borradores`;
         } break;
-        case ArticleCommon.statusVaues.deleted: {
+        case ArticleCommon.statusValues.deleted: {
           this.title = `Mis artículos eliminados`;
         } break;
       }
     } else {
       switch (this.currentStatus) {
-        case ArticleCommon.statusVaues.published: {
+        case ArticleCommon.statusValues.published: {
           if (!this.currentAuthorUsername) {
             this.title = `No hay favoritos`;
           } else if (this.user.user.username == this.currentAuthorUsername) {
@@ -112,10 +112,10 @@ export class AuthorArticlesComponent extends LocalStorageHandler implements OnIn
             this.title = `No hay artículos de ${this.author.first_name} ${this.author.last_name}`
           }
         } break;
-        case ArticleCommon.statusVaues.drafts: {
+        case ArticleCommon.statusValues.drafts: {
           this.title = `No hay borradores`;
         } break;
-        case ArticleCommon.statusVaues.deleted: {
+        case ArticleCommon.statusValues.deleted: {
           this.title = `No hay artículos eliminados`;
         } break;
       }

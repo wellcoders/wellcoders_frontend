@@ -8,7 +8,7 @@ import { ArticleService } from "./../article.service";
 import { User } from "./../user";
 import { Comment } from "./../comment";
 import { Category } from "./../category";
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 import { UtilsModule } from "./../utils-module/utils-module.module";
 import { ArticleCommon } from "./../article-common"
 import { NativeWindow } from './../window';
@@ -20,7 +20,7 @@ import { ScrollService } from "./../scroll.service";
   styleUrls: ['./article-detail.component.css']
 })
 
-export class ArticleDetailComponent extends LocalStorageHandler implements OnInit {
+export class ArticleDetailComponent extends SessionStorageHandler implements OnInit {
   @Input() article: Article;
 
   private totalPages: number;
@@ -61,7 +61,7 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
   }
 
   goToEditArticle(article: Article): void {
-    this._router.navigate([`/article/${article.pk}/edit`]);
+    this._router.navigate([`/article/${article.owner.username}/${article.titleSlug}/edit`]);
   }
 
   deleteArticle(article: Article): void{
@@ -71,6 +71,14 @@ export class ArticleDetailComponent extends LocalStorageHandler implements OnIni
       }
     );
   }
+
+  favoriteClicked(article: Article): void{
+    this._articles.favoriteClicked(article).subscribe(
+      success => {
+        this.article.is_favorite=!this.article.is_favorite;
+      }
+    );
+  }  
 
   plainTextToHtml(text: string): string {
     return ArticleCommon.plainTextToHtml(text);

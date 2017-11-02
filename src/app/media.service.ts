@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { environment } from './../environments/environment';
-import { LocalStorageHandler } from "./local-storage-handler"
+import { SessionStorageHandler } from "./local-storage-handler"
 
 @Injectable()
-export class MediaService extends LocalStorageHandler{
+export class MediaService extends SessionStorageHandler{
 
   constructor(
     private _http: Http

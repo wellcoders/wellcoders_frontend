@@ -4,7 +4,7 @@ import { ArticleWrapper } from "./../article-wrapper";
 import { User } from "./../user";
 import { Category } from "./../category";
 import { UtilsModule } from "./../utils-module/utils-module.module";
-import { LocalStorageHandler } from "./../local-storage-handler"
+import { SessionStorageHandler } from "./../local-storage-handler"
 import { MdDialog } from "@angular/material"
 import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
 import { ArticleCommon } from "./../article-common"
@@ -14,7 +14,7 @@ import { ArticleCommon } from "./../article-common"
   templateUrl: "./article-preview.component.html",
   styleUrls: ["./article-preview.component.css"]
 })
-export class ArticlePreviewComponent extends LocalStorageHandler implements OnInit {
+export class ArticlePreviewComponent extends SessionStorageHandler implements OnInit {
   @Input() article: Article;
   @Input() user: User;
   @Output() whenAuthorSelected: EventEmitter<string> = new EventEmitter<string>();

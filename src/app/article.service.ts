@@ -6,10 +6,10 @@ import 'rxjs/add/operator/map';
 import { environment } from './../environments/environment';
 import { Article } from './article';
 import { ArticleWrapper } from "./article-wrapper";
-import { LocalStorageHandler } from "./local-storage-handler"
+import { SessionStorageHandler } from "./local-storage-handler"
 
 @Injectable()
-export class ArticleService extends LocalStorageHandler{
+export class ArticleService extends SessionStorageHandler{
 
   default_status: string = "PUB";
 

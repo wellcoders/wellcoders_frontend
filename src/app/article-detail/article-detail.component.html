@@ -15,7 +15,7 @@
 
     <div fxLayout="row" fxLayoutAlign=" baseline" class="user-actions">
         <article-actions-box fxFlex="grow" user-actions="left" (whenCategorySelected)="goToCategoryArticleList($event)" (whenEditArticle)="goToEditArticle($event)"
-            (whenDeleteArticle)="deleteArticle($event)" [article]="article">
+            (whenDeleteArticle)="deleteArticle($event)" (whenFavoriteClicked)="favoriteClicked($event)" [article]="article">
         </article-actions-box>
         <share-container direction="horizontal" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook']">
         </share-container>

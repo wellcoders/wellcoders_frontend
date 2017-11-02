@@ -1,8 +1,8 @@
 import { User } from './user';
 
-export class LocalStorageHandler {
+export class SessionStorageHandler {
     get user(): any{
-        return JSON.parse(localStorage.getItem('currentUser'))
+        return JSON.parse(sessionStorage.getItem('currentUser'))
     }
 
     updateUser(u: User): any {

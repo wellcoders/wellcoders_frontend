@@ -4,14 +4,14 @@ import { Article } from "./../article";
 import { User } from "./../user";
 import { Category } from "./../category";
 import { ConfirmationDialog } from "./../confirmation-dialog/confirmation-dialog.component"
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 
 @Component({
   selector: 'article-actions-box',
   templateUrl: './article-actions-box.component.html',
   styleUrls: ['./article-actions-box.component.css']
 })
-export class ArticleActionsBoxComponent extends LocalStorageHandler implements OnInit {
+export class ArticleActionsBoxComponent extends SessionStorageHandler implements OnInit {
   @Input() article: Article;
   @Input() user: User;
   @Output() whenCategorySelected: EventEmitter<Category> = new EventEmitter<Category>();

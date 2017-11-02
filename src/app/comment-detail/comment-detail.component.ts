@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LocalStorageHandler } from './../local-storage-handler';
+import { SessionStorageHandler } from './../local-storage-handler';
 
 import { Comment } from './../comment';
 
@@ -8,7 +8,7 @@ import { Comment } from './../comment';
   templateUrl: './comment-detail.component.html',
   styleUrls: ['./comment-detail.component.css']
 })
-export class CommentDetailComponent  extends LocalStorageHandler implements OnInit {
+export class CommentDetailComponent  extends SessionStorageHandler implements OnInit {
 
   @Input('item') comment: Comment;  
 

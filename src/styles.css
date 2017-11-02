@@ -105,6 +105,10 @@ button.pq.mat-button {
   min-width: 42px;
 }
 
+.fa{
+  font-family: FontAwesome !important;
+}
+
 div.article-content img {
   max-width: 100%;
   display: block;

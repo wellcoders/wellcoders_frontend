@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, OnInit, Output, Inject } from '@angular/core';
 import { UsersService } from './../users.service';
-import { FormGroup } from "@angular/forms";
+import { FormGroup, NgModel } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import { Subscription } from "rxjs/Subscription";
 import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/material';
@@ -12,6 +12,7 @@ import { MdDialog, MdDialogRef, MdSnackBar, MD_DIALOG_DATA } from '@angular/mate
   providers: [UsersService]
 })
 export class RegisterFormComponent implements OnInit {
+
   @Input() rowStyle: string;
   @Output() registerUser: EventEmitter<Object> = new EventEmitter();
 
@@ -21,6 +22,12 @@ export class RegisterFormComponent implements OnInit {
 
   submitUser(form: FormGroup): void {
     this.registerUser.emit(form.value);
+  }
+
+  passwordValidator(password_a: NgModel, password_b: NgModel): void{
+    if(password_a.value != password_b.value){
+      password_b.control.setErrors({"not_matched": true})
+    }
   }
 }
 
