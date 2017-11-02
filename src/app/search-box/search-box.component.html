@@ -1,0 +1,14 @@
+<div>
+  <input type="text"
+    #searchinput
+    placeholder="Search"
+    [@searchinput]="searchInputAnimationState"
+    (blur)="hideSearchInput($event)"
+    (keyup)="notifySearch($event)">
+  <button md-icon-button (click)="showSearchInput(searchinput)">
+    <md-icon aria-label="Search icon" >search</md-icon>
+  </button>
+</div>
+
+
+

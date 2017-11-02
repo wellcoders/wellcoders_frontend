@@ -1,0 +1,17 @@
+<div class="comments-list">
+  <div fxLayoutAlign="space-between start">
+      <h1 fxFlex="grow">Comentarios</h1>
+      <span [hidden]="user" fxFlex="30" class="must_authenticate">You should authenticate to comment</span>
+      <div class="comment-controls" *ngIf="user">
+        <button md-button type="button" (click)="openCommentDialog()" [hidden]="_viewForm">Comment</button> 
+      </div>
+  </div>
+
+  <div *ngFor="let comment of comments, let i = index;">
+    <comment-detail [item]="comment" ></comment-detail>
+    <div *ngIf="(i + 1) % pageSize == 0; then content"></div>
+    <ng-template #content>
+        <paginate (loadNextPageEvent)="loadNextPage($event)" [page]="((i + 1) / pageSize | Round) + 1"></paginate>
+    </ng-template>
+  </div>
+</div>

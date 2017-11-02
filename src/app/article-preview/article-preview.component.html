@@ -1,0 +1,25 @@
+<md-card class="example-card">
+    <div *ngIf="article.media" class="image-container">
+        <img md-card-image [src]="article.media" alt="Photo of {{article.title}}">
+    </div>
+    <md-card-header>
+        <div md-card-avatar class="example-header-image">
+            <i class="fa fa-user-circle fa-3x"></i>
+        </div>
+        <md-card-title (click)="notifyAuthorSelected(article.owner.username)">{{article.owner.first_name}} {{article.owner.last_name}}</md-card-title>
+        <md-card-subtitle>{{article.publicationDate | FromNow}}</md-card-subtitle>
+    </md-card-header>
+
+    <md-card-content (click)="notifyArticleSelected(article)">
+        <h3>{{article.title}}</h3>
+        <div [innerHtml]="plainTextToHtml(article.summary)"></div>
+    </md-card-content>
+    <article-actions-box user-actions="right"
+        (whenArticleSelected)="notifyArticleSelected($event)" 
+        (whenCategorySelected)="notifyCategorySelected($event)" 
+        (whenEditArticle)="notifyEditArticle($event)" 
+        (whenDeleteArticle)="notifyDeleteArticle($event)" 
+        (whenFavoriteClicked)="notifyFavorite($event)" 
+        [article]="article">
+    </article-actions-box>
+</md-card>

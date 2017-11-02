@@ -1,0 +1,5 @@
+<div class="list-header">
+    <h2 class="mat-headline">{{ header }}</h2>
+</div>
+<article-list [listName]="listName" (loadNextPageLastestArticlesEvent)="loadNextPage($event)" [pageSize]="pageSize" [totalPages]="totalPages" [articles]="articles"></article-list>
+

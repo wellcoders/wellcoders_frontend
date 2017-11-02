@@ -1,0 +1,25 @@
+<md-card class="example-card" *ngIf="article"  (loginNeeded)="test1()">
+    <img *ngIf="article.media" md-card-image [src]="article.media" alt="Photo of {{article.title}}">
+    <md-card-header>
+        <div md-card-avatar class="example-header-image">
+            <i class="fa fa-user-circle fa-3x"></i>
+        </div>
+        <md-card-title (click)="goToAuthorArticleList(article.owner.username)">{{article.owner.first_name}} {{article.owner.last_name}}</md-card-title>
+        <md-card-subtitle>{{article.publicationDate | FromNow}}</md-card-subtitle>
+    </md-card-header>
+
+    <md-card-content>
+        <h3>{{article.title}}</h3>
+        <div [innerHtml]="plainTextToHtml(article.content)" class="article-content"></div>
+    </md-card-content>
+
+    <div fxLayout="row" fxLayoutAlign=" baseline" class="user-actions">
+        <article-actions-box fxFlex="grow" user-actions="left" (whenCategorySelected)="goToCategoryArticleList($event)" (whenEditArticle)="goToEditArticle($event)"
+            (whenDeleteArticle)="deleteArticle($event)" (whenFavoriteClicked)="favoriteClicked($event)" [article]="article">
+        </article-actions-box>
+        <share-container direction="horizontal" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook']">
+        </share-container>
+    </div>
+
+    <comments-list [pageSize]="pageSize" [totalPages]="totalPages" [post]="article.pk" (newPost)="addPost($event)"></comments-list>
+</md-card>
